@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Concrete Parachute | Official Website</title>
-    <meta name="description" content="Official website for Concrete Parachute — Heavy Melodic Rock from Atlanta, GA. Stream music, check tour dates, view photos, and shop merch.">
+    <meta name="description" content="Official website for Concrete Parachute — Heavy Melodic Rock from Atlanta, GA. View photos, videos, and join the VIP list.">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -34,21 +34,22 @@
 
     <!-- NAVIGATION BAR -->
     <nav class="sticky top-0 z-50 bg-retro-dark/90 backdrop-blur-md border-b border-zinc-800">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
-            <a href="#hero" class="text-xl font-black tracking-widest text-white uppercase hover:text-retro-coral transition">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center gap-2">
+            <a href="#hero" class="text-xl font-black tracking-widest text-white uppercase hover:text-retro-coral transition shrink-0">
                 Concrete<span class="text-retro-coral">Parachute</span>
             </a>
             <div class="hidden md:flex space-x-6 text-xs uppercase tracking-widest font-semibold text-zinc-400">
-                <a href="#audio" class="hover:text-retro-coral transition">Music</a>
-                <a href="#shows" class="hover:text-retro-coral transition">Tour</a>
-                <a href="#merch" class="hover:text-retro-coral transition">Merch</a>
+                <!-- <a href="#audio" class="hover:text-retro-coral transition">Music</a> -->
+                <!-- <a href="#shows" class="hover:text-retro-coral transition">Tour</a> -->
+                <!-- <a href="#merch" class="hover:text-retro-coral transition">Merch</a> -->
                 <a href="#videos" class="hover:text-retro-coral transition">Videos</a>
                 <a href="#photos" class="hover:text-retro-coral transition">Photos</a>
                 <a href="#about" class="hover:text-retro-coral transition">About</a>
                 <a href="#contact" class="hover:text-retro-coral transition">Contact</a>
             </div>
-            <a href="#mailing" class="bg-retro-coral hover:bg-retro-darkcoral text-white font-bold text-xs uppercase px-4 py-2 rounded-md transition flex items-center gap-2 shadow-lg shadow-retro-coral/20">
-                <i data-lucide="mail" class="w-4 h-4"></i> Join VIP List
+            <!-- Sticky button clamped to single line, shrinks without wrapping -->
+            <a href="#mailing" class="bg-retro-coral hover:bg-retro-darkcoral text-white font-bold text-[clamp(0.65rem,1.5vw,0.75rem)] uppercase px-3 sm:px-4 py-2 rounded-md transition flex items-center gap-2 shadow-lg shadow-retro-coral/20 whitespace-nowrap shrink-0">
+                <i data-lucide="mail" class="w-4 h-4 shrink-0"></i> Join VIP List
             </a>
         </div>
     </nav>
@@ -66,11 +67,16 @@
                 Bridging the weight of metalcore with melodic, anthemic hooks.
             </p>
             <div class="flex flex-wrap justify-center gap-4">
+                <!-- HERO BUTTONS COMMENTED OUT
                 <a href="#audio" class="bg-retro-coral hover:bg-retro-darkcoral text-white font-bold text-sm uppercase px-6 py-3 rounded-md transition flex items-center gap-2 shadow-lg shadow-retro-coral/20">
                     <i data-lucide="play" class="w-4 h-4"></i> Stream Music
                 </a>
                 <a href="#shows" class="bg-retro-card hover:bg-zinc-800 text-retro-palmgreen font-bold text-sm uppercase px-6 py-3 rounded-md transition flex items-center gap-2 border border-retro-palmgreen/40 shadow-lg">
                     <i data-lucide="ticket" class="w-4 h-4"></i> See Live Dates
+                </a>
+                -->
+                <a href="#mailing" class="bg-retro-coral hover:bg-retro-darkcoral text-white font-bold text-sm uppercase px-6 py-3 rounded-md transition flex items-center gap-2 shadow-lg shadow-retro-coral/20">
+                    <i data-lucide="mail" class="w-4 h-4"></i> Join VIP List
                 </a>
             </div>
         </div>
@@ -78,7 +84,7 @@
 
     <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-20">
 
-        <!-- AUDIO SECTION -->
+        <!-- AUDIO SECTION (COMMENTED OUT)
         <section id="audio" class="space-y-6">
             <div class="border-l-4 border-retro-coral pl-4">
                 <h2 class="text-2xl font-black uppercase tracking-wide text-white">Music</h2>
@@ -89,8 +95,9 @@
                 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/17jSWTukLrxGjG3ZWzPbWa?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Concrete Parachute Spotify Player"></iframe>
             </div>
         </section>
+        -->
 
-        <!-- SHOWS SECTION -->
+        <!-- SHOWS SECTION (COMMENTED OUT)
         <section id="shows" class="space-y-6">
             <div class="border-l-4 border-retro-coral pl-4">
                 <h2 class="text-2xl font-black uppercase tracking-wide text-white">Tour Dates</h2>
@@ -102,8 +109,9 @@
                 <p class="text-xs text-zinc-500 italic">No upcoming public dates currently announced. Check back soon or join the mailing list for updates!</p>
             </div>
         </section>
+        -->
 
-        <!-- MERCH SECTION -->
+        <!-- MERCH SECTION (COMMENTED OUT)
         <section id="merch" class="space-y-6">
             <div class="border-l-4 border-retro-coral pl-4">
                 <h2 class="text-2xl font-black uppercase tracking-wide text-white">Merch Shop</h2>
@@ -111,7 +119,6 @@
             </div>
 
             <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-                <!-- Merch Item 1 -->
                 <div class="bg-retro-card border border-zinc-800 rounded-lg p-4 space-y-3 shadow-xl flex flex-col justify-between">
                     <div class="bg-zinc-900 h-48 rounded flex items-center justify-center text-zinc-600 border border-zinc-800">
                         <i data-lucide="shirt" class="w-12 h-12" aria-label="T-Shirt icon"></i>
@@ -125,7 +132,6 @@
                     </a>
                 </div>
 
-                <!-- Merch Item 2 -->
                 <div class="bg-retro-card border border-zinc-800 rounded-lg p-4 space-y-3 shadow-xl flex flex-col justify-between">
                     <div class="bg-zinc-900 h-48 rounded flex items-center justify-center text-zinc-600 border border-zinc-800">
                         <i data-lucide="disc" class="w-12 h-12" aria-label="Poster artwork icon"></i>
@@ -139,7 +145,6 @@
                     </a>
                 </div>
 
-                <!-- Merch Item 3 -->
                 <div class="bg-retro-card border border-zinc-800 rounded-lg p-4 space-y-3 shadow-xl flex flex-col justify-between">
                     <div class="bg-zinc-900 h-48 rounded flex items-center justify-center text-zinc-600 border border-zinc-800">
                         <i data-lucide="package" class="w-12 h-12" aria-label="Sticker pack icon"></i>
@@ -154,31 +159,31 @@
                 </div>
             </div>
         </section>
+        -->
 
         <!-- MAILING LIST / NEWSLETTER SECTION (CONNECTED TO KIT) -->
-<section id="mailing" class="bg-gradient-to-r from-retro-card to-zinc-900 border border-retro-coral/30 rounded-2xl p-8 sm:p-12 text-center space-y-4 shadow-2xl">
-    <div class="inline-block p-3 bg-retro-coral/10 text-retro-coral rounded-full mb-2">
-        <i data-lucide="mail-open" class="w-6 h-6"></i>
-    </div>
-    <h2 class="text-2xl sm:text-3xl font-black uppercase text-white">Join The Concrete Underground</h2>
-    <p class="text-sm text-zinc-300 max-w-lg mx-auto">
-        Sign up below to get an <span class="text-retro-coral font-bold">exclusive unreleased live track MP3</span> delivered instantly, plus early access to tour ticket presales and merch discounts.
-    </p>
-    
-    <form action="https://app.kit.com/forms/9958188/subscriptions" method="POST" class="max-w-md mx-auto flex flex-col sm:flex-row gap-2 pt-2">
-        <input 
-            type="email" 
-            name="email_address" 
-            placeholder="Enter your email address" 
-            required 
-            class="flex-1 bg-retro-dark border border-zinc-700 rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-retro-coral"
-        >
-        <button type="submit" class="bg-retro-coral hover:bg-retro-darkcoral text-white font-bold text-xs uppercase px-6 py-3 rounded transition shadow-lg">
-            Get Free Track
-        </button>
-    </form>
-</section>
-
+        <section id="mailing" class="bg-gradient-to-r from-retro-card to-zinc-900 border border-retro-coral/30 rounded-2xl p-8 sm:p-12 text-center space-y-4 shadow-2xl">
+            <div class="inline-block p-3 bg-retro-coral/10 text-retro-coral rounded-full mb-2">
+                <i data-lucide="mail-open" class="w-6 h-6"></i>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-black uppercase text-white">Join The Concrete Underground</h2>
+            <p class="text-sm text-zinc-300 max-w-lg mx-auto">
+                Sign up below to get an <span class="text-retro-coral font-bold">exclusive unreleased live track MP3</span> delivered instantly, plus early access to tour ticket presales and merch discounts.
+            </p>
+            
+            <form action="https://app.kit.com/forms/9958188/subscriptions" method="POST" class="max-w-md mx-auto flex flex-col sm:flex-row gap-2 pt-2">
+                <input 
+                    type="email" 
+                    name="email_address" 
+                    placeholder="Enter your email address" 
+                    required 
+                    class="flex-1 bg-retro-dark border border-zinc-700 rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-retro-coral"
+                >
+                <button type="submit" class="bg-retro-coral hover:bg-retro-darkcoral text-white font-bold text-xs uppercase px-6 py-3 rounded transition shadow-lg">
+                    Get Free Track
+                </button>
+            </form>
+        </section>
 
         <!-- VIDEO SECTION -->
         <section id="videos" class="space-y-6">
@@ -187,9 +192,10 @@
                 <p class="text-xs uppercase tracking-widest font-bold text-retro-palmgreen">Live Sessions & Performances</p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-6">
-                <!-- Video 1 -->
-                <div class="bg-retro-card border border-zinc-800 rounded-lg overflow-hidden space-y-2 shadow-xl">
+            <!-- Flex container: centers single video, side-by-side when both are active -->
+            <div class="flex flex-col md:flex-row justify-center gap-6">
+                <!-- Video 1 (Studio Video) -->
+                <div class="w-full md:max-w-lg bg-retro-card border border-zinc-800 rounded-lg overflow-hidden space-y-2 shadow-xl flex-1">
                     <div class="aspect-video w-full">
                         <iframe class="w-full h-full" src="https://www.youtube.com/embed/6Ioajwv9PHE" title="Concrete Parachute - Live Studio Session" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
@@ -199,8 +205,8 @@
                     </div>
                 </div>
 
-                <!-- Video 2 -->
-                <div class="bg-retro-card border border-zinc-800 rounded-lg overflow-hidden space-y-2 shadow-xl">
+                <!-- Video 2 (Live Performance - COMMENTED OUT)
+                <div class="w-full md:max-w-lg bg-retro-card border border-zinc-800 rounded-lg overflow-hidden space-y-2 shadow-xl flex-1">
                     <div class="aspect-video w-full">
                         <iframe class="w-full h-full" src="https://www.youtube.com/embed/lEV9XgrdkPg" title="Concrete Parachute Live Performance" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
@@ -209,6 +215,7 @@
                         <p class="text-xs text-zinc-400">Clip of the band performing to a live audience.</p>
                     </div>
                 </div> 
+                -->
             </div>
         </section>
 
@@ -297,9 +304,62 @@
                     </div>
                 </div>
 
-                <!-- CONTACT FORM -->
+                <!-- CONTACT FORM (FIXED & COMPLETED) -->
                 <form action="https://formspree.io/f/maenoyqw" method="POST" class="bg-retro-card border border-zinc-800 p-6 rounded-lg space-y-4 shadow-xl">
                     <input type="hidden" name="_subject" value="[Website Inquiry] Concrete Parachute">
 
                     <div>
-                        <label cl
+                        <label class="block text-xs uppercase font-bold text-zinc-400 mb-1">Name</label>
+                        <input type="text" name="name" required class="w-full bg-retro-dark border border-zinc-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-retro-coral">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs uppercase font-bold text-zinc-400 mb-1">Email</label>
+                        <input type="email" name="email" required class="w-full bg-retro-dark border border-zinc-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-retro-coral">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs uppercase font-bold text-zinc-400 mb-1">Message</label>
+                        <textarea name="message" rows="4" required class="w-full bg-retro-dark border border-zinc-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-retro-coral"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-retro-coral hover:bg-retro-darkcoral text-white font-bold text-xs uppercase py-3 rounded transition shadow-lg shadow-retro-coral/20">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER AREA (FIXED & COMPLETED) -->
+    <footer class="border-t border-zinc-800 bg-retro-dark py-12 mt-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-6 text-xs text-zinc-500">
+            <div class="flex items-center gap-2">
+                <span class="font-bold text-white uppercase tracking-wider">Concrete Parachute</span>
+                <span>&copy; 2026 All Rights Reserved.</span>
+            </div>
+            
+            <div class="flex items-center gap-6">
+                <a href="https://open.spotify.com/artist/17jSWTukLrxGjG3ZWzPbWa" target="_blank" rel="noopener noreferrer" class="hover:text-retro-coral transition flex items-center gap-1">
+                    <i data-lucide="music" class="w-4 h-4"></i> Spotify
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="hover:text-retro-coral transition flex items-center gap-1">
+                    <i data-lucide="instagram" class="w-4 h-4"></i> Instagram
+                </a>
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="hover:text-retro-coral transition flex items-center gap-1">
+                    <i data-lucide="youtube" class="w-4 h-4"></i> YouTube
+                </a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="hover:text-retro-coral transition flex items-center gap-1">
+                    <i data-lucide="facebook" class="w-4 h-4"></i> Facebook
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lucide Icons Initialization Script -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
