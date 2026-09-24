@@ -155,22 +155,30 @@
             </div>
         </section>
 
-        <!-- MAILING LIST / NEWSLETTER SECTION (WITH DIGITAL INCENTIVE) -->
-        <section id="mailing" class="bg-gradient-to-r from-retro-card to-zinc-900 border border-retro-coral/30 rounded-2xl p-8 sm:p-12 text-center space-y-4 shadow-2xl">
-            <div class="inline-block p-3 bg-retro-coral/10 text-retro-coral rounded-full mb-2">
-                <i data-lucide="mail-open" class="w-6 h-6"></i>
-            </div>
-            <h2 class="text-2xl sm:text-3xl font-black uppercase text-white">Join The Parachute Club</h2>
-            <p class="text-sm text-zinc-300 max-w-lg mx-auto">
-                Sign up below to get an <span class="text-retro-coral font-bold">exclusive unreleased live track MP3</span> delivered instantly, plus early access to tour ticket presales and merch discounts.
-            </p>
-            <form action="#" method="POST" class="max-w-md mx-auto flex flex-col sm:flex-row gap-2 pt-2">
-                <input type="email" placeholder="Enter your email address" required class="flex-1 bg-retro-dark border border-zinc-700 rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-retro-coral">
-                <button type="submit" class="bg-retro-coral hover:bg-retro-darkcoral text-white font-bold text-xs uppercase px-6 py-3 rounded transition shadow-lg">
-                    Get Free Track
-                </button>
-            </form>
-        </section>
+        <!-- MAILING LIST / NEWSLETTER SECTION (CONNECTED TO KIT) -->
+<section id="mailing" class="bg-gradient-to-r from-retro-card to-zinc-900 border border-retro-coral/30 rounded-2xl p-8 sm:p-12 text-center space-y-4 shadow-2xl">
+    <div class="inline-block p-3 bg-retro-coral/10 text-retro-coral rounded-full mb-2">
+        <i data-lucide="mail-open" class="w-6 h-6"></i>
+    </div>
+    <h2 class="text-2xl sm:text-3xl font-black uppercase text-white">Join The Concrete Underground</h2>
+    <p class="text-sm text-zinc-300 max-w-lg mx-auto">
+        Sign up below to get an <span class="text-retro-coral font-bold">exclusive unreleased live track MP3</span> delivered instantly, plus early access to tour ticket presales and merch discounts.
+    </p>
+    
+    <form action="https://app.kit.com/f/YOUR_FORM_ID/subscribe" method="POST" class="max-w-md mx-auto flex flex-col sm:flex-row gap-2 pt-2">
+        <input 
+            type="email" 
+            name="email_address" 
+            placeholder="Enter your email address" 
+            required 
+            class="flex-1 bg-retro-dark border border-zinc-700 rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-retro-coral"
+        >
+        <button type="submit" class="bg-retro-coral hover:bg-retro-darkcoral text-white font-bold text-xs uppercase px-6 py-3 rounded transition shadow-lg">
+            Get Free Track
+        </button>
+    </form>
+</section>
+
 
         <!-- VIDEO SECTION -->
         <section id="videos" class="space-y-6">
