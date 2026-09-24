@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Concrete Parachute | Official Website</title>
-    <meta name="description" content="The official home of Concrete Parachute. Stream the new tracks, get tour tickets, and shop exclusive merch." />
+    <title>Concrete Parachute | Official Band Website</title>
+    <meta name="description" content="Official website for Atlanta heavy rock band Concrete Parachute. Stream music, buy merch, and view tour dates." />
 
-    <!-- Google Fonts: Roboto (Body) & Montserrat (Headers) -->
+    <!-- Google Fonts: Roboto & Montserrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@600;700;900&display=swap" rel="stylesheet" />
@@ -40,7 +40,6 @@
     <style>
         h1, h2, h3, .font-header { font-family: 'Montserrat', sans-serif; }
         body { font-family: 'Roboto', sans-serif; }
-        /* Custom scrollbar for 2026 aesthetics */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #121516; }
         ::-webkit-scrollbar-thumb { background: #E07A5F; border-radius: 4px; }
@@ -48,11 +47,14 @@
 
     <!-- Lucide Icons CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Bandsintown Widget Script -->
+    <script class="bandsintown-widget-script" async src="https://widget.bandsintown.com/main.min.js"></script>
 </head>
 <body class="bg-retro-dark text-zinc-100 selection:bg-retro-coral selection:text-white">
     
     <!-- NAVIGATION BAR -->
-    <nav class="fixed w-full top-0 z-50 bg-retro-dark/80 backdrop-blur-xl border-b border-zinc-800/50">
+    <nav class="fixed w-full top-0 z-50 bg-retro-dark/90 backdrop-blur-xl border-b border-zinc-800/80">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
             <a href="#hero" class="text-xl font-black tracking-widest text-white uppercase hover:text-retro-coral transition">
                 Concrete<span class="text-retro-coral">Parachute</span>
@@ -60,29 +62,29 @@
             
             <!-- Desktop Nav -->
             <div class="hidden md:flex items-center space-x-8 text-xs uppercase tracking-widest font-bold text-zinc-400">
-                <a href="#music" class="hover:text-white transition">Music</a>
-                <a href="#tour" class="hover:text-white transition">Tour</a>
+                <a href="#music" class="hover:text-white transition">Music & Video</a>
+                <a href="#tour" class="hover:text-white transition">Tour Dates</a>
                 <a href="#merch" class="hover:text-white transition">Store</a>
                 <a href="#mailing" class="bg-retro-coral/10 text-retro-coral border border-retro-coral/30 hover:bg-retro-coral hover:text-white px-4 py-2 rounded-full transition">
-                    Join The Underground
+                    Get Free Track
                 </a>
             </div>
             
-            <!-- Mobile Menu Button -->
-            <button class="md:hidden text-zinc-300 hover:text-white">
-                <i data-lucide="menu" class="w-6 h-6"></i>
-            </button>
+            <!-- Mobile Menu Toggle Button -->
+            <a href="#mailing" class="md:hidden bg-retro-coral text-white text-[10px] font-bold uppercase px-3 py-1.5 rounded">
+                Free Track
+            </a>
         </div>
     </nav>
 
-    <!-- IMMERSIVE HERO SECTION -->
+    <!-- HERO SECTION -->
     <section id="hero" class="relative min-h-[85vh] flex items-center justify-center border-b border-zinc-800 bg-cover bg-center pt-20"
         style="background-image: linear-gradient(to bottom, rgba(18, 21, 22, 0.4), rgba(18, 21, 22, 1)), url('https://raw.githubusercontent.com/ConcreteParachute/epk/refs/heads/main/IMG_3318.jpg');">
         
         <div class="max-w-4xl mx-auto text-center px-4 flex flex-col items-center">
             <div class="inline-block px-4 py-1.5 bg-retro-turquoise/10 border border-retro-turquoise/30 text-retro-turquoise text-xs uppercase font-bold tracking-widest rounded-full mb-6 backdrop-blur-md">
                 <span class="animate-pulse inline-block w-2 h-2 bg-retro-turquoise rounded-full mr-2"></span>
-                New Single "Torrent" Out Now
+                Atlanta, GA • Heavy Melodic Rock
             </div>
             
             <h1 class="text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-tighter text-white mb-6 drop-shadow-2xl">
@@ -90,76 +92,77 @@
             </h1>
             
             <p class="text-base sm:text-xl text-zinc-300 font-medium max-w-2xl mx-auto mb-8 drop-shadow-md">
-                Heavy rock aggression meets melodic clarity. Atlanta's post-hardcore powerhouse.
+                Combining post-hardcore intensity with driving melodic hooks.
             </p>
 
             <div class="flex flex-wrap justify-center items-center gap-4">
-                <a href="#music" class="bg-retro-coral hover:bg-retro-darkcoral text-white font-black text-sm uppercase px-8 py-4 rounded transition flex items-center gap-2 shadow-[0_0_20px_rgba(224,122,95,0.4)]">
-                    <i data-lucide="play" class="w-5 h-5 fill-current"></i> Stream Now
+                <a href="#music" class="bg-retro-coral hover:bg-retro-darkcoral text-white font-black text-xs sm:text-sm uppercase px-8 py-4 rounded transition flex items-center gap-2 shadow-[0_0_20px_rgba(224,122,95,0.4)]">
+                    <i data-lucide="disc" class="w-5 h-5"></i> Stream Tracks
                 </a>
-                <a href="#tour" class="bg-retro-card/80 backdrop-blur hover:bg-zinc-800 text-white font-bold text-sm uppercase px-8 py-4 rounded transition flex items-center gap-2 border border-zinc-700">
+                <a href="#tour" class="bg-retro-card/80 backdrop-blur hover:bg-zinc-800 text-white font-bold text-xs sm:text-sm uppercase px-8 py-4 rounded transition flex items-center gap-2 border border-zinc-700">
                     <i data-lucide="ticket" class="w-5 h-5"></i> Tour Dates
                 </a>
             </div>
         </div>
     </section>
 
-    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-20 space-y-32">
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-20 space-y-28">
         
-        <!-- MEDIA HUB: MUSIC & VIDEO -->
-        <section id="music" class="scroll-mt-32 space-y-12">
-            <div class="text-center space-y-4">
-                <h2 class="text-3xl md:text-4xl font-black uppercase tracking-wide text-white">Latest Releases</h2>
-                <div class="w-16 h-1 bg-retro-coral mx-auto rounded-full"></div>
+        <!-- MEDIA HUB: SPOTIFY & YOUTUBE -->
+        <section id="music" class="scroll-mt-32 space-y-10">
+            <div class="border-l-4 border-retro-coral pl-4">
+                <h2 class="text-3xl font-black uppercase tracking-wide text-white">Music & Media</h2>
+                <p class="text-xs uppercase tracking-widest font-bold text-retro-palmgreen">Official Streaming & Live Session</p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Native Audio Player -->
-                <div class="bg-retro-card border border-zinc-800/50 rounded-2xl p-6 shadow-2xl space-y-6">
-                    <h3 class="text-sm font-bold uppercase text-retro-palmgreen tracking-widest border-b border-zinc-800 pb-2">Studio Tracks</h3>
+            <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                <!-- Spotify Embedded Player -->
+                <div class="bg-retro-card border border-zinc-800 rounded-2xl p-4 shadow-2xl flex flex-col justify-between space-y-4">
+                    <div class="flex items-center justify-between border-b border-zinc-800/80 pb-3">
+                        <div class="flex items-center gap-2 text-retro-palmgreen font-bold text-xs uppercase tracking-wider">
+                            <i data-lucide="music" class="w-4 h-4"></i> Spotify Player
+                        </div>
+                        <a href="https://open.spotify.com/artist/17jSWTukLrxGjG3ZWzPbWa" target="_blank" class="text-xs text-zinc-400 hover:text-white transition">Follow on Spotify →</a>
+                    </div>
                     
-                    <div class="space-y-4">
-                        <div class="group flex items-center gap-4 p-3 rounded-lg hover:bg-zinc-800/50 transition">
-                            <button class="w-12 h-12 shrink-0 bg-retro-coral rounded-full flex items-center justify-center text-white shadow-lg group-hover:scale-105 transition">
-                                <i data-lucide="play" class="w-5 h-5 ml-1 fill-current"></i>
-                            </button>
-                            <div class="flex-1">
-                                <h4 class="font-bold text-white text-lg">Torrent</h4>
-                                <p class="text-xs text-zinc-400">Lead Single • 5:08</p>
-                            </div>
-                        </div>
-                        <audio controls class="w-full h-10 accent-retro-coral bg-zinc-900 rounded-md">
-                            <source src="https://raw.githubusercontent.com/ConcreteParachute/epk/main/audio/track1.mp3" type="audio/mpeg" />
-                        </audio>
-
-                        <div class="group flex items-center gap-4 p-3 rounded-lg hover:bg-zinc-800/50 transition pt-4 border-t border-zinc-800/50">
-                            <button class="w-12 h-12 shrink-0 bg-retro-turquoise/20 text-retro-turquoise rounded-full flex items-center justify-center shadow-lg group-hover:scale-105 transition">
-                                <i data-lucide="play" class="w-5 h-5 ml-1 fill-current"></i>
-                            </button>
-                            <div class="flex-1">
-                                <h4 class="font-bold text-white text-lg">Drifting Awake</h4>
-                                <p class="text-xs text-zinc-400">B-Side • 2:45</p>
-                            </div>
-                        </div>
+                    <!-- Direct Spotify Artist/Album Embed -->
+                    <div class="rounded-xl overflow-hidden bg-zinc-900">
+                        <iframe 
+                            style="border-radius:12px" 
+                            src="https://open.spotify.com/embed/artist/17jSWTukLrxGjG3ZWzPbWa?utm_source=generator&theme=0" 
+                            width="100%" 
+                            height="352" 
+                            frameBorder="0" 
+                            allowfullscreen="" 
+                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                            loading="lazy">
+                        </iframe>
                     </div>
                 </div>
 
                 <!-- Video Integration -->
-                <div class="bg-retro-card border border-zinc-800/50 rounded-2xl overflow-hidden shadow-2xl flex flex-col">
-                    <div class="aspect-video w-full bg-zinc-900 relative group cursor-pointer">
-                        <iframe class="w-full h-full absolute inset-0" src="https://www.youtube-nocookie.com/embed/YzvcNu_C4yQ?si=5mfKe6BSqHG5bANu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <div class="bg-retro-card border border-zinc-800 rounded-2xl p-4 shadow-2xl flex flex-col justify-between space-y-4">
+                    <div class="flex items-center justify-between border-b border-zinc-800/80 pb-3">
+                        <div class="flex items-center gap-2 text-retro-turquoise font-bold text-xs uppercase tracking-wider">
+                            <i data-lucide="youtube" class="w-4 h-4"></i> Live Studio Performance
+                        </div>
+                        <span class="text-xs text-zinc-500 uppercase font-mono">1-Take Live</span>
                     </div>
-                    <div class="p-6">
-                        <h3 class="font-black text-white uppercase text-xl mb-1">Live Studio Session (1-Take)</h3>
-                        <p class="text-sm text-zinc-400">Raw, unfiltered performance recorded straight off the rack. This is how we sound on stage.</p>
+
+                    <div class="aspect-video w-full bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800">
+                        <iframe class="w-full h-full" src="https://www.youtube-nocookie.com/embed/YzvcNu_C4yQ?si=5mfKe6BSqHG5bANu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    
+                    <div class="pt-2">
+                        <h3 class="font-bold text-white uppercase text-sm">Raw Stage Dynamics</h3>
+                        <p class="text-xs text-zinc-400">Captured live in studio with full IEM mix isolation.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- FAN CAPTURE (PROVIDED MAILING LIST CODE) -->
         <!-- MAILING LIST / NEWSLETTER SECTION -->
-        <section id="mailing" class="bg-gradient-to-r from-retro-card to-zinc-900 border border-retro-coral/30 rounded-2xl p-8 sm:p-12 text-center space-y-4 shadow-2xl scroll-mt-32">
+        <section id="mailing" class="bg-gradient-to-r from-retro-card to-zinc-900 border border-retro-coral/30 rounded-2xl p-8 sm:p-12 text-center space-y-4 shadow-2xl">
             <div class="inline-block p-3 bg-retro-coral/10 text-retro-coral rounded-full mb-2">
                 <i data-lucide="mail-open" class="w-6 h-6"></i>
             </div>
@@ -182,136 +185,110 @@
             </form>
         </section>
 
-        <!-- DIRECT-TO-FAN COMMERCE -->
-        <section id="merch" class="scroll-mt-32 space-y-12">
-            <div class="flex flex-col sm:flex-row justify-between items-end gap-4 border-b border-zinc-800 pb-4">
+        <!-- DIRECT BANDCAMP MERCH STORE -->
+        <section id="merch" class="scroll-mt-32 space-y-10">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 border-l-4 border-retro-coral pl-4">
                 <div>
                     <h2 class="text-3xl font-black uppercase tracking-wide text-white">Official Store</h2>
-                    <p class="text-sm text-zinc-400 mt-1">Direct from the band to you.</p>
+                    <p class="text-xs uppercase tracking-widest font-bold text-retro-palmgreen">Fulfill Direct Via Bandcamp</p>
                 </div>
-                <a href="#" class="text-xs font-bold uppercase tracking-widest text-retro-coral hover:text-white transition flex items-center gap-1">
-                    View All Merch <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                <a href="https://concreteparachute.bandcamp.com" target="_blank" class="bg-zinc-800 hover:bg-zinc-700 text-retro-turquoise text-xs font-bold uppercase px-4 py-2.5 rounded border border-retro-turquoise/30 transition flex items-center gap-2">
+                    <i data-lucide="external-link" class="w-4 h-4"></i> Visit Full Bandcamp Store
                 </a>
             </div>
 
+            <!-- Merch Grid integrated with Bandcamp links -->
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 <!-- Product 1 -->
-                <div class="group bg-retro-card border border-zinc-800/50 rounded-xl overflow-hidden hover:border-retro-coral/50 transition">
-                    <div class="aspect-square bg-zinc-900 flex items-center justify-center p-8 relative">
-                        <div class="absolute top-3 left-3 bg-retro-palmgreen text-white text-[10px] font-bold uppercase px-2 py-1 rounded">New</div>
-                        <!-- Placeholder for Merch Image -->
-                        <i data-lucide="shirt" class="w-32 h-32 text-zinc-800 group-hover:scale-110 transition duration-500"></i>
+                <div class="group bg-retro-card border border-zinc-800 rounded-2xl overflow-hidden hover:border-retro-coral/50 transition flex flex-col justify-between shadow-xl">
+                    <div class="aspect-square bg-zinc-900 flex items-center justify-center p-8 relative overflow-hidden">
+                        <div class="absolute top-3 left-3 bg-retro-coral text-white text-[10px] font-black uppercase px-2 py-1 rounded">New Release</div>
+                        <i data-lucide="disc-3" class="w-28 h-28 text-zinc-700 group-hover:scale-110 group-hover:text-retro-coral transition duration-500"></i>
                     </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-white text-lg">"Torrent" Heavyweight Tee</h3>
-                        <p class="text-retro-turquoise font-black mt-1">$30.00</p>
-                        <button class="w-full mt-4 bg-zinc-800 hover:bg-retro-coral text-white text-xs font-bold uppercase py-3 rounded transition">Add to Cart</button>
+                    <div class="p-5 space-y-3">
+                        <div>
+                            <h3 class="font-bold text-white text-base">Self-Titled EP (Physical / Digital)</h3>
+                            <p class="text-retro-turquoise font-black text-sm mt-1">$10.00 USD</p>
+                        </div>
+                        <a href="https://concreteparachute.bandcamp.com" target="_blank" class="w-full bg-zinc-800 hover:bg-retro-coral text-white text-xs font-bold uppercase py-3 rounded transition flex items-center justify-center gap-2">
+                            Buy on Bandcamp
+                        </a>
                     </div>
                 </div>
 
                 <!-- Product 2 -->
-                <div class="group bg-retro-card border border-zinc-800/50 rounded-xl overflow-hidden hover:border-retro-coral/50 transition">
-                    <div class="aspect-square bg-zinc-900 flex items-center justify-center p-8">
-                        <i data-lucide="disc-3" class="w-32 h-32 text-zinc-800 group-hover:scale-110 transition duration-500"></i>
+                <div class="group bg-retro-card border border-zinc-800 rounded-2xl overflow-hidden hover:border-retro-coral/50 transition flex flex-col justify-between shadow-xl">
+                    <div class="aspect-square bg-zinc-900 flex items-center justify-center p-8 relative overflow-hidden">
+                        <i data-lucide="shirt" class="w-28 h-28 text-zinc-700 group-hover:scale-110 group-hover:text-retro-turquoise transition duration-500"></i>
                     </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-white text-lg">Self-Titled EP (Vinyl)</h3>
-                        <p class="text-retro-turquoise font-black mt-1">$25.00</p>
-                        <button class="w-full mt-4 bg-zinc-800 hover:bg-retro-coral text-white text-xs font-bold uppercase py-3 rounded transition">Add to Cart</button>
+                    <div class="p-5 space-y-3">
+                        <div>
+                            <h3 class="font-bold text-white text-base">Logo Heavyweight Tee</h3>
+                            <p class="text-retro-turquoise font-black text-sm mt-1">$25.00 USD</p>
+                        </div>
+                        <a href="https://concreteparachute.bandcamp.com" target="_blank" class="w-full bg-zinc-800 hover:bg-retro-coral text-white text-xs font-bold uppercase py-3 rounded transition flex items-center justify-center gap-2">
+                            Buy on Bandcamp
+                        </a>
                     </div>
                 </div>
 
                 <!-- Product 3 -->
-                <div class="group bg-retro-card border border-zinc-800/50 rounded-xl overflow-hidden hover:border-retro-coral/50 transition">
-                    <div class="aspect-square bg-zinc-900 flex items-center justify-center p-8 relative">
-                        <div class="absolute top-3 left-3 bg-zinc-700 text-white text-[10px] font-bold uppercase px-2 py-1 rounded">Almost Gone</div>
-                        <i data-lucide="skull" class="w-32 h-32 text-zinc-800 group-hover:scale-110 transition duration-500"></i>
+                <div class="group bg-retro-card border border-zinc-800 rounded-2xl overflow-hidden hover:border-retro-coral/50 transition flex flex-col justify-between shadow-xl">
+                    <div class="aspect-square bg-zinc-900 flex items-center justify-center p-8 relative overflow-hidden">
+                        <div class="absolute top-3 left-3 bg-zinc-700 text-white text-[10px] font-black uppercase px-2 py-1 rounded">Limited</div>
+                        <i data-lucide="tag" class="w-28 h-28 text-zinc-700 group-hover:scale-110 group-hover:text-retro-palmgreen transition duration-500"></i>
                     </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-white text-lg">Logo Pullover Hoodie</h3>
-                        <p class="text-retro-turquoise font-black mt-1">$55.00</p>
-                        <button class="w-full mt-4 bg-zinc-800 hover:bg-retro-coral text-white text-xs font-bold uppercase py-3 rounded transition">Add to Cart</button>
+                    <div class="p-5 space-y-3">
+                        <div>
+                            <h3 class="font-bold text-white text-base">Merch Bundle (Tee + EP + Sticker)</h3>
+                            <p class="text-retro-turquoise font-black text-sm mt-1">$30.00 USD</p>
+                        </div>
+                        <a href="https://concreteparachute.bandcamp.com" target="_blank" class="w-full bg-zinc-800 hover:bg-retro-coral text-white text-xs font-bold uppercase py-3 rounded transition flex items-center justify-center gap-2">
+                            Buy on Bandcamp
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- INTERACTIVE LIVE EVENT HUB -->
+        <!-- AUTOMATED BANDSINTOWN TOUR SECTION -->
         <section id="tour" class="scroll-mt-32 space-y-8">
-            <div class="text-center space-y-4">
-                <h2 class="text-3xl md:text-4xl font-black uppercase tracking-wide text-white">Live Dates</h2>
-                <p class="text-sm text-retro-palmgreen font-bold uppercase tracking-widest">Catch Us On The Road</p>
+            <div class="border-l-4 border-retro-coral pl-4">
+                <h2 class="text-3xl font-black uppercase tracking-wide text-white">Live Tour Dates</h2>
+                <p class="text-xs uppercase tracking-widest font-bold text-retro-palmgreen">Powered by Bandsintown</p>
             </div>
 
-            <div class="bg-retro-card border border-zinc-800/50 rounded-2xl overflow-hidden shadow-2xl">
-                <!-- Dynamic Geo-tag (simulated) -->
-                <div class="bg-zinc-900/80 p-4 border-b border-zinc-800 flex items-center justify-center gap-2 text-sm text-zinc-400">
-                    <i data-lucide="map-pin" class="w-4 h-4 text-retro-coral"></i>
-                    Showing events near <span class="text-white font-bold">Atlanta, GA</span>
-                </div>
+            <div class="bg-retro-card border border-zinc-800 rounded-2xl p-6 shadow-2xl min-h-[250px]">
+                <!-- Official Bandsintown Widget Embed Container -->
+                <!-- Replace 'Concrete Parachute' with your exact Bandsintown Artist Name or Artist ID -->
+                <a class="bit-widget-initializer" 
+                   data-artist-name="Concrete Parachute" 
+                   data-background-color="rgba(26,31,33,1)" 
+                   data-text-color="#FFFFFF" 
+                   data-link-color="#E07A5F" 
+                   data-popup-background-color="rgba(18,21,22,1)" 
+                   data-font="Roboto" 
+                   data-display-local-dates="true" 
+                   data-local-dates-position="tab" 
+                   data-[#...]="true">
+                </a>
                 
-                <div class="divide-y divide-zinc-800/50">
-                    <!-- Tour Date 1 -->
-                    <div class="p-4 sm:p-6 hover:bg-zinc-800/30 transition flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-                        <div class="flex items-center gap-6">
-                            <div class="text-center min-w-[60px]">
-                                <div class="text-xs font-black uppercase text-retro-coral">Oct</div>
-                                <div class="text-3xl font-black text-white">12</div>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-white">The Masquerade (Hell)</h3>
-                                <p class="text-sm text-zinc-400">Atlanta, GA • w/ Special Guests</p>
-                            </div>
-                        </div>
-                        <a href="#" class="w-full md:w-auto bg-retro-coral hover:bg-retro-darkcoral text-center text-white text-xs font-bold uppercase px-8 py-3 rounded transition shadow-[0_0_15px_rgba(224,122,95,0.2)]">
-                            Tickets
-                        </a>
+                <!-- Fallback display if JS is loading or no tour dates are scheduled -->
+                <noscript>
+                    <div class="text-center py-8 text-zinc-400 text-sm">
+                        View upcoming show dates on <a href="https://www.bandsintown.com/a/concreteparachute" class="text-retro-coral underline">Bandsintown</a>.
                     </div>
-
-                    <!-- Tour Date 2 -->
-                    <div class="p-4 sm:p-6 hover:bg-zinc-800/30 transition flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-                        <div class="flex items-center gap-6">
-                            <div class="text-center min-w-[60px]">
-                                <div class="text-xs font-black uppercase text-retro-coral">Oct</div>
-                                <div class="text-3xl font-black text-white">24</div>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-white">40 Watt Club</h3>
-                                <p class="text-sm text-zinc-400">Athens, GA</p>
-                            </div>
-                        </div>
-                        <a href="#" class="w-full md:w-auto bg-retro-coral hover:bg-retro-darkcoral text-center text-white text-xs font-bold uppercase px-8 py-3 rounded transition shadow-[0_0_15px_rgba(224,122,95,0.2)]">
-                            Tickets
-                        </a>
-                    </div>
-                    
-                    <!-- Tour Date 3 -->
-                    <div class="p-4 sm:p-6 hover:bg-zinc-800/30 transition flex flex-col md:flex-row items-start md:items-center justify-between gap-4 opacity-50">
-                        <div class="flex items-center gap-6">
-                            <div class="text-center min-w-[60px]">
-                                <div class="text-xs font-black uppercase text-zinc-500">Nov</div>
-                                <div class="text-3xl font-black text-zinc-500">02</div>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-white line-through">Vinyl</h3>
-                                <p class="text-sm text-zinc-400">Atlanta, GA</p>
-                            </div>
-                        </div>
-                        <button disabled class="w-full md:w-auto border border-zinc-700 text-zinc-500 text-xs font-bold uppercase px-8 py-3 rounded cursor-not-allowed">
-                            Sold Out
-                        </button>
-                    </div>
-                </div>
+                </noscript>
             </div>
         </section>
     </main>
 
     <!-- FOOTER -->
-    <footer class="border-t border-zinc-800/80 bg-retro-dark pt-12 pb-8 text-center text-xs text-zinc-500 space-y-6">
+    <footer class="border-t border-zinc-800 bg-retro-dark py-12 text-center text-xs text-zinc-500 space-y-6">
         <div class="max-w-4xl mx-auto px-4 flex flex-col items-center gap-6">
             
-            <a href="#hero" class="text-lg font-black tracking-widest text-zinc-700 uppercase">
-                Concrete<span class="text-zinc-600">Parachute</span>
+            <a href="#hero" class="text-xl font-black tracking-widest text-white uppercase hover:text-retro-coral transition">
+                Concrete<span class="text-retro-coral">Parachute</span>
             </a>
 
             <!-- Social Links -->
@@ -331,12 +308,10 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- Lucide & Year Script -->
     <script>
-        // Initialize Lucide Icons
         lucide.createIcons();
 
-        // Dynamic Copyright Year Script
         const startYear = 2026;
         const currentYear = new Date().getFullYear();
         document.getElementById('year').textContent = currentYear > startYear ? `${startYear}–${currentYear}` : `${startYear}`;
