@@ -3,8 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Concrete Parachute | Official Website</title>
-    <meta name="description" content="Official website for Concrete Parachute — Heavy Melodic Rock from Atlanta, GA. View photos, videos, and join the VIP list.">
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>Concrete Parachute | Heavy Melodic Rock Band in Atlanta, GA</title>
+    <meta name="title" content="Concrete Parachute | Heavy Melodic Rock Band in Atlanta, GA">
+    <meta name="description" content="Official website for Concrete Parachute. An Atlanta-based heavy rock band bridging the weight of metalcore with melodic, anthemic hooks. Stream music, watch live videos, and get tickets.">
+    <meta name="keywords" content="Concrete Parachute, Atlanta rock band, heavy melodic rock, metalcore Atlanta, live music Georgia, Chad Askew, Brandon Halvorsen">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.concreteparachute.com/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.concreteparachute.com/">
+    <meta property="og:title" content="Concrete Parachute | Heavy Melodic Rock from Atlanta">
+    <meta property="og:description" content="Bridging the weight of metalcore with melodic, anthemic hooks. Join the Concrete Underground for exclusive tracks and tour presales.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/ConcreteParachute/concrete-parachute-epk/refs/heads/main/IMG_3318.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.concreteparachute.com/">
+    <meta property="twitter:title" content="Concrete Parachute | Official Band Site">
+    <meta property="twitter:description" content="Atlanta's heavy melodic rock 4-piece. Stream our live studio sessions and join the VIP list.">
+    <meta property="twitter:image" content="https://raw.githubusercontent.com/ConcreteParachute/concrete-parachute-epk/refs/heads/main/IMG_3318.jpg">
+
+    <!-- DNS Prefetch & Preconnect for Page Speed -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -29,6 +54,35 @@
     </script>
     <!-- Lucide Icons CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- SCHEMA.ORG STRUCTURED DATA -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MusicGroup",
+      "name": "Concrete Parachute",
+      "url": "https://www.concreteparachute.com/",
+      "image": "https://raw.githubusercontent.com/ConcreteParachute/concrete-parachute-epk/refs/heads/main/IMG_3318.jpg",
+      "description": "Heavy Melodic Rock band based in Atlanta and Griffin, Georgia.",
+      "foundingLocation": {
+        "@type": "Place",
+        "name": "Griffin, Georgia"
+      },
+      "genre": ["Heavy Rock", "Melodic Rock", "Metalcore", "Alternative Metal"],
+      "member": [
+        { "@type": "Person", "name": "Chad Askew", "roleName": "Lead Guitar / Co-Lead Vocals" },
+        { "@type": "Person", "name": "Brandon Halvorsen", "roleName": "Rhythm Guitar / Co-Lead Vocals" },
+        { "@type": "Person", "name": "Josh Hollums", "roleName": "Bass" },
+        { "@type": "Person", "name": "Michael Hayes", "roleName": "Drums" }
+      ],
+      "sameAs": [
+        "https://open.spotify.com/artist/17jSWTukLrxGjG3ZWzPbWa",
+        "https://www.instagram.com/concreteparachuteband",
+        "https://youtube.com/@concreteparachuteband",
+        "https://linktr.ee/concreteparachuteband"
+      ]
+    }
+    </script>
 </head>
 <body class="bg-retro-dark text-zinc-100 selection:bg-retro-coral selection:text-white">
 
@@ -39,15 +93,11 @@
                 Concrete<span class="text-retro-coral">Parachute</span>
             </a>
             <div class="hidden md:flex space-x-6 text-xs uppercase tracking-widest font-semibold text-zinc-400">
-                <!-- <a href="#audio" class="hover:text-retro-coral transition">Music</a> -->
-                <!-- <a href="#shows" class="hover:text-retro-coral transition">Tour</a> -->
-                <!-- <a href="#merch" class="hover:text-retro-coral transition">Merch</a> -->
                 <a href="#videos" class="hover:text-retro-coral transition">Videos</a>
                 <a href="#photos" class="hover:text-retro-coral transition">Photos</a>
                 <a href="#about" class="hover:text-retro-coral transition">About</a>
                 <a href="#contact" class="hover:text-retro-coral transition">Contact</a>
             </div>
-            <!-- Sticky button clamped to single line, shrinks without wrapping -->
             <a href="#mailing" class="bg-retro-coral hover:bg-retro-darkcoral text-white font-bold text-[clamp(0.65rem,1.5vw,0.75rem)] uppercase px-3 sm:px-4 py-2 rounded-md transition flex items-center gap-2 shadow-lg shadow-retro-coral/20 whitespace-nowrap shrink-0">
                 <i data-lucide="mail" class="w-4 h-4 shrink-0"></i> Join VIP List
             </a>
@@ -62,19 +112,12 @@
             </div>
             <h1 class="text-5xl sm:text-7xl font-black uppercase tracking-tight text-white mb-4">
                 Concrete Parachute
+                <span class="sr-only"> - Atlanta Heavy Rock Band</span>
             </h1>
             <p class="text-lg sm:text-2xl text-zinc-300 font-medium max-w-2xl mx-auto mb-8">
                 Bridging the weight of metalcore with melodic, anthemic hooks.
             </p>
             <div class="flex flex-wrap justify-center gap-4">
-                <!-- HERO BUTTONS COMMENTED OUT
-                <a href="#audio" class="bg-retro-coral hover:bg-retro-darkcoral text-white font-bold text-sm uppercase px-6 py-3 rounded-md transition flex items-center gap-2 shadow-lg shadow-retro-coral/20">
-                    <i data-lucide="play" class="w-4 h-4"></i> Stream Music
-                </a>
-                <a href="#shows" class="bg-retro-card hover:bg-zinc-800 text-retro-palmgreen font-bold text-sm uppercase px-6 py-3 rounded-md transition flex items-center gap-2 border border-retro-palmgreen/40 shadow-lg">
-                    <i data-lucide="ticket" class="w-4 h-4"></i> See Live Dates
-                </a>
-                -->
                 <a href="#mailing" class="bg-retro-coral hover:bg-retro-darkcoral text-white font-bold text-sm uppercase px-6 py-3 rounded-md transition flex items-center gap-2 shadow-lg shadow-retro-coral/20">
                     <i data-lucide="mail" class="w-4 h-4"></i> Join VIP List
                 </a>
@@ -84,84 +127,7 @@
 
     <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-20">
 
-        <!-- AUDIO SECTION (COMMENTED OUT)
-        <section id="audio" class="space-y-6">
-            <div class="border-l-4 border-retro-coral pl-4">
-                <h2 class="text-2xl font-black uppercase tracking-wide text-white">Music</h2>
-                <p class="text-xs uppercase tracking-widest font-bold text-retro-palmgreen">Stream across all platforms</p>
-            </div>
-            
-            <div class="w-full bg-retro-card border border-zinc-800 rounded-lg p-2 overflow-hidden shadow-xl">
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/17jSWTukLrxGjG3ZWzPbWa?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Concrete Parachute Spotify Player"></iframe>
-            </div>
-        </section>
-        -->
-
-        <!-- SHOWS SECTION (COMMENTED OUT)
-        <section id="shows" class="space-y-6">
-            <div class="border-l-4 border-retro-coral pl-4">
-                <h2 class="text-2xl font-black uppercase tracking-wide text-white">Tour Dates</h2>
-                <p class="text-xs uppercase tracking-widest font-bold text-retro-palmgreen">Catch Concrete Parachute Live</p>
-            </div>
-            <div class="bg-retro-card border border-zinc-800 rounded-lg p-6 min-h-[150px] flex items-center justify-center shadow-xl">
-                <a class="bit-widget-initializer" data-artist-name="id_1234567" data-background-color="transparent" data-[#ffffff]="text-color" data-[#ffffff]="link-color"></a>
-                <script src="https://widget.bandsintown.com/main.min.js"></script>
-                <p class="text-xs text-zinc-500 italic">No upcoming public dates currently announced. Check back soon or join the mailing list for updates!</p>
-            </div>
-        </section>
-        -->
-
-        <!-- MERCH SECTION (COMMENTED OUT)
-        <section id="merch" class="space-y-6">
-            <div class="border-l-4 border-retro-coral pl-4">
-                <h2 class="text-2xl font-black uppercase tracking-wide text-white">Merch Shop</h2>
-                <p class="text-xs uppercase tracking-widest font-bold text-retro-palmgreen">Support the band directly</p>
-            </div>
-
-            <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-                <div class="bg-retro-card border border-zinc-800 rounded-lg p-4 space-y-3 shadow-xl flex flex-col justify-between">
-                    <div class="bg-zinc-900 h-48 rounded flex items-center justify-center text-zinc-600 border border-zinc-800">
-                        <i data-lucide="shirt" class="w-12 h-12" aria-label="T-Shirt icon"></i>
-                    </div>
-                    <div class="space-y-1">
-                        <h3 class="font-bold text-white uppercase text-sm">Logo Tee (Charcoal)</h3>
-                        <p class="text-xs text-retro-coral font-semibold">$25.00</p>
-                    </div>
-                    <a href="https://linktr.ee/concreteparachuteband" target="_blank" rel="noopener noreferrer" class="w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-bold text-xs uppercase py-2 rounded transition">
-                        Buy Now
-                    </a>
-                </div>
-
-                <div class="bg-retro-card border border-zinc-800 rounded-lg p-4 space-y-3 shadow-xl flex flex-col justify-between">
-                    <div class="bg-zinc-900 h-48 rounded flex items-center justify-center text-zinc-600 border border-zinc-800">
-                        <i data-lucide="disc" class="w-12 h-12" aria-label="Poster artwork icon"></i>
-                    </div>
-                    <div class="space-y-1">
-                        <h3 class="font-bold text-white uppercase text-sm">Debut Single Artwork Poster</h3>
-                        <p class="text-xs text-retro-coral font-semibold">$15.00</p>
-                    </div>
-                    <a href="https://linktr.ee/concreteparachuteband" target="_blank" rel="noopener noreferrer" class="w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-bold text-xs uppercase py-2 rounded transition">
-                        Buy Now
-                    </a>
-                </div>
-
-                <div class="bg-retro-card border border-zinc-800 rounded-lg p-4 space-y-3 shadow-xl flex flex-col justify-between">
-                    <div class="bg-zinc-900 h-48 rounded flex items-center justify-center text-zinc-600 border border-zinc-800">
-                        <i data-lucide="package" class="w-12 h-12" aria-label="Sticker pack icon"></i>
-                    </div>
-                    <div class="space-y-1">
-                        <h3 class="font-bold text-white uppercase text-sm">Sticker Pack</h3>
-                        <p class="text-xs text-retro-coral font-semibold">$5.00</p>
-                    </div>
-                    <a href="https://linktr.ee/concreteparachuteband" target="_blank" rel="noopener noreferrer" class="w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-bold text-xs uppercase py-2 rounded transition">
-                        Buy Now
-                    </a>
-                </div>
-            </div>
-        </section>
-        -->
-
-        <!-- MAILING LIST / NEWSLETTER SECTION (CONNECTED TO KIT) -->
+        <!-- MAILING LIST / NEWSLETTER SECTION -->
         <section id="mailing" class="bg-gradient-to-r from-retro-card to-zinc-900 border border-retro-coral/30 rounded-2xl p-8 sm:p-12 text-center space-y-4 shadow-2xl">
             <div class="inline-block p-3 bg-retro-coral/10 text-retro-coral rounded-full mb-2">
                 <i data-lucide="mail-open" class="w-6 h-6"></i>
@@ -192,9 +158,7 @@
                 <p class="text-xs uppercase tracking-widest font-bold text-retro-palmgreen">Live Sessions & Performances</p>
             </div>
 
-            <!-- Flex container: centers single video, side-by-side when both are active -->
             <div class="flex flex-col md:flex-row justify-center gap-6">
-                <!-- Video 1 (Studio Video) -->
                 <div class="w-full md:max-w-lg bg-retro-card border border-zinc-800 rounded-lg overflow-hidden space-y-2 shadow-xl flex-1">
                     <div class="aspect-video w-full">
                         <iframe class="w-full h-full" src="https://www.youtube.com/embed/6Ioajwv9PHE" title="Concrete Parachute - Live Studio Session" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -204,18 +168,6 @@
                         <p class="text-xs text-zinc-400">Raw multi-track audio recorded straight off the IEM rack.</p>
                     </div>
                 </div>
-
-                <!-- Video 2 (Live Performance - COMMENTED OUT)
-                <div class="w-full md:max-w-lg bg-retro-card border border-zinc-800 rounded-lg overflow-hidden space-y-2 shadow-xl flex-1">
-                    <div class="aspect-video w-full">
-                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/lEV9XgrdkPg" title="Concrete Parachute Live Performance" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="font-bold text-white uppercase text-sm">Live Performance</h3>
-                        <p class="text-xs text-zinc-400">Clip of the band performing to a live audience.</p>
-                    </div>
-                </div> 
-                -->
             </div>
         </section>
 
@@ -228,13 +180,13 @@
 
             <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
                 <div class="overflow-hidden rounded-lg border border-zinc-800 bg-retro-card shadow-xl group">
-                    <img src="https://raw.githubusercontent.com/ConcreteParachute/concrete-parachute-epk/refs/heads/main/IMG_3318.jpg" alt="Concrete Parachute band promo photo" class="w-full h-64 object-cover group-hover:scale-105 transition duration-300">
+                    <img src="https://raw.githubusercontent.com/ConcreteParachute/concrete-parachute-epk/refs/heads/main/IMG_3318.jpg" alt="Concrete Parachute - Heavy Melodic Rock Band Promo Photo Atlanta GA" class="w-full h-64 object-cover group-hover:scale-105 transition duration-300">
                 </div>
                 <div class="overflow-hidden rounded-lg border border-zinc-800 bg-retro-card shadow-xl group">
-                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80" alt="Concrete Parachute performing live on stage" class="w-full h-64 object-cover group-hover:scale-105 transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80" alt="Concrete Parachute performing live concert in Atlanta" class="w-full h-64 object-cover group-hover:scale-105 transition duration-300">
                 </div>
                 <div class="overflow-hidden rounded-lg border border-zinc-800 bg-retro-card shadow-xl group">
-                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80" alt="Concrete Parachute lead guitarist live in concert" class="w-full h-64 object-cover group-hover:scale-105 transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80" alt="Concrete Parachute lead guitarist live on stage" class="w-full h-64 object-cover group-hover:scale-105 transition duration-300">
                 </div>
             </div>
         </section>
@@ -304,8 +256,8 @@
                     </div>
                 </div>
 
-                <!-- CONTACT FORM (FIXED & COMPLETED) -->
-                              <form action="https://formspree.io/f/maenoyqw" method="POST" class="bg-retro-card border border-zinc-800 p-6 rounded-lg space-y-4 shadow-xl">
+                <!-- CONTACT FORM -->
+                <form action="https://formspree.io/f/maenoyqw" method="POST" class="bg-retro-card border border-zinc-800 p-6 rounded-lg space-y-4 shadow-xl">
                     <input type="hidden" name="_subject" value="[Booking Inquiry] Concrete Parachute">
 
                     <div>
@@ -349,20 +301,16 @@
 
     <!-- Initialize Lucide Icons -->
     <script>
-        // Initialize Lucide Icons
         lucide.createIcons();
-       // Automatically format dynamic copyright year (e.g., "2026" or "2026–2027")
-const startYear = 2026;
-const currentYear = new Date().getFullYear();
-const yearSpan = document.getElementById('year');
+        
+        // Automatically format dynamic copyright year
+        const startYear = 2026;
+        const currentYear = new Date().getFullYear();
+        const yearSpan = document.getElementById('year');
 
-yearSpan.textContent = currentYear > startYear 
-    ? `${startYear}–${currentYear}` 
-    : `${startYear}`;
-
-        // Automatically update booking target years (e.g., "2026/2027")
-const now = new Date().getFullYear();
-document.getElementById('tour-years').textContent = `${now}/${now + 1}`;
+        yearSpan.textContent = currentYear > startYear 
+            ? `${startYear}–${currentYear}` 
+            : `${startYear}`;
     </script>
 </body>
 </html>
