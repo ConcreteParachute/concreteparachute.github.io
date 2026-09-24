@@ -47,6 +47,9 @@
 
     <!-- Lucide Icons CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Bandsintown v3 Widget Script -->
+    <script charset="utf-8" src="https://widgetv3.bandsintown.com/main.min.js"></script>
 </head>
 <body class="bg-retro-dark text-zinc-100 selection:bg-retro-coral selection:text-white">
     
@@ -122,7 +125,6 @@
                         <a href="https://open.spotify.com/artist/17jSWTukLrxGjG3ZWzPbWa" target="_blank" class="text-xs text-zinc-400 hover:text-white transition">Follow on Spotify →</a>
                     </div>
                     
-                    <!-- Direct Spotify Artist/Album Embed -->
                     <div class="rounded-xl overflow-hidden bg-zinc-900">
                         <iframe 
                             style="border-radius:12px" 
@@ -248,39 +250,39 @@
             </div>
         </section>
 
-       <!-- TOUR SECTION WITH HIGH-CONTRAST CARD -->
-<section id="tour" class="scroll-mt-32 space-y-8">
-    <div class="border-l-4 border-retro-coral pl-4">
-        <h2 class="text-3xl font-black uppercase tracking-wide text-white">Live Tour Dates</h2>
-        <p class="text-xs uppercase tracking-widest font-bold text-retro-palmgreen">Powered by Bandsintown</p>
-    </div>
+        <!-- AUTOMATED BANDSINTOWN TOUR SECTION (FACTORY MATCHED) -->
+        <section id="tour" class="scroll-mt-32 space-y-8">
+            <div class="border-l-4 border-retro-coral pl-4">
+                <h2 class="text-3xl font-black uppercase tracking-wide text-white">Live Tour Dates</h2>
+                <p class="text-xs uppercase tracking-widest font-bold text-retro-palmgreen">Powered by Bandsintown</p>
+            </div>
 
-    <!-- Background changed to bg-zinc-800 for high contrast against dark text -->
-    <div class="bg-zinc-800 border border-zinc-700 rounded-2xl p-4 sm:p-6 shadow-2xl min-h-[300px]">
-        <a class="bit-widget-initializer"
-            data-artist-name="id_15667129"
-            data-app-id="e4af6b87e7e346415afcd2fccc03168f"
-            data-display-past-dates="true"
-            data-display-local-dates="true"
-            data-play-my-city-position="hidden"
-            data-bit-logo-position="bottomRight"
-            data-background-color="transparent"
-            data-text-color="rgba(255,255,255,1)"
-            data-bit-logo-color="rgba(255,255,255,1)"
-            data-separator-color="rgba(224,122,95,1)"
-            data-font="Helvetica"
-            data-display-details="true"
-            data-display-lineup="true"
-            data-display-start-time="true"
-            data-social-share-icon="true"
-            data-button-label-capitalization="uppercase"
-            data-local-dates-position="aboveUpcoming"
-            data-venue-capitalization="capitalize"
-            data-location-capitalization="capitalize"
-            data-event-ticket-icon="true">
-        </a>
-    </div>
-</section>
+            <!-- Card wrapper matches background rgba(26,31,33,1) / #1A1F21 exactly -->
+            <div class="bg-retro-card border border-zinc-800 rounded-2xl p-4 sm:p-6 shadow-2xl min-h-[300px]">
+                <a class="bit-widget-initializer"
+                    data-artist-name="id_15667129"
+                    data-app-id="e4af6b87e7e346415afcd2fccc03168f"
+                    data-display-past-dates="true"
+                    data-display-local-dates="true"
+                    data-play-my-city-position="hidden"
+                    data-bit-logo-position="bottomRight"
+                    data-background-color="rgba(26,31,33,1)"
+                    data-text-color="rgba(255,255,255,1)"
+                    data-bit-logo-color="rgba(255,255,255,1)"
+                    data-separator-color="rgba(224,122,95,1)"
+                    data-font="Helvetica"
+                    data-display-details="true"
+                    data-display-lineup="true"
+                    data-display-start-time="true"
+                    data-social-share-icon="true"
+                    data-button-label-capitalization="uppercase"
+                    data-local-dates-position="aboveUpcoming"
+                    data-venue-capitalization="capitalize"
+                    data-location-capitalization="capitalize"
+                    data-event-ticket-icon="true">
+                </a>
+            </div>
+        </section>
     </main>
 
     <!-- FOOTER -->
