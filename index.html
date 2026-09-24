@@ -43,6 +43,21 @@
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #121516; }
         ::-webkit-scrollbar-thumb { background: #E07A5F; border-radius: 4px; }
+    /* Force Bandsintown Widget Dark Mode & Text Legibility */
+    .bit-widget-initializer, 
+    .bit-widget-container {
+        color-scheme: dark !important;
+    }
+    
+    /* Targets text elements if rendered in DOM */
+    .bit-widget-initializer * {
+        color: #ffffff !important;
+    }
+    
+    .bit-widget-initializer .bit-event-detail,
+    .bit-widget-initializer .bit-event-time {
+        color: #a1a1aa !important;
+    }
     </style>
 
     <!-- Lucide Icons CDN -->
