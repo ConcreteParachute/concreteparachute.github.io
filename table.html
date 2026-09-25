@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-[#121516] text-zinc-100 font-sans antialiased">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Concrete Parachute | Merch & Links</title>
+    
+    <!-- Google Fonts: Roboto & Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@700;900&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Roboto', 'sans-serif'],
+                        header: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        retro: {
+                            dark: '#121516',
+                            card: '#1A1F21',
+                            coral: '#E07A5F',
+                            darkcoral: '#C85A3F',
+                            turquoise: '#40E0D0',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        h1, h2, h3, .font-header { font-family: 'Montserrat', sans-serif; }
+        body { font-family: 'Roboto', sans-serif; }
+    </style>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-retro-dark text-zinc-100 min-h-screen pb-12 flex flex-col items-center">
+
+    <!-- HEADER / BAND LOGO -->
+    <header class="w-full max-w-md pt-8 pb-4 px-6 text-center">
+        <h1 class="text-3xl font-black uppercase tracking-tighter text-white">
+            Concrete<span class="text-retro-coral">Parachute</span>
+        </h1>
+        <p class="text-xs uppercase font-bold tracking-widest text-retro-turquoise mt-1">Official Merch & Digital Hub</p>
+    </header>
+
+    <main class="w-full max-w-md px-4 space-y-6">
+
+        <!-- SECTION 1: FAST DIGITAL PAYMENTS (FOR STICKERS/LIGHTERS/KEYCHAINS AT TABLE) -->
+        <section class="bg-retro-card border border-zinc-800 rounded-2xl p-5 shadow-2xl space-y-3">
+            <div class="flex items-center justify-between border-b border-zinc-800 pb-2">
+                <span class="text-xs font-black uppercase tracking-wider text-white flex items-center gap-1.5">
+                    <i data-lucide="zap" class="w-4 h-4 text-retro-coral"></i> Pay Table Items
+                </span>
+                <span class="text-[10px] bg-zinc-800 text-zinc-400 font-bold px-2 py-0.5 rounded">Stickers / Lighters / Keychains</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 pt-1">
+                <!-- VENMO BUTTON -->
+                <a href="https://venmo.com/ConcreteParachute" target="_blank" class="bg-[#008CFF]/10 hover:bg-[#008CFF]/20 border border-[#008CFF]/40 rounded-xl p-3 flex flex-col items-center justify-center text-center transition group">
+                    <span class="text-xs font-black text-[#008CFF] uppercase tracking-wider group-hover:scale-105 transition">Venmo</span>
+                    <span class="text-[10px] text-zinc-400 font-mono mt-0.5">@ConcreteParachute</span>
+                </a>
+
+                <!-- CASH APP BUTTON -->
+                <a href="https://cash.app/$ConcreteParachute" target="_blank" class="bg-[#00D632]/10 hover:bg-[#00D632]/20 border border-[#00D632]/40 rounded-xl p-3 flex flex-col items-center justify-center text-center transition group">
+                    <span class="text-xs font-black text-[#00D632] uppercase tracking-wider group-hover:scale-105 transition">Cash App</span>
+                    <span class="text-[10px] text-zinc-400 font-mono mt-0.5">$ConcreteParachute</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- SECTION 2: SHOW-EXCLUSIVE ONLINE MERCH STORE (FOURTHWALL) -->
+        <section class="bg-retro-card border border-retro-coral/40 rounded-2xl p-5 shadow-2xl space-y-4 relative overflow-hidden">
+            <div class="absolute -top-10 -right-10 w-28 h-28 bg-retro-coral/10 rounded-full blur-xl pointer-events-none"></div>
+
+            <div class="space-y-1">
+                <div class="inline-block bg-retro-coral text-white text-[10px] font-black uppercase px-2.5 py-0.5 rounded tracking-wider mb-1">
+                    Show-Exclusive Perk
+                </div>
+                <h2 class="text-xl font-black uppercase text-white">Order Shirts & Hats Direct</h2>
+                <p class="text-xs text-zinc-300">
+                    Out of your size at the table? Order online now and get <strong class="text-white">FREE SHIPPING</strong> to your house + instant song download!
+                </p>
+            </div>
+
+            <!-- PROMO CODE CALLOUT -->
+            <div class="bg-zinc-950 border border-dashed border-retro-coral/50 rounded-xl p-3 flex items-center justify-between">
+                <div>
+                    <div class="text-[10px] uppercase text-zinc-400 font-bold">Use Code At Checkout</div>
+                    <div class="text-sm font-mono font-bold text-retro-coral">SHOWFREESHIP</div>
+                </div>
+                <span class="text-[10px] bg-retro-coral/20 text-retro-coral px-2 py-1 rounded font-bold uppercase">100% Off Shipping</span>
+            </div>
+
+            <!-- APPAREL DIRECT LINKS -->
+            <div class="space-y-2 pt-1">
+                <a href="https://concrete-parachute-shop.fourthwall.com/products/logo-heavyweight-tee" target="_blank" class="w-full bg-retro-coral hover:bg-retro-darkcoral text-white font-black text-xs uppercase py-3.5 px-4 rounded-xl transition flex items-center justify-between shadow-lg">
+                    <span class="flex items-center gap-2">
+                        <i data-lucide="shopping-bag" class="w-4 h-4"></i> Logo Heavyweight Tee ($28)
+                    </span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+
+                <a href="https://concrete-parachute-shop.fourthwall.com/products/embroidered-logo-dad-hat" target="_blank" class="w-full bg-zinc-800 hover:bg-zinc-700 text-white font-black text-xs uppercase py-3.5 px-4 rounded-xl border border-zinc-700 transition flex items-center justify-between">
+                    <span class="flex items-center gap-2">
+                        <i data-lucide="shopping-bag" class="w-4 h-4 text-retro-turquoise"></i> Embroidered Dad Hat ($28)
+                    </span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- SECTION 3: EARLY ACCESS / MAILING LIST -->
+        <section class="bg-retro-card border border-zinc-800 rounded-2xl p-5 shadow-2xl space-y-3">
+            <div class="space-y-1">
+                <h3 class="text-sm font-black uppercase text-white flex items-center gap-2">
+                    <i data-lucide="mail" class="w-4 h-4 text-retro-turquoise"></i> Hear "Torrent" 24 Hours Early
+                </h3>
+                <p class="text-xs text-zinc-400">Join the list for early audio streams, presale tickets, and tour dates.</p>
+            </div>
+
+            <form action="https://app.kit.com/forms/9958188/subscriptions" method="POST" class="space-y-2 pt-1">
+                <input 
+                    type="email" 
+                    name="email_address" 
+                    placeholder="Enter your email address" 
+                    required 
+                    class="w-full bg-retro-dark border border-zinc-700 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-retro-coral"
+                >
+                <button type="submit" class="w-full bg-retro-turquoise hover:bg-teal-400 text-zinc-950 font-black text-xs uppercase py-3 rounded-xl transition shadow-md">
+                    Get Early Access
+                </button>
+            </form>
+        </section>
+
+        <!-- SECTION 4: STREAMING & LINKS -->
+        <section class="pt-2 text-center space-y-3">
+            <div class="flex justify-center items-center gap-4 text-zinc-400">
+                <a href="https://open.spotify.com/artist/17jSWTukLrxGjG3ZWzPbWa" target="_blank" class="bg-retro-card border border-zinc-800 p-3 rounded-full hover:text-retro-coral transition">
+                    <i data-lucide="music" class="w-5 h-5"></i>
+                </a>
+                <a href="https://www.instagram.com/concreteparachuteband" target="_blank" class="bg-retro-card border border-zinc-800 p-3 rounded-full hover:text-retro-coral transition">
+                    <i data-lucide="instagram" class="w-5 h-5"></i>
+                </a>
+                <a href="https://youtube.com/@concreteparachuteband" target="_blank" class="bg-retro-card border border-zinc-800 p-3 rounded-full hover:text-retro-coral transition">
+                    <i data-lucide="youtube" class="w-5 h-5"></i>
+                </a>
+            </div>
+            <p class="text-[10px] text-zinc-500 uppercase tracking-widest">© Concrete Parachute</p>
+        </section>
+
+    </main>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
