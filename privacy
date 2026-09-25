@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-zinc-950 text-zinc-100 font-sans antialiased">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy | Concrete Parachute</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        retro: {
+                            dark: '#121516',
+                            card: '#1A1F21',
+                            coral: '#E07A5F',
+                            turquoise: '#40E0D0',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-retro-dark text-zinc-300 min-h-screen flex flex-col justify-between p-6 md:p-12">
+
+    <main class="max-w-3xl mx-auto space-y-8 my-8">
+        <a href="/" class="text-xs uppercase tracking-widest font-bold text-retro-coral hover:underline">← Back to Main Site</a>
+        
+        <h1 class="text-4xl font-black text-white uppercase tracking-tight">Privacy Policy</h1>
+        <p class="text-xs text-zinc-500 uppercase tracking-widest font-mono">Last Updated: January 2026</p>
+
+        <section class="space-y-4 text-sm leading-relaxed">
+            <h2 class="text-xl font-bold text-white uppercase">1. Information We Collect</h2>
+            <p>Concrete Parachute ("we," "our," or "us") collects personal information that you voluntarily provide to us when you interact with our website:</p>
+            <ul class="list-disc pl-5 space-y-2">
+                <li><strong class="text-white">Email Subscriptions:</strong> If you sign up for early access or updates, your email address is collected and processed through our mailing list service, Kit (ConvertKit).</li>
+                <li><strong class="text-white">Booking & Inquiries:</strong> If you send us a message via our contact form, your name, email address, and message details are processed through Formspree.</li>
+            </ul>
+        </section>
+
+        <section class="space-y-4 text-sm leading-relaxed">
+            <h2 class="text-xl font-bold text-white uppercase">2. Third-Party Services & Embedded Content</h2>
+            <p>Our website includes embedded content and widgets from third-party platforms. These services may collect IP addresses or set tracking cookies according to their respective privacy policies:</p>
+            <ul class="list-disc pl-5 space-y-2">
+                <li><strong class="text-white">Spotify & YouTube:</strong> Embedded players may track interaction and usage data.</li>
+                <li><strong class="text-white">Bandsintown:</strong> Tour date displays utilize Bandsintown widget tools.</li>
+                <li><strong class="text-white">External Store Links:</strong> Store links redirect to Fourthwall and Bandcamp, which handle transactions independently.</li>
+            </ul>
+        </section>
+
+        <section class="space-y-4 text-sm leading-relaxed">
+            <h2 class="text-xl font-bold text-white uppercase">3. How We Use Your Data</h2>
+            <p>We use collected data solely to send band updates, music announcements, presale codes, or to respond directly to booking and business inquiries. We never sell, rent, or trade your personal information to third parties.</p>
+        </section>
+
+        <section class="space-y-4 text-sm leading-relaxed">
+            <h2 class="text-xl font-bold text-white uppercase">4. Your Data Rights & Unsubscribing</h2>
+            <p>You may unsubscribe from our mailing list at any time by clicking the "Unsubscribe" link at the bottom of any email sent via Kit. To request removal of your personal data from our contact records, email us directly at <a href="mailto:booking@concreteparachute.com" class="text-retro-turquoise underline">booking@concreteparachute.com</a>.</p>
+        </section>
+    </main>
+
+    <footer class="text-center text-xs text-zinc-600 border-t border-zinc-800 pt-6">
+        &copy; Concrete Parachute. All rights reserved.
+    </footer>
+
+</body>
+<
+/html>
