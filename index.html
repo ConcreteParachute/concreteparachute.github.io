@@ -23,13 +23,13 @@
                     },
                     colors: {
                         retro: {
-                            dark: '#121516',        // Warm dark background
-                            card: '#1A1F21',        // Elevated card background
-                            coral: '#E07A5F',       // Primary accent / main buttons
-                            darkcoral: '#C85A3F',   // Button hover state
-                            turquoise: '#40E0D0',   // Secondary pop accent
-                            palmgreen: '#2A9D8F',   // Badges / links / accents
-                            mutedgreen: '#1D6A61',  // Muted elements
+                            dark: '#121516',
+                            card: '#1A1F21',
+                            coral: '#E07A5F',
+                            darkcoral: '#C85A3F',
+                            turquoise: '#40E0D0',
+                            palmgreen: '#2A9D8F',
+                            mutedgreen: '#1D6A61',
                         }
                     }
                 }
@@ -68,13 +68,14 @@
             </a>
             
             <!-- Desktop Nav -->
-            <div class="hidden md:flex items-center space-x-8 text-xs uppercase tracking-widest font-bold text-zinc-400">
-                <a href="#releases" class="hover:text-white transition">Upcoming Singles</a>
-                <a href="#music" class="hover:text-white transition">Media</a>
-                <a href="#tour" class="hover:text-white transition">Tour Dates</a>
+            <div class="hidden md:flex items-center space-x-6 text-xs uppercase tracking-widest font-bold text-zinc-400">
+                <a href="#releases" class="hover:text-white transition">Music</a>
+                <a href="#about" class="hover:text-white transition">Bio</a>
+                <a href="#tour" class="hover:text-white transition">Tour</a>
                 <a href="#merch" class="hover:text-white transition">Store</a>
+                <a href="/epk" class="hover:text-retro-turquoise transition">Press Kit</a>
                 <a href="#mailing" class="bg-retro-coral/10 text-retro-coral border border-retro-coral/30 hover:bg-retro-coral hover:text-white px-4 py-2 rounded-full transition">
-                    Get Early Access
+                    Early Access
                 </a>
             </div>
             
@@ -86,10 +87,12 @@
 
         <!-- Mobile Nav Drawer -->
         <div id="mobile-menu" class="hidden md:hidden bg-retro-dark border-b border-zinc-800 px-6 py-6 space-y-4 text-xs font-bold uppercase tracking-widest text-zinc-300">
-            <a href="#releases" class="block py-2 hover:text-retro-coral transition mobile-link">Upcoming Singles</a>
-            <a href="#music" class="block py-2 hover:text-retro-coral transition mobile-link">Media</a>
-            <a href="#merch" class="block py-2 hover:text-retro-coral transition mobile-link">Store</a>
+            <a href="#releases" class="block py-2 hover:text-retro-coral transition mobile-link">Music</a>
+            <a href="#about" class="block py-2 hover:text-retro-coral transition mobile-link">Bio</a>
             <a href="#tour" class="block py-2 hover:text-retro-coral transition mobile-link">Tour Dates</a>
+            <a href="#merch" class="block py-2 hover:text-retro-coral transition mobile-link">Store</a>
+            <a href="/epk" class="block py-2 hover:text-retro-turquoise transition mobile-link">Press Kit (EPK)</a>
+            <a href="#contact" class="block py-2 hover:text-retro-coral transition mobile-link">Booking</a>
             <a href="#mailing" class="block text-center bg-retro-coral text-white py-3 rounded-lg font-bold transition mobile-link">
                 Get Early Access
             </a>
@@ -98,14 +101,12 @@
 
     <!-- ATMOSPHERIC HERO SECTION -->
     <section id="hero" class="relative min-h-[85vh] flex items-center justify-center overflow-hidden border-b border-zinc-800 py-16">
-        <!-- Ambient Background Video -->
         <video autoplay loop muted playsinline 
             poster="https://raw.githubusercontent.com/ConcreteParachute/epk/refs/heads/main/IMG_3318.jpg" 
             class="absolute inset-0 w-full h-full object-cover z-0 opacity-30 filter brightness-90">
             <source src="https://assets.mixkit.co/videos/preview/mixkit-concert-crowd-and-band-stage-lights-41561-large.mp4" type="video/mp4">
         </video>
 
-        <!-- Dark Gradient Overlays for High Contrast -->
         <div class="absolute inset-0 bg-gradient-to-t from-retro-dark via-retro-dark/60 to-retro-dark/30 z-0"></div>
 
         <div class="relative z-10 max-w-4xl mx-auto text-center px-4 flex flex-col items-center my-auto">
@@ -159,7 +160,6 @@
                             A hard-hitting anthem exploring control, subtle manipulation, and the turning point of reclaiming agency. Whether breaking free from abusive dynamics, overbearing authority, or ideological indoctrination, "Torrent" captures the moment doubt transforms into defiance.
                         </p>
 
-                        <!-- Lyric Teaser Accordion -->
                         <details class="group bg-zinc-900/80 border border-zinc-800 rounded-lg p-3 cursor-pointer">
                             <summary class="font-bold text-xs uppercase text-zinc-400 flex justify-between items-center list-none">
                                 <span>Preview Lyrics Snippet</span>
@@ -195,7 +195,6 @@
                             An atmospheric post-hardcore track tackling dissociation and the weight of living on autopilot. "Drifting Awake" depicts the constant tug-of-war between being trapped in memory or future anxiety, and those brief, sudden moments of lucid clarity in the present.
                         </p>
 
-                        <!-- Lyric Teaser Accordion -->
                         <details class="group bg-zinc-900/80 border border-zinc-800 rounded-lg p-3 cursor-pointer">
                             <summary class="font-bold text-xs uppercase text-zinc-400 flex justify-between items-center list-none">
                                 <span>Preview Lyrics Snippet</span>
@@ -219,7 +218,7 @@
             </div>
         </section>
 
-       <!-- MEDIA HUB: PRE-RELEASE MODE -->
+        <!-- MEDIA HUB: PRE-RELEASE MODE -->
         <section id="music" class="scroll-mt-32 space-y-10">
             <div class="border-l-4 border-retro-turquoise pl-4">
                 <h2 class="text-3xl font-black uppercase tracking-wide text-white">Media & Previews</h2>
@@ -227,8 +226,7 @@
             </div>
 
             <div class="grid md:grid-cols-2 gap-8 items-stretch">
-                
-                <!-- CARD 1: SPOTIFY INFLUENCES PLAYLIST / FOLLOW CARD -->
+                <!-- Spotify Card -->
                 <div class="bg-retro-card border border-zinc-800 rounded-2xl p-6 shadow-2xl flex flex-col justify-between space-y-6">
                     <div class="space-y-4">
                         <div class="flex items-center justify-between border-b border-zinc-800/80 pb-3">
@@ -244,20 +242,16 @@
                                 Our debut single <strong class="text-white">"Torrent"</strong> goes live on Spotify January 8th. Follow our profile today so it automatically lands in your Release Radar on drop day.
                             </p>
                         </div>
-
-                        <!-- Embedded Band Playlist OR Spotify Artist Embed -->
-                        <!-- TIP: Replace the playlist URI below with your own band playlist link if preferred -->
                         <div class="rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800">
                             <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5ml18DvDtO26q01Oz3xdBM?utm_source=generator&theme=0&si=15bb60f1b97c41ce" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                         </div>
                     </div>
-
                     <a href="https://open.spotify.com/artist/17jSWTukLrxGjG3ZWzPbWa" target="_blank" class="w-full bg-retro-palmgreen hover:bg-emerald-600 text-white text-xs font-black uppercase py-3.5 rounded-lg transition flex items-center justify-center gap-2 shadow-lg">
                         <i data-lucide="check-circle" class="w-4 h-4"></i> Follow Band on Spotify
                     </a>
                 </div>
 
-                <!-- CARD 2: UNRELEASED VIDEO PREMIERE TEASER -->
+                <!-- Video Card -->
                 <div class="bg-retro-card border border-zinc-800 rounded-2xl p-6 shadow-2xl flex flex-col justify-between space-y-6 relative overflow-hidden">
                     <div class="space-y-4">
                         <div class="flex items-center justify-between border-b border-zinc-800/80 pb-3">
@@ -267,11 +261,8 @@
                             <span class="text-xs font-mono text-zinc-400">Dropping Jan 08</span>
                         </div>
 
-                        <!-- Video Preview Card / Placeholder -->
                         <div class="aspect-video w-full bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 relative group flex flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-zinc-900 via-zinc-950 to-retro-card">
-                            <!-- Background Blurred Cover Image -->
                             <img src="https://raw.githubusercontent.com/ConcreteParachute/epk/refs/heads/main/IMG_3318.jpg" alt="Video Premiere Teaser" class="absolute inset-0 w-full h-full object-cover opacity-20 filter blur-sm" />
-                            
                             <div class="relative z-10 space-y-3">
                                 <div class="w-12 h-12 rounded-full bg-retro-coral/20 border border-retro-coral text-retro-coral flex items-center justify-center mx-auto shadow-lg">
                                     <i data-lucide="play" class="w-6 h-6 ml-1"></i>
@@ -281,147 +272,67 @@
                             </div>
                         </div>
                     </div>
-
                     <a href="https://youtube.com/@concreteparachuteband" target="_blank" class="w-full bg-zinc-800 hover:bg-retro-coral text-white text-xs font-black uppercase py-3.5 rounded-lg transition flex items-center justify-center gap-2 border border-zinc-700">
                         <i data-lucide="bell" class="w-4 h-4"></i> Subscribe for Video Premiere
                     </a>
                 </div>
-
             </div>
         </section>
-
-        <!-- MAILING LIST / NEWSLETTER SECTION (CONNECTED TO KIT) -->
-<section id="mailing" class="bg-gradient-to-r from-retro-card to-zinc-900 border border-retro-coral/30 rounded-2xl p-8 sm:p-12 text-center space-y-4 shadow-2xl">
-    <div class="inline-block p-3 bg-retro-coral/10 text-retro-coral rounded-full mb-2">
-        <i data-lucide="mail-open" class="w-6 h-6"></i>
-    </div>
-    <h2 class="text-2xl sm:text-3xl font-black uppercase text-white">Join The Concrete Underground</h2>
-    <p class="text-sm text-zinc-300 max-w-lg mx-auto">
-        Sign up to hear <span class="text-retro-coral font-bold">"Torrent" 24 hours before release day</span>, plus get direct ticket presale alerts, merch discounts, and exclusive studio updates.
-    </p>
-    
-    <form action="https://app.kit.com/forms/9958188/subscriptions" method="POST" class="max-w-md mx-auto flex flex-col sm:flex-row gap-2 pt-2">
-        <input 
-            type="email" 
-            name="email_address" 
-            placeholder="Enter your email address" 
-            required 
-            class="flex-1 bg-retro-dark border border-zinc-700 rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-retro-coral"
-        >
-        <button type="submit" class="bg-retro-coral hover:bg-retro-darkcoral text-white font-bold text-xs uppercase px-6 py-3 rounded transition shadow-lg">
-            Get Early Access
-        </button>
-    </form>
-<p class="text-[10px] text-zinc-500 uppercase tracking-widest mt-2">Zero spam. Unsubscribe anytime.</p>
+  <!-- MAILING LIST / NEWSLETTER SECTION -->
+        <section id="mailing" class="bg-gradient-to-r from-retro-card to-zinc-900 border border-retro-coral/30 rounded-2xl p-8 sm:p-12 text-center space-y-4 shadow-2xl">
+            <div class="inline-block p-3 bg-retro-coral/10 text-retro-coral rounded-full mb-2">
+                <i data-lucide="mail-open" class="w-6 h-6"></i>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-black uppercase text-white">Join The Concrete Underground</h2>
+            <p class="text-sm text-zinc-300 max-w-lg mx-auto">
+                Sign up to hear <span class="text-retro-coral font-bold">"Torrent" 24 hours before release day</span>, plus get direct ticket presale alerts, merch discounts, and exclusive studio updates.
+            </p>
+            
+            <form action="https://app.kit.com/forms/9958188/subscriptions" method="POST" class="max-w-md mx-auto flex flex-col sm:flex-row gap-2 pt-2">
+                <input 
+                    type="email" 
+                    name="email_address" 
+                    placeholder="Enter your email address" 
+                    required 
+                    class="flex-1 bg-retro-dark border border-zinc-700 rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-retro-coral"
+                >
+                <button type="submit" class="bg-retro-coral hover:bg-retro-darkcoral text-white font-bold text-xs uppercase px-6 py-3 rounded transition shadow-lg">
+                    Get Early Access
+                </button>
+            </form>
+            <p class="text-[10px] text-zinc-500 uppercase tracking-widest mt-2">Zero spam. Unsubscribe anytime.</p>
         </section>
 
-                <!-- DIRECT MERCH STORE -->
-        <section id="merch" class="scroll-mt-32 space-y-10">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 border-l-4 border-retro-coral pl-4">
-                <div>
-                    <h2 class="text-3xl font-black uppercase tracking-wide text-white">Official Store</h2>
-                    <p class="text-xs uppercase tracking-widest font-bold text-retro-palmgreen">Digital Music via Bandcamp • Apparel & Merch via Fourthwall</p>
-                </div>
-                <div class="flex flex-wrap gap-2">
-                    <a href="https://concreteparachute.bandcamp.com" target="_blank" class="bg-zinc-800 hover:bg-zinc-700 text-retro-turquoise text-xs font-bold uppercase px-4 py-2.5 rounded border border-retro-turquoise/30 transition flex items-center gap-2">
-                        <i data-lucide="disc" class="w-4 h-4"></i> Bandcamp
-                    </a>
-                    <a href="https://concreteparachute.fourthwall.com" target="_blank" class="bg-retro-coral hover:bg-retro-darkcoral text-white text-xs font-bold uppercase px-4 py-2.5 rounded transition flex items-center gap-2">
-                        <i data-lucide="shopping-bag" class="w-4 h-4"></i> Fourthwall Store
-                    </a>
-                </div>
+        <!-- BAND BIO SECTION -->
+        <section id="about" class="scroll-mt-32 space-y-10">
+            <div class="border-l-4 border-retro-coral pl-4">
+                <h2 class="text-3xl font-black uppercase tracking-wide text-white">The Band</h2>
+                <p class="text-xs uppercase tracking-widest font-bold text-retro-palmgreen">Atlanta, GA • Heavy Melodic Rock</p>
             </div>
 
-            <!-- Merch Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-                <!-- Product 1: Bandcamp Digital Single Pre-Order -->
-                <div class="group bg-retro-card border border-zinc-800 rounded-2xl overflow-hidden hover:border-retro-coral/50 transition flex flex-col justify-between shadow-xl">
-                    <div class="aspect-square bg-zinc-900 relative overflow-hidden flex items-center justify-center p-6 bg-gradient-to-br from-zinc-900 to-zinc-950">
-                        <span class="absolute top-3 left-3 z-10 bg-retro-coral text-white text-[10px] font-black uppercase px-2 py-1 rounded shadow">Jan 8 Pre-Order</span>
-                        <div class="w-full h-full border border-dashed border-zinc-800 rounded-xl flex flex-col items-center justify-center text-center p-4">
-                            <i data-lucide="disc-3" class="w-16 h-16 text-retro-coral mb-2"></i>
-                            <span class="text-xs font-bold text-zinc-300 uppercase">Torrent Single Art</span>
-                        </div>
+            <div class="bg-retro-card border border-zinc-800 rounded-2xl p-6 sm:p-10 shadow-2xl space-y-6">
+                <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
+                    Emerging from Griffin, Georgia, Concrete Parachute delivers an impact-driven blend of heavy melodic rock and post-hardcore. Fusing fast guitar riffage with infectious clean dual-lead vocal hooks and aggressive screaming accents, the quartet captures heavy rock intensity while remaining catchy and radio-accessible.
+                </p>
+                <div class="grid sm:grid-cols-2 gap-8 pt-4 border-t border-zinc-800/80">
+                    <div>
+                        <h3 class="text-xs font-black uppercase tracking-widest text-retro-turquoise mb-3">Lineup</h3>
+                        <ul class="text-sm text-zinc-300 space-y-2">
+                            <li><strong class="text-white">Chad Askew</strong> – Lead Guitar / Co-Lead Vocals</li>
+                            <li><strong class="text-white">Brandon Halvorsen</strong> – Rhythm Guitar / Co-Lead Vocals</li>
+                            <li><strong class="text-white">Josh Hollums</strong> – Bass</li>
+                            <li><strong class="text-white">Michael Hayes</strong> – Drums</li>
+                        </ul>
                     </div>
-                    <div class="p-5 space-y-3">
-                        <div>
-                            <h3 class="font-bold text-white text-base">Torrent Single + Digital Art Bundle</h3>
-                            <p class="text-xs text-zinc-400 mt-1">Lossless Audio • Hi-Res Art • Wallpapers & PDF</p>
-                            <p class="text-retro-turquoise font-black text-sm mt-2">$5.00 USD</p>
-                        </div>
-                        <a href="https://concreteparachute.bandcamp.com" target="_blank" class="w-full bg-retro-coral hover:bg-retro-darkcoral text-white text-xs font-bold uppercase py-3 rounded-lg transition flex items-center justify-center gap-2">
-                            Pre-Order on Bandcamp
-                        </a>
+                    <div>
+                        <h3 class="text-xs font-black uppercase tracking-widest text-retro-turquoise mb-3">Influences</h3>
+                        <p class="text-sm text-zinc-300 leading-relaxed">
+                            Drawing heavily from the 2000s post-hardcore and active rock movements, including early <em>A Day To Remember, Story of the Year, Chevelle,</em> and <em>Breaking Benjamin.</em>
+                        </p>
                     </div>
                 </div>
-
-                <!-- Product 2: Fourthwall Heavyweight Tee -->
-                <div class="group bg-retro-card border border-zinc-800 rounded-2xl overflow-hidden hover:border-retro-coral/50 transition flex flex-col justify-between shadow-xl">
-                    <div class="aspect-square bg-zinc-900 relative overflow-hidden flex items-center justify-center p-6 bg-gradient-to-br from-zinc-900 to-zinc-950">
-                        <span class="absolute top-3 left-3 z-10 bg-retro-palmgreen text-white text-[10px] font-black uppercase px-2 py-1 rounded shadow">Heavyweight Cotton</span>
-                        <div class="w-full h-full border border-dashed border-zinc-800 rounded-xl flex flex-col items-center justify-center text-center p-4">
-                            <i data-lucide="shirt" class="w-16 h-16 text-retro-coral mb-2"></i>
-                            <span class="text-xs font-bold text-zinc-300 uppercase">Torrent Garment-Dyed Tee</span>
-                        </div>
-                    </div>
-                    <div class="p-5 space-y-3">
-                        <div>
-                            <h3 class="font-bold text-white text-base">Torrent Heavyweight Tee</h3>
-                            <p class="text-xs text-zinc-400 mt-1">Comfort Colors 1717 Vintage Wash</p>
-                            <p class="text-retro-turquoise font-black text-sm mt-2">$30.00 USD</p>
-                        </div>
-                        <a href="https://concreteparachute.fourthwall.com" target="_blank" class="w-full bg-zinc-800 hover:bg-retro-coral text-white text-xs font-bold uppercase py-3 rounded-lg transition flex items-center justify-center gap-2">
-                            Buy on Fourthwall
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Product 3: Fourthwall Embroidered Hat -->
-                <div class="group bg-retro-card border border-zinc-800 rounded-2xl overflow-hidden hover:border-retro-coral/50 transition flex flex-col justify-between shadow-xl">
-                    <div class="aspect-square bg-zinc-900 relative overflow-hidden flex items-center justify-center p-6 bg-gradient-to-br from-zinc-900 to-zinc-950">
-                        <span class="absolute top-3 left-3 z-10 bg-retro-turquoise text-zinc-950 text-[10px] font-black uppercase px-2 py-1 rounded shadow">Custom Thread</span>
-                        <div class="w-full h-full border border-dashed border-zinc-800 rounded-xl flex flex-col items-center justify-center text-center p-4">
-                            <i data-lucide="crown" class="w-16 h-16 text-retro-turquoise mb-2"></i>
-                            <span class="text-xs font-bold text-zinc-300 uppercase">Embroidered Logo Hat</span>
-                        </div>
-                    </div>
-                    <div class="p-5 space-y-3">
-                        <div>
-                            <h3 class="font-bold text-white text-base">Embroidered Logo Dad Hat</h3>
-                            <p class="text-xs text-zinc-400 mt-1">Washed Cotton • Low Profile</p>
-                            <p class="text-retro-turquoise font-black text-sm mt-2">$25.00 USD</p>
-                        </div>
-                        <a href="https://concreteparachute.fourthwall.com" target="_blank" class="w-full bg-zinc-800 hover:bg-retro-coral text-white text-xs font-bold uppercase py-3 rounded-lg transition flex items-center justify-center gap-2">
-                            Buy on Fourthwall
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Product 4: Fourthwall Sticker Pack -->
-                <div class="group bg-retro-card border border-zinc-800 rounded-2xl overflow-hidden hover:border-retro-coral/50 transition flex flex-col justify-between shadow-xl">
-                    <div class="aspect-square bg-zinc-900 relative overflow-hidden flex items-center justify-center p-6 bg-gradient-to-br from-zinc-900 to-zinc-950">
-                        <span class="absolute top-3 left-3 z-10 bg-zinc-700 text-white text-[10px] font-black uppercase px-2 py-1 rounded shadow">Vinyl Pack</span>
-                        <div class="w-full h-full border border-dashed border-zinc-800 rounded-xl flex flex-col items-center justify-center text-center p-4">
-                            <i data-lucide="sparkles" class="w-16 h-16 text-retro-coral mb-2"></i>
-                            <span class="text-xs font-bold text-zinc-300 uppercase">4-Piece Sticker Pack</span>
-                        </div>
-                    </div>
-                    <div class="p-5 space-y-3">
-                        <div>
-                            <h3 class="font-bold text-white text-base">Underground Vinyl Sticker Pack</h3>
-                            <p class="text-xs text-zinc-400 mt-1">Die-Cut • Waterproof Vinyl</p>
-                            <p class="text-retro-turquoise font-black text-sm mt-2">$10.00 USD</p>
-                        </div>
-                        <a href="https://concreteparachute.fourthwall.com" target="_blank" class="w-full bg-zinc-800 hover:bg-retro-coral text-white text-xs font-bold uppercase py-3 rounded-lg transition flex items-center justify-center gap-2">
-                            Buy on Fourthwall
-                        </a>
-                    </div>
-                </div>
-
             </div>
         </section>
-
 
         <!-- AUTOMATED BANDSINTOWN TOUR SECTION -->
         <section id="tour" class="scroll-mt-32 space-y-8">
@@ -430,7 +341,6 @@
                 <p class="text-xs uppercase tracking-widest font-bold text-retro-palmgreen">Synced via Bandsintown</p>
             </div>
 
-            <!-- Bandsintown Widget Embed Container -->
             <div class="bg-retro-card border border-zinc-800 rounded-2xl p-4 sm:p-6 shadow-2xl min-h-[300px]">
                 <a class="bit-widget-initializer"
                     data-artist-name="id_15667129"
@@ -441,21 +351,144 @@
                     data-bit-logo-position="bottomRight"
                     data-background-color="rgba(26,31,33,1)"
                     data-text-color="rgba(255,255,255,1)"
-                    data-bit-logo-color="rgba(255,255,255,1)"
                     data-separator-color="rgba(64,224,208,1)"
                     data-font="Roboto"
                     data-display-details="true"
                     data-display-lineup="true"
-                    data-display-start-time="true"
-                    data-social-share-icon="true"
-                    data-button-label-capitalization="uppercase"
-                    data-local-dates-position="aboveUpcoming"
-                    data-venue-capitalization="capitalize"
-                    data-location-capitalization="capitalize"
-                    data-event-ticket-icon="true">
+                    data-display-start-time="true">
                 </a>
             </div>
         </section>
+
+        <!-- DIRECT MERCH STORE -->
+        <section id="merch" class="scroll-mt-32 space-y-10">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 border-l-4 border-retro-coral pl-4">
+                <div>
+                    <h2 class="text-3xl font-black uppercase tracking-wide text-white">Official Store</h2>
+                    <p class="text-xs uppercase tracking-widest font-bold text-retro-palmgreen">Music via Bandcamp • Apparel via Fourthwall</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Merch Items (Kept identical to original) -->
+                <div class="group bg-retro-card border border-zinc-800 rounded-2xl overflow-hidden hover:border-retro-coral/50 transition flex flex-col justify-between shadow-xl">
+                    <div class="aspect-square bg-zinc-900 relative overflow-hidden flex items-center justify-center p-6 bg-gradient-to-br from-zinc-900 to-zinc-950">
+                        <span class="absolute top-3 left-3 z-10 bg-retro-coral text-white text-[10px] font-black uppercase px-2 py-1 rounded shadow">Jan 8 Pre-Order</span>
+                        <div class="w-full h-full border border-dashed border-zinc-800 rounded-xl flex flex-col items-center justify-center text-center p-4">
+                            <i data-lucide="disc-3" class="w-16 h-16 text-retro-coral mb-2"></i>
+                        </div>
+                    </div>
+                    <div class="p-5 space-y-3">
+                        <div>
+                            <h3 class="font-bold text-white text-base">Torrent Single Bundle</h3>
+                            <p class="text-retro-turquoise font-black text-sm mt-2">$5.00 USD</p>
+                        </div>
+                        <a href="https://concreteparachute.bandcamp.com" target="_blank" class="w-full bg-retro-coral hover:bg-retro-darkcoral text-white text-xs font-bold uppercase py-3 rounded-lg transition flex items-center justify-center gap-2">Pre-Order</a>
+                    </div>
+                </div>
+
+                <div class="group bg-retro-card border border-zinc-800 rounded-2xl overflow-hidden hover:border-retro-coral/50 transition flex flex-col justify-between shadow-xl">
+                    <div class="aspect-square bg-zinc-900 relative overflow-hidden flex items-center justify-center p-6 bg-gradient-to-br from-zinc-900 to-zinc-950">
+                        <span class="absolute top-3 left-3 z-10 bg-retro-palmgreen text-white text-[10px] font-black uppercase px-2 py-1 rounded shadow">Heavyweight Cotton</span>
+                        <div class="w-full h-full border border-dashed border-zinc-800 rounded-xl flex flex-col items-center justify-center text-center p-4">
+                            <i data-lucide="shirt" class="w-16 h-16 text-retro-coral mb-2"></i>
+                        </div>
+                    </div>
+                    <div class="p-5 space-y-3">
+                        <div>
+                            <h3 class="font-bold text-white text-base">Torrent Heavyweight Tee</h3>
+                            <p class="text-retro-turquoise font-black text-sm mt-2">$30.00 USD</p>
+                        </div>
+                        <a href="https://concreteparachute.fourthwall.com" target="_blank" class="w-full bg-zinc-800 hover:bg-retro-coral text-white text-xs font-bold uppercase py-3 rounded-lg transition flex items-center justify-center gap-2">Buy on Fourthwall</a>
+                    </div>
+                </div>
+
+                <div class="group bg-retro-card border border-zinc-800 rounded-2xl overflow-hidden hover:border-retro-coral/50 transition flex flex-col justify-between shadow-xl">
+                    <div class="aspect-square bg-zinc-900 relative overflow-hidden flex items-center justify-center p-6 bg-gradient-to-br from-zinc-900 to-zinc-950">
+                        <span class="absolute top-3 left-3 z-10 bg-retro-turquoise text-zinc-950 text-[10px] font-black uppercase px-2 py-1 rounded shadow">Custom Thread</span>
+                        <div class="w-full h-full border border-dashed border-zinc-800 rounded-xl flex flex-col items-center justify-center text-center p-4">
+                            <i data-lucide="crown" class="w-16 h-16 text-retro-turquoise mb-2"></i>
+                        </div>
+                    </div>
+                    <div class="p-5 space-y-3">
+                        <div>
+                            <h3 class="font-bold text-white text-base">Embroidered Logo Dad Hat</h3>
+                            <p class="text-retro-turquoise font-black text-sm mt-2">$25.00 USD</p>
+                        </div>
+                        <a href="https://concreteparachute.fourthwall.com" target="_blank" class="w-full bg-zinc-800 hover:bg-retro-coral text-white text-xs font-bold uppercase py-3 rounded-lg transition flex items-center justify-center gap-2">Buy on Fourthwall</a>
+                    </div>
+                </div>
+
+                <div class="group bg-retro-card border border-zinc-800 rounded-2xl overflow-hidden hover:border-retro-coral/50 transition flex flex-col justify-between shadow-xl">
+                    <div class="aspect-square bg-zinc-900 relative overflow-hidden flex items-center justify-center p-6 bg-gradient-to-br from-zinc-900 to-zinc-950">
+                        <span class="absolute top-3 left-3 z-10 bg-zinc-700 text-white text-[10px] font-black uppercase px-2 py-1 rounded shadow">Vinyl Pack</span>
+                        <div class="w-full h-full border border-dashed border-zinc-800 rounded-xl flex flex-col items-center justify-center text-center p-4">
+                            <i data-lucide="sparkles" class="w-16 h-16 text-retro-coral mb-2"></i>
+                        </div>
+                    </div>
+                    <div class="p-5 space-y-3">
+                        <div>
+                            <h3 class="font-bold text-white text-base">Underground Sticker Pack</h3>
+                            <p class="text-retro-turquoise font-black text-sm mt-2">$10.00 USD</p>
+                        </div>
+                        <a href="https://concreteparachute.fourthwall.com" target="_blank" class="w-full bg-zinc-800 hover:bg-retro-coral text-white text-xs font-bold uppercase py-3 rounded-lg transition flex items-center justify-center gap-2">Buy on Fourthwall</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BOOKING & CONTACT SECTION -->
+        <section id="contact" class="scroll-mt-32 space-y-8">
+            <div class="border-l-4 border-retro-coral pl-4">
+                <h2 class="text-3xl font-black uppercase tracking-wide text-white">Booking & Inquiries</h2>
+                <p class="text-xs uppercase tracking-widest font-bold text-retro-palmgreen">Direct Line to Management</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 items-start">
+                <div class="bg-retro-card border border-zinc-800 rounded-2xl p-6 sm:p-8 shadow-2xl space-y-6">
+                    <p class="text-sm text-zinc-300">
+                        Concrete Parachute is currently seeking opening support slots, showcases, and local bills across Georgia and the Southeast.
+                    </p>
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="mail" class="text-retro-coral w-5 h-5"></i>
+                            <div>
+                                <div class="text-xs uppercase text-retro-palmgreen font-bold">Email</div>
+                                <a href="mailto:booking@concreteparachute.com" class="text-white hover:text-retro-coral font-semibold transition">booking@concreteparachute.com</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="phone" class="text-retro-coral w-5 h-5"></i>
+                            <div>
+                                <div class="text-xs uppercase text-retro-palmgreen font-bold">Phone</div>
+                                <div class="text-white font-semibold">(615) 419-9881</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form action="https://formspree.io/f/maenoyqw" method="POST" class="bg-retro-card border border-zinc-800 p-6 sm:p-8 rounded-2xl space-y-4 shadow-xl">
+                    <input type="hidden" name="_subject" value="[Booking Inquiry] Website Contact Form" />
+
+                    <div>
+                        <label class="block text-xs uppercase font-bold text-zinc-400 mb-1">Name / Venue</label>
+                        <input type="text" name="name" required class="w-full bg-retro-dark border border-zinc-800 rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-retro-coral" />
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase font-bold text-zinc-400 mb-1">Email Address</label>
+                        <input type="email" name="email" required class="w-full bg-retro-dark border border-zinc-800 rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-retro-coral" />
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase font-bold text-zinc-400 mb-1">Message</label>
+                        <textarea name="message" rows="4" required class="w-full bg-retro-dark border border-zinc-800 rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-retro-coral"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-retro-coral hover:bg-retro-darkcoral text-white font-bold text-xs uppercase py-4 rounded transition shadow-lg shadow-retro-coral/20">
+                        Send Inquiry
+                    </button>
+                </form>
+            </div>
+        </section>
+
     </main>
 
     <!-- FOOTER -->
@@ -466,16 +499,28 @@
                 Concrete<span class="text-retro-coral">Parachute</span>
             </a>
 
-            <!-- Social Links -->
-            <div class="flex justify-center items-center space-x-8 text-zinc-400">
+            <!-- Added Functional Industry Links -->
+            <div class="flex justify-center items-center space-x-6 text-zinc-400 uppercase tracking-widest font-bold text-[10px]">
+                <a href="/epk" class="hover:text-white transition">Press Kit (EPK)</a>
+                <span>|</span>
+                <a href="#contact" class="hover:text-white transition">Booking</a>
+                <span>|</span>
+                <a href="#" class="hover:text-white transition">Privacy Policy</a>
+            </div>
+
+            <!-- Expanded Social Links -->
+            <div class="flex justify-center items-center space-x-6 text-zinc-400">
+                <a href="https://linktr.ee/concreteparachuteband" target="_blank" class="hover:text-retro-coral transition" aria-label="Linktree">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="m13.736 5.853 4.005-4.117 2.325 2.38-4.2 4.317h5.884v3.321h-5.884l4.2 4.318-2.325 2.38-4.005-4.117v7.333h-3.472v-7.333l-4.005 4.117-2.325-2.38 4.2-4.318h-5.884v-3.321h5.884l-4.2-4.317 2.325-2.38 4.005 4.117v-5.853h3.472v5.853z"/></svg>
+                </a>
                 <a href="https://open.spotify.com/artist/17jSWTukLrxGjG3ZWzPbWa" target="_blank" class="hover:text-retro-coral transition" aria-label="Spotify">
-                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141 4.32-1.32 9.72-.66 13.44 1.62.42.24.6.84.301 1.201zM19.141 10.8c-3.84-2.28-10.14-2.46-13.86-1.32-.54.18-1.14-.12-1.32-.66-.18-.54.12-1.14.66-1.32 4.26-1.26 11.22-1.08 15.66 1.56.54.3.72.96.42 1.5-.3.54-.96.72-1.56.24z"/></svg>
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141 4.32-1.32 9.72-.66 13.44 1.62.42.24.6.84.301 1.201zM19.141 10.8c-3.84-2.28-10.14-2.46-13.86-1.32-.54.18-1.14-.12-1.32-.66-.18-.54.12-1.14.66-1.32 4.26-1.26 11.22-1.08 15.66 1.56.54.3.72.96.42 1.5-.3.54-.96.72-1.56.24z"/></svg>
                 </a>
                 <a href="https://www.instagram.com/concreteparachuteband" target="_blank" class="hover:text-retro-coral transition" aria-label="Instagram">
-                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                 </a>
                 <a href="https://youtube.com/@concreteparachuteband" target="_blank" class="hover:text-retro-coral transition" aria-label="YouTube">
-                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
                 </a>
             </div>
             
