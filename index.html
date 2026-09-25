@@ -219,55 +219,83 @@
             </div>
         </section>
 
-        <!-- MEDIA HUB: SPOTIFY & YOUTUBE -->
+       <!-- MEDIA HUB: PRE-RELEASE MODE -->
         <section id="music" class="scroll-mt-32 space-y-10">
             <div class="border-l-4 border-retro-turquoise pl-4">
-                <h2 class="text-3xl font-black uppercase tracking-wide text-white">Music & Media</h2>
-                <p class="text-xs uppercase tracking-widest font-bold text-retro-turquoise">Streaming Channel & Studio Sessions</p>
+                <h2 class="text-3xl font-black uppercase tracking-wide text-white">Media & Previews</h2>
+                <p class="text-xs uppercase tracking-widest font-bold text-retro-turquoise">Behind The Sound</p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-8 items-stretch">
-                <!-- Spotify Embedded Player -->
-                <div class="bg-retro-card border border-zinc-800 rounded-2xl p-4 shadow-2xl flex flex-col justify-between space-y-4">
-                    <div class="flex items-center justify-between border-b border-zinc-800/80 pb-3">
-                        <div class="flex items-center gap-2 text-retro-palmgreen font-bold text-xs uppercase tracking-wider">
-                            <i data-lucide="music" class="w-4 h-4"></i> Spotify Player
+                
+                <!-- CARD 1: SPOTIFY INFLUENCES PLAYLIST / FOLLOW CARD -->
+                <div class="bg-retro-card border border-zinc-800 rounded-2xl p-6 shadow-2xl flex flex-col justify-between space-y-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between border-b border-zinc-800/80 pb-3">
+                            <div class="flex items-center gap-2 text-retro-palmgreen font-bold text-xs uppercase tracking-wider">
+                                <i data-lucide="music" class="w-4 h-4"></i> Official Spotify Profile
+                            </div>
+                            <span class="text-[10px] bg-retro-coral/20 text-retro-coral font-bold px-2 py-0.5 rounded">Debut Single Jan 8</span>
                         </div>
-                        <a href="https://open.spotify.com/artist/17jSWTukLrxGjG3ZWzPbWa" target="_blank" class="text-xs text-zinc-400 hover:text-white transition">Follow on Spotify →</a>
+
+                        <div class="space-y-2">
+                            <h3 class="text-xl font-black uppercase text-white">Concrete Parachute on Spotify</h3>
+                            <p class="text-xs text-zinc-400 leading-relaxed">
+                                Our debut single <strong class="text-white">"Torrent"</strong> goes live on Spotify January 8th. Follow our profile today so it automatically lands in your Release Radar on drop day.
+                            </p>
+                        </div>
+
+                        <!-- Embedded Band Playlist OR Spotify Artist Embed -->
+                        <!-- TIP: Replace the playlist URI below with your own band playlist link if preferred -->
+                        <div class="rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800">
+                            <iframe 
+                                style="border-radius:12px" 
+                                src="https://open.spotify.com/embed/playlist/37i9dQZF1DX1X23398RStz?utm_source=generator&theme=0" 
+                                width="100%" 
+                                height="200" 
+                                frameBorder="0" 
+                                allowfullscreen="" 
+                                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                                loading="lazy">
+                            </iframe>
+                        </div>
                     </div>
-                    
-                    <div class="rounded-xl overflow-hidden bg-zinc-900">
-                        <iframe 
-                            style="border-radius:12px" 
-                            src="https://open.spotify.com/embed/artist/17jSWTukLrxGjG3ZWzPbWa?utm_source=generator&theme=0" 
-                            width="100%" 
-                            height="352" 
-                            frameBorder="0" 
-                            allowfullscreen="" 
-                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                            loading="lazy">
-                        </iframe>
-                    </div>
+
+                    <a href="https://open.spotify.com/artist/17jSWTukLrxGjG3ZWzPbWa" target="_blank" class="w-full bg-retro-palmgreen hover:bg-emerald-600 text-white text-xs font-black uppercase py-3.5 rounded-lg transition flex items-center justify-center gap-2 shadow-lg">
+                        <i data-lucide="check-circle" class="w-4 h-4"></i> Follow Band on Spotify
+                    </a>
                 </div>
 
-                <!-- Video Integration -->
-                <div class="bg-retro-card border border-zinc-800 rounded-2xl p-4 shadow-2xl flex flex-col justify-between space-y-4">
-                    <div class="flex items-center justify-between border-b border-zinc-800/80 pb-3">
-                        <div class="flex items-center gap-2 text-retro-turquoise font-bold text-xs uppercase tracking-wider">
-                            <i data-lucide="youtube" class="w-4 h-4"></i> Live Studio Performance
+                <!-- CARD 2: UNRELEASED VIDEO PREMIERE TEASER -->
+                <div class="bg-retro-card border border-zinc-800 rounded-2xl p-6 shadow-2xl flex flex-col justify-between space-y-6 relative overflow-hidden">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between border-b border-zinc-800/80 pb-3">
+                            <div class="flex items-center gap-2 text-retro-turquoise font-bold text-xs uppercase tracking-wider">
+                                <i data-lucide="youtube" class="w-4 h-4"></i> Music Video Premiere
+                            </div>
+                            <span class="text-xs font-mono text-zinc-400">Dropping Jan 08</span>
                         </div>
-                        <span class="text-xs text-zinc-500 uppercase font-mono">1-Take Live</span>
+
+                        <!-- Video Preview Card / Placeholder -->
+                        <div class="aspect-video w-full bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 relative group flex flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-zinc-900 via-zinc-950 to-retro-card">
+                            <!-- Background Blurred Cover Image -->
+                            <img src="https://raw.githubusercontent.com/ConcreteParachute/epk/refs/heads/main/IMG_3318.jpg" alt="Video Premiere Teaser" class="absolute inset-0 w-full h-full object-cover opacity-20 filter blur-sm" />
+                            
+                            <div class="relative z-10 space-y-3">
+                                <div class="w-12 h-12 rounded-full bg-retro-coral/20 border border-retro-coral text-retro-coral flex items-center justify-center mx-auto shadow-lg">
+                                    <i data-lucide="play" class="w-6 h-6 ml-1"></i>
+                                </div>
+                                <h4 class="text-base font-black uppercase text-white tracking-wide">"Torrent" Official Video</h4>
+                                <p class="text-xs text-zinc-400 max-w-xs mx-auto">Exclusive studio performance video premieres alongside the single release on January 8th.</p>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="aspect-video w-full bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800">
-                        <iframe class="w-full h-full" src="https://www.youtube-nocookie.com/embed/YzvcNu_C4yQ?si=5mfKe6BSqHG5bANu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    </div>
-                    
-                    <div class="pt-2">
-                        <h3 class="font-bold text-white uppercase text-sm">Raw Stage Dynamics</h3>
-                        <p class="text-xs text-zinc-400">Captured live in studio with full IEM mix isolation.</p>
-                    </div>
+                    <a href="https://youtube.com/@concreteparachuteband" target="_blank" class="w-full bg-zinc-800 hover:bg-retro-coral text-white text-xs font-black uppercase py-3.5 rounded-lg transition flex items-center justify-center gap-2 border border-zinc-700">
+                        <i data-lucide="bell" class="w-4 h-4"></i> Subscribe for Video Premiere
+                    </a>
                 </div>
+
             </div>
         </section>
 
