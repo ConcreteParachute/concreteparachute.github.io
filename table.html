@@ -67,7 +67,7 @@
                     <a href="venmo://paycharge?recipients=ConcreteParachuteBand" onclick="fallbackLink(this, 'https://venmo.com/ConcreteParachuteBand')" class="bg-[#008CFF]/10 hover:bg-[#008CFF]/20 border border-[#008CFF]/40 rounded-xl p-3 flex flex-col items-center justify-center text-center transition group">
                         <span class="text-xs font-black text-[#008CFF] uppercase tracking-wider group-hover:scale-105 transition">Venmo</span>
                     </a>
-                    <button onclick="copyHandle('@ConcreteParachute', this)" class="text-[9px] text-zinc-400 font-mono hover:text-white transition py-0.5 flex items-center justify-center gap-0.5">
+                    <button onclick="copyHandle('@ConcreteParachuteBand', this)" class="text-[9px] text-zinc-400 font-mono hover:text-white transition py-0.5 flex items-center justify-center gap-0.5">
                         <span>@ConcreteParachuteBand</span>
                         <i data-lucide="copy" class="w-2.5 h-2.5"></i>
                     </button>
@@ -105,13 +105,13 @@
                 <div class="inline-block bg-retro-coral text-white text-[10px] font-black uppercase px-2.5 py-0.5 rounded tracking-wider mb-1">
                     Show-Exclusive Perk
                 </div>
-                <h2 class="text-xl font-black uppercase text-white">Order Shirts & Hats Direct</h2>
+                <h2 class="text-xl font-black uppercase text-white">Official Online Merch Store</h2>
                 <p class="text-xs text-zinc-300">
                     Out of your size at the table? Order online now and get <strong class="text-white">FREE SHIPPING</strong> directly to your door!
                 </p>
             </div>
 
-            <!-- PROMO CODE CALLOUT WITH PROMINENT FREE SHIPPING BADGE -->
+            <!-- PROMO CODE CALLOUT -->
             <button onclick="copyCode('SHOWFREESHIP', this)" class="w-full text-left bg-zinc-950 hover:bg-zinc-900 border-2 border-dashed border-retro-coral/60 rounded-xl p-3.5 flex items-center justify-between transition cursor-pointer group shadow-inner">
                 <div class="space-y-1">
                     <div class="flex items-center gap-2">
@@ -128,20 +128,18 @@
                 </span>
             </button>
 
-            <!-- APPAREL DIRECT LINKS -->
-            <div class="space-y-2 pt-1">
-                <a href="https://concrete-parachute-shop.fourthwall.com/products/logo-heavyweight-tee" target="_blank" rel="noopener" class="w-full bg-retro-coral hover:bg-retro-darkcoral text-white font-black text-xs uppercase py-3.5 px-4 rounded-xl transition flex items-center justify-between shadow-lg">
-                    <span class="flex items-center gap-2">
-                        <i data-lucide="shopping-bag" class="w-4 h-4"></i> Logo Heavyweight Tee ($28)
-                    </span>
-                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </a>
-
-                <a href="https://concrete-parachute-shop.fourthwall.com/products/embroidered-logo-dad-hat" target="_blank" rel="noopener" class="w-full bg-zinc-800 hover:bg-zinc-700 text-white font-black text-xs uppercase py-3.5 px-4 rounded-xl border border-zinc-700 transition flex items-center justify-between">
-                    <span class="flex items-center gap-2">
-                        <i data-lucide="shopping-bag" class="w-4 h-4 text-retro-turquoise"></i> Embroidered Dad Hat ($28)
-                    </span>
-                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            <!-- SINGLE ONLINE MERCH STORE BUTTON -->
+            <div class="pt-1">
+                <a href="https://concrete-parachute-shop.fourthwall.com" target="_blank" rel="noopener" class="w-full bg-retro-coral hover:bg-retro-darkcoral text-white font-black text-xs uppercase py-3.5 px-4 rounded-xl transition flex items-center justify-between shadow-lg group">
+                    <div class="flex flex-col text-left">
+                        <span class="flex items-center gap-2 text-sm font-black">
+                            <i data-lucide="shopping-bag" class="w-4 h-4"></i> Visit Full Merch Store
+                        </span>
+                        <span class="text-[10px] text-zinc-200 font-medium normal-case tracking-normal mt-0.5">
+                            Shirts, Hoodies, Hats, Accessories & More
+                        </span>
+                    </div>
+                    <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
                 </a>
             </div>
         </section>
@@ -176,6 +174,7 @@
         </section>
 
         <!-- SECTION 4: STREAMING & LINKS -->
+        <section class="space-y-3 pt-2">
             <div class="flex justify-center items-center space-x-6 text-zinc-400">
                 <a href="https://linktr.ee/concreteparachuteband" target="_blank" class="hover:text-retro-coral transition" aria-label="Linktree">
                     <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="m13.736 5.853 4.005-4.117 2.325 2.38-4.2 4.317h5.884v3.321h-5.884l4.2 4.318-2.325 2.38-4.005-4.117v7.333h-3.472v-7.333l-4.005 4.117-2.325-2.38 4.2-4.318h-5.884v-3.321h5.884l-4.2-4.317 2.325-2.38 4.005 4.117v-5.853h3.472v5.853z"/></svg>
@@ -193,8 +192,6 @@
             <p class="text-[10px] text-zinc-500 uppercase tracking-widest text-center">© Concrete Parachute</p>
         </section>
 
-
-        
     </main>
 
     <script>
