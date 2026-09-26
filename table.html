@@ -61,48 +61,49 @@
                 <span class="text-[10px] bg-zinc-800 text-zinc-300 font-bold px-2 py-0.5 rounded">Beer Money / Stickers / Small Merch</span>
             </div>
 
-            <div class="grid grid-cols-4 gap-1.5 pt-1">
+            <!-- FLEX CONTAINER FOR DYNAMIC SIZING -->
+            <div class="flex gap-2 pt-1">
                 <!-- VENMO BUTTON -->
-                <div class="flex flex-col gap-1">
+                <div class="flex-1 flex flex-col gap-1 min-w-0">
                     <a href="venmo://paycharge?recipients=ConcreteParachuteBand" onclick="fallbackLink(this, 'https://venmo.com/ConcreteParachuteBand')" class="bg-[#008CFF]/10 hover:bg-[#008CFF]/20 border border-[#008CFF]/40 rounded-xl p-2.5 flex flex-col items-center justify-center text-center transition group h-[42px]">
                         <span class="text-[11px] font-black text-[#008CFF] uppercase tracking-wider group-hover:scale-105 transition">Venmo</span>
                     </a>
-                    <button onclick="copyHandle('@ConcreteParachuteBand', this)" class="text-[9px] text-zinc-400 font-mono hover:text-white transition py-0.5 flex items-center justify-center gap-0.5 truncate">
-                        <span>Copy Handle</span>
-                        <i data-lucide="copy" class="w-2.5 h-2.5"></i>
+                    <button onclick="copyHandle('@ConcreteParachuteBand', this)" class="text-[9px] text-zinc-400 font-mono hover:text-white transition py-0.5 flex items-center justify-center gap-0.5 truncate w-full">
+                        <span class="truncate">Copy Handle</span>
+                        <i data-lucide="copy" class="w-2.5 h-2.5 shrink-0"></i>
                     </button>
                 </div>
 
                 <!-- CASH APP BUTTON -->
-                <div class="flex flex-col gap-1">
+                <div class="flex-1 flex flex-col gap-1 min-w-0">
                     <a href="cashme://$ConcreteParachute" onclick="fallbackLink(this, 'https://cash.app/$ConcreteParachute')" class="bg-[#00D632]/10 hover:bg-[#00D632]/20 border border-[#00D632]/40 rounded-xl p-2.5 flex flex-col items-center justify-center text-center transition group h-[42px]">
                         <span class="text-[11px] font-black text-[#00D632] uppercase tracking-wider group-hover:scale-105 transition">Cash App</span>
                     </a>
-                    <button onclick="copyHandle('$ConcreteParachute', this)" class="text-[9px] text-zinc-400 font-mono hover:text-white transition py-0.5 flex items-center justify-center gap-0.5 truncate">
-                        <span>Copy Handle</span>
-                        <i data-lucide="copy" class="w-2.5 h-2.5"></i>
+                    <button onclick="copyHandle('$ConcreteParachute', this)" class="text-[9px] text-zinc-400 font-mono hover:text-white transition py-0.5 flex items-center justify-center gap-0.5 truncate w-full">
+                        <span class="truncate">Copy Handle</span>
+                        <i data-lucide="copy" class="w-2.5 h-2.5 shrink-0"></i>
                     </button>
                 </div>
 
-                <!-- PAYPAL BUTTON 
-                <div class="flex flex-col gap-1">
+                <!-- PAYPAL BUTTON -->
+                <div class="flex-1 flex flex-col gap-1 min-w-0">
                     <a href="https://paypal.me/ConcreteParachute" target="_blank" rel="noopener" class="bg-[#003087]/10 hover:bg-[#003087]/20 border border-[#003087]/40 rounded-xl p-2.5 flex flex-col items-center justify-center text-center transition group h-[42px]">
                         <span class="text-[11px] font-black text-[#0079C1] uppercase tracking-wider group-hover:scale-105 transition">PayPal</span>
                     </a>
-                    <button onclick="copyHandle('paypal.me/ConcreteParachute', this)" class="text-[9px] text-zinc-400 font-mono hover:text-white transition py-0.5 flex items-center justify-center gap-0.5 truncate">
-                        <span>Copy Link</span>
-                        <i data-lucide="copy" class="w-2.5 h-2.5"></i>
+                    <button onclick="copyHandle('paypal.me/ConcreteParachute', this)" class="text-[9px] text-zinc-400 font-mono hover:text-white transition py-0.5 flex items-center justify-center gap-0.5 truncate w-full">
+                        <span class="truncate">Copy Link</span>
+                        <i data-lucide="copy" class="w-2.5 h-2.5 shrink-0"></i>
                     </button>
                 </div>
--->
+
                 <!-- ZELLE BUTTON -->
-                <div class="flex flex-col gap-1">
+                <div class="flex-1 flex flex-col gap-1 min-w-0">
                     <button onclick="copyHandle('payments@concreteparachute.com', this)" class="w-full bg-[#7414CA]/10 hover:bg-[#7414CA]/20 border border-[#7414CA]/40 rounded-xl p-2.5 flex flex-col items-center justify-center text-center transition group h-[42px]">
                         <span class="text-[11px] font-black text-[#B066FF] uppercase tracking-wider group-hover:scale-105 transition">Zelle</span>
                     </button>
-                    <button onclick="copyHandle('payments@concreteparachute.com', this)" class="text-[9px] text-zinc-400 font-mono hover:text-white transition py-0.5 flex items-center justify-center gap-0.5 truncate">
-                        <span>Copy Info</span>
-                        <i data-lucide="copy" class="w-2.5 h-2.5"></i>
+                    <button onclick="copyHandle('payments@concreteparachute.com', this)" class="text-[9px] text-zinc-400 font-mono hover:text-white transition py-0.5 flex items-center justify-center gap-0.5 truncate w-full">
+                        <span class="truncate">Copy Info</span>
+                        <i data-lucide="copy" class="w-2.5 h-2.5 shrink-0"></i>
                     </button>
                 </div>
             </div>
