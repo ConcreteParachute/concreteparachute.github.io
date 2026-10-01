@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth bg-[#121516] text-zinc-100 font-sans antialiased">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Mixbus 12 Pro — Mix Dashboard | Concrete Parachute</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Roboto', 'sans-serif'],
+            header: ['Oswald', 'sans-serif'],
+            subheader: ['Montserrat', 'sans-serif'],
+          },
+          colors: {
+            retro: {
+              dark: '#121516',
+              card: '#1A1F21',
+              coral: '#E07A5F',
+              darkcoral: '#C85A3F',
+              turquoise: '#40E0D0',
+              palmgreen: '#2A9D8F',
+              mutedgreen: '#1D6A61',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@0.263.1"></script>
+
+  <style>
+    h1, h2, h3, .font-header { font-family: 'Oswald', sans-serif; }
+    body { font-family: 'Roboto', sans-serif; }
+
+    /* Custom Checkbox Styling */
+    .custom-checkbox {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #3f3f46;
+      border-radius: 4px;
+      background-color: #121516;
+      cursor: pointer;
+      flex-shrink: 0;
+      position: relative;
+      transition: all 0.2s ease;
+      margin-top: 2px;
+    }
+
+    .custom-checkbox:checked {
+      background-color: #E07A5F;
+      border-color: #E07A5F;
+    }
+
+    .custom-checkbox:checked::after {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 2px;
+      width: 5px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    .item-container:has(.custom-checkbox:checked) .item-text {
+      color: #71717a;
+      text-decoration: line-through;
+    }
+
+    .item-container { cursor: pointer; }
+    .item-container a { cursor: pointer; }
+
+    /* Manual info links */
+    .info-link { margin-top: 0; align-self: flex-start; }
+
+    /* Chevron Rotation on Details Open */
+    details[open] summary .chevron-icon {
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+<body class="bg-retro-dark text-zinc-100 min-h-screen flex flex-col justify-between selection:bg-retro-coral selection:text-white pb-12">
+
+  <!-- FULL SCREEN SCHEDULE OVERLAY -->
+  <div id="scheduleOverlay" class="fixed inset-0 z-[100] bg-zinc-950/95 backdrop-blur-xl hidden flex-col items-center justify-center p-6 text-center transition-all duration-300">
+    <div id="overlayIcon" class="mb-6 text-retro-coral">
+      <i data-lucide="siren" class="w-16 h-16 animate-pulse"></i>
+    </div>
+    <h2 id="overlayTitle" class="text-5xl md:text-7xl font-black uppercase tracking-tight text-white mb-4 font-header">Time's Up</h2>
+    <p id="overlayMessage" class="text-xl md:text-2xl text-zinc-300 mb-10 max-w-2xl leading-relaxed">Stop touching the faders.</p>
+    
+    <div id="overlayCountdownContainer" class="hidden flex-col items-center">
+      <p class="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Auto-transitioning to break in</p>
+      <div id="overlayCountdown" class="text-7xl font-mono text-retro-coral font-bold">5</div>
+    </div>
+
+    <button id="overlayActionBtn" class="hidden px-8 py-4 bg-retro-palmgreen hover:bg-retro-turquoise text-zinc-950 font-black text-lg uppercase tracking-widest rounded-xl transition-all shadow-[0_0_20px_rgba(42,157,143,0.4)] hover:shadow-[0_0_30px_rgba(64,224,208,0.6)]">
+      Start Next Mix Session
+    </button>
+  </div>
+
+  <!-- HEADER -->
+  <header class="py-6 border-b border-zinc-800 bg-retro-dark/95 backdrop-blur-md relative z-50">
+    <div class="max-w-4xl mx-auto px-4 flex justify-between items-center">
+      <div class="text-xl font-black tracking-widest text-white uppercase font-header">
+        Concrete<span class="text-retro-coral">Parachute</span>
+      </div>
+      <div class="text-xs font-bold uppercase tracking-widest text-retro-turquoise flex items-center gap-1.5 bg-retro-card px-3 py-1.5 rounded-full border border-zinc-800">
+        <i data-lucide="sliders" class="w-3.5 h-3.5"></i> Studio Mix Dashboard
+      </div>
+    </div>
+  </header>
+
+  <!-- STICKY TIMER & SCHEDULE -->
+  <div class="sticky top-0 z-40 bg-retro-dark/95 backdrop-blur-md border-b border-zinc-800 pb-4 pt-4 shadow-xl">
+    <div class="max-w-4xl mx-auto px-4">
+      <details class="group bg-zinc-900 border border-retro-coral/30 rounded-xl overflow-hidden transition shadow-lg">
+        <summary class="px-4 py-3 cursor-pointer select-none hover:bg-zinc-800/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <i data-lucide="clock" class="w-5 h-5 text-retro-coral"></i>
+            <span class="text-white font-header font-bold uppercase tracking-wide">Session Timer & Strategy</span>
+          </div>
+          <div class="flex items-center gap-3 self-end sm:self-auto">
+            <div class="flex items-center gap-2 bg-retro-dark px-3 py-1.5 rounded-lg border border-zinc-700">
+              <span id="sessionTracker" class="text-[10px] font-bold uppercase tracking-wider text-zinc-500 mr-2 border-r border-zinc-700 pr-2">Block 0/5</span>
+              <span id="timerDisplay" class="font-mono text-retro-turquoise font-bold text-base w-12 text-center">00:00</span>
+              <button onclick="startMixSession()" class="text-xs font-bold uppercase tracking-wider text-zinc-900 bg-retro-palmgreen hover:bg-retro-turquoise px-3 py-1 rounded transition ml-1">Start Mix</button>
+              <button onclick="resetSchedule()" title="Reset Schedule" class="text-xs text-zinc-500 hover:text-rose-400 px-1 py-1 transition ml-1"><i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i></button>
+            </div>
+            <i data-lucide="chevron-down" class="chevron-icon w-5 h-5 text-zinc-400 transition-transform duration-200 hidden sm:block"></i>
+          </div>
+        </summary>
+        
+        <div class="p-6 space-y-8 text-sm text-zinc-300 border-t border-zinc-800 bg-retro-card max-h-[65vh] overflow-y-auto">
+          
+          <!-- Stop Mixing Rule -->
+          <div class="bg-rose-950/30 border-l-4 border-rose-500 p-4 rounded-r-lg">
+            <h4 class="text-rose-400 font-bold uppercase tracking-wider text-xs mb-1 flex items-center gap-2"><i data-lucide="alert-triangle" class="w-4 h-4"></i> The Ultimate Stop Rule</h4>
+            <p class="text-zinc-300">Don't use "I can still hear it" as your indicator that you're good to keep mixing. Your ears adapt surprisingly quickly. <strong class="text-white">If you find yourself repeatedly making a change, undoing it, then making essentially the same change again, stop mixing and take a break.</strong></p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Schedule Table -->
+            <div>
+              <h4 class="text-retro-turquoise font-header font-bold uppercase tracking-wide mb-3">Daily Mix Schedule</h4>
+              <p class="text-xs text-zinc-400 mb-4">Work in 50-minute blocks, followed by a 15-minute break where you genuinely stop listening to music. After 3 blocks, take a 45-minute break.</p>
+              <table class="w-full text-left text-xs border-collapse rounded-lg overflow-hidden">
+                <thead>
+                  <tr class="bg-zinc-950 border-b border-zinc-800 text-retro-palmgreen">
+                    <th class="p-2.5">Time Block</th>
+                    <th class="p-2.5">Action</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-800 bg-retro-dark/60 text-zinc-300">
+                  <tr><td class="p-2.5 font-mono text-zinc-400">0:00–0:50</td><td class="p-2.5 font-bold">Mix 1</td></tr>
+                  <tr><td class="p-2.5 font-mono text-zinc-400">0:50–1:05</td><td class="p-2.5 text-retro-coral">Break (15m)</td></tr>
+                  <tr><td class="p-2.5 font-mono text-zinc-400">1:05–1:55</td><td class="p-2.5 font-bold">Mix 2</td></tr>
+                  <tr><td class="p-2.5 font-mono text-zinc-400">1:55–2:10</td><td class="p-2.5 text-retro-coral">Break (15m)</td></tr>
+                  <tr><td class="p-2.5 font-mono text-zinc-400">2:10–3:00</td><td class="p-2.5 font-bold">Mix 3</td></tr>
+                  <tr><td class="p-2.5 font-mono text-zinc-400">3:00–3:45</td><td class="p-2.5 text-retro-coral">Long Break (45m)</td></tr>
+                  <tr><td class="p-2.5 font-mono text-zinc-400">3:45–4:35</td><td class="p-2.5 font-bold">Mix 4</td></tr>
+                  <tr><td class="p-2.5 font-mono text-zinc-400">4:35–4:50</td><td class="p-2.5 text-retro-coral">Break (15m)</td></tr>
+                  <tr><td class="p-2.5 font-mono text-zinc-400">4:50–5:30</td><td class="p-2.5 font-bold">Mix 5 (Final - 40m)</td></tr>
+                  <tr><td class="p-2.5 font-mono text-retro-turquoise">Next Day</td><td class="p-2.5 font-bold text-white">Fresh-ears review</td></tr>
+                </tbody>
+              </table>
+              <p class="text-xs text-zinc-400 mt-3 italic">When returning from a break, play the entire song from the beginning at a moderate level before touching anything. Give your brain a chance to re-establish the song as a whole.</p>
+            </div>
+
+            <!-- Passes -->
+            <div>
+              <h4 class="text-retro-turquoise font-header font-bold uppercase tracking-wide mb-3">The 5-Pass Approach</h4>
+              <p class="text-xs text-zinc-400 mb-4">Revisit an important mix 3–5 separate times rather than attempting a marathon session.</p>
+              <ul class="space-y-4">
+                <li class="bg-retro-dark p-3 rounded-lg border border-zinc-800">
+                  <strong class="text-white block text-xs uppercase tracking-wider mb-1">Pass 1 — Build</strong>
+                  <span class="text-xs text-zinc-400">Get balances, panning, basic EQ/compression, effects and overall direction working.</span>
+                </li>
+                <li class="bg-retro-dark p-3 rounded-lg border border-zinc-800">
+                  <strong class="text-white block text-xs uppercase tracking-wider mb-1">Pass 2 — Fresh Ears</strong>
+                  <span class="text-xs text-zinc-400">Come back after several hours or next day. Fix the obvious stuff you couldn't hear anymore.</span>
+                </li>
+                <li class="bg-retro-dark p-3 rounded-lg border border-zinc-800">
+                  <strong class="text-white block text-xs uppercase tracking-wider mb-1">Pass 3 — Detail</strong>
+                  <span class="text-xs text-zinc-400">Automation, vocal consistency, transitions, masking, low-end relationships, effects.</span>
+                </li>
+                <li class="bg-retro-dark p-3 rounded-lg border border-zinc-800">
+                  <strong class="text-white block text-xs uppercase tracking-wider mb-1">Pass 4 — Translation</strong>
+                  <span class="text-xs text-zinc-400">Listen on headphones, car, small speakers. Take notes rather than fixing immediately.</span>
+                </li>
+                <li class="bg-retro-dark p-3 rounded-lg border border-zinc-800">
+                  <strong class="text-white block text-xs uppercase tracking-wider mb-1">Pass 5 — Final</strong>
+                  <span class="text-xs text-zinc-400">Make only the changes that survived the previous checks.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-4xl w-full mx-auto px-4 pt-8 flex-1">
+    
+    <!-- DASHBOARD PROGRESS CARD -->
+    <section class="bg-gradient-to-r from-retro-card to-zinc-900 border border-zinc-800 rounded-2xl p-6 sm:p-8 mb-8 shadow-2xl space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <div class="text-xs font-bold uppercase tracking-widest text-retro-palmgreen mb-1">Mixbus 12 Pro Workflow</div>
+          <h1 class="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">Mix Checklist</h1>
+        </div>
+        <button id="resetBtn" type="button" class="inline-flex items-center gap-1.5 text-xs uppercase font-bold text-zinc-400 hover:text-rose-400 border border-zinc-700 hover:border-rose-400/50 px-3 py-2 rounded-lg transition self-start sm:self-auto bg-retro-dark/50 cursor-pointer">
+          <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Reset For New Song
+        </button>
+      </div>
+
+      <!-- Progress Bar Container -->
+      <div class="space-y-2">
+        <div class="flex justify-between items-center text-xs font-bold uppercase tracking-wider text-zinc-400">
+          <span id="progressText">0 of 0 items completed</span>
+          <span id="progressPercent" class="text-retro-turquoise">0%</span>
+        </div>
+        <div class="w-full bg-zinc-950 rounded-full h-3 border border-zinc-800 overflow-hidden">
+          <div id="progressBar" class="bg-gradient-to-r from-retro-coral to-retro-turquoise h-full w-0 transition-all duration-300 ease-out"></div>
+        </div>
+      </div>
+      <!-- 100% Completion Celebration Banner -->
+      <div id="completionBanner" class="hidden bg-retro-palmgreen/20 border border-retro-palmgreen text-retro-palmgreen px-4 py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left animate-pulse">
+        <span class="flex items-center justify-center sm:justify-start gap-2">
+          <i data-lucide="check-circle-2" class="w-4 h-4 shrink-0"></i> 
+          <span>Mix 100% Ready — Pre-Mastering Quality Control Passed!</span>
+        </span>
+        <span class="whitespace-nowrap">🚀 Ready to Send!</span>
+      </div>
+    </section>
+
+    <!-- CHECKLIST ACCORDIONS -->
+    <div class="space-y-4">
+
+      <!-- PHASE 1 -->
+      <details open class="group bg-retro-card border border-zinc-800 rounded-xl overflow-hidden transition">
+        <summary class="px-6 py-4 cursor-pointer select-none bg-zinc-900/60 hover:bg-zinc-800/50 flex items-center justify-between gap-4 border-b border-transparent group-open:border-zinc-800">
+          <div class="flex items-center gap-3">
+            <span class="text-retro-coral font-header font-bold text-lg sm:text-xl uppercase tracking-wide">Phase 1: Mixbus 12 Pro Import, Prep & Gain Staging</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="badge-p1" class="text-xs font-bold px-2.5 py-1 rounded-full bg-retro-dark border border-zinc-800 text-retro-palmgreen">0/8</span>
+            <i data-lucide="chevron-down" class="chevron-icon w-5 h-5 text-zinc-400 transition-transform duration-200"></i>
+          </div>
+        </summary>
+        <div class="p-6 space-y-4 text-sm text-zinc-300">
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p1-8" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Stem Integrity Check:</strong> Confirm all stems start at the same point, share the same length and the project sample rate, and aren't clipped. Make sure timing, tuning, and comping are final so no further editing is needed after this point.
+            </div>
+          <a href="https://rsrc.harrisonconsoles.com/mixbus/mixbus-live-manual/12/en/topic/importing-files" target="_blank" rel="noopener" class="info-link shrink-0 p-1.5 -m-1 rounded-full text-zinc-500 hover:text-retro-turquoise hover:bg-zinc-800 transition"><i data-lucide="info" class="w-4 h-4"></i></a>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p1-1" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Session Organization & Track Grouping:</strong> Color-code and organize imported stems: Drums, Bass, Guitars (Rhythm L/R, Lead/Ambient L/R), Vocal 1 (Clean), Vocal 2 (Screaming), and Effects/Auxes.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p1-2" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Clean Editing & Crossfades:</strong> Apply crossfades (&ge; 10 ms) on all spliced audio clips to prevent pops. Trim clip starts 1 to 2 bars before the first hit and trim unused noise gaps across high-gain guitar takes and vocal pauses.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p1-3" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Channel Strip De-Noising:</strong> Engage Mixbus 12 Pro’s built-in per-channel DeNoiser on high-gain guitar tracks, mic bleed channels, and vocal takes to eliminate background hum before compression.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p1-4" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Phase Alignment:</strong> Check phase correlation between drum multi-mics (top/bottom snare, kick in/out) and multi-mic bass signals (DI vs. Amp mic). Flip channel phase switches in Mixbus to ensure maximum low-end impact.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p1-5" class="custom-checkbox">
+            <div class="item-text leading-relaxed w-full">
+              <strong class="text-white font-bold">Sub-Group Routing (Mixbusses):</strong> Route individual channels to dedicated Mixbus sub-groups:
+              <ul class="list-disc list-inside text-xs text-zinc-400 mt-2 space-y-1 bg-retro-dark p-3 rounded-lg border border-zinc-800">
+                <li>Bus 1: Drums (Kick, Snare, Toms, Cymbals, Rooms)</li>
+                <li>Bus 2: Bass (Clean DI + Distorted Upper-Mid Track)</li>
+                <li>Bus 3: Guitars (Rhythm Guitars 1 & 2, Lead/Ambient Guitars)</li>
+                <li>Bus 4: Vocal 1 (Clean Lead & Harmonies)</li>
+                <li>Bus 5: Vocal 2 (Screaming / Harsh Lead)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p1-6" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Gain Staging (0 dBVU / -18 dBFS Sweet Spot):</strong> Use the input Trim knob at the top of each Mixbus channel strip to set the average level near 0 VU (about -18 dBFS) on the strip meter, keeping peaks well below 0 dBFS, to hit the analog console modeling sweet spot before adding processing.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p1-7" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Reference Track Setup:</strong> Import 1 to 2 commercial post-hardcore reference tracks. Assign them directly to the Mixbus Monitor Strip / Audition Path and level-match them to your unmastered mix by loudness.
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- PHASE 2 -->
+      <details class="group bg-retro-card border border-zinc-800 rounded-xl overflow-hidden transition">
+        <summary class="px-6 py-4 cursor-pointer select-none bg-zinc-900/60 hover:bg-zinc-800/50 flex items-center justify-between gap-4 border-b border-transparent group-open:border-zinc-800">
+          <div class="flex items-center gap-3">
+            <span class="text-retro-coral font-header font-bold text-lg sm:text-xl uppercase tracking-wide">Phase 2: Static Volume Balance, Panning & Reference Flicking</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="badge-p2" class="text-xs font-bold px-2.5 py-1 rounded-full bg-retro-dark border border-zinc-800 text-retro-palmgreen">0/5</span>
+            <i data-lucide="chevron-down" class="chevron-icon w-5 h-5 text-zinc-400 transition-transform duration-200"></i>
+          </div>
+        </summary>
+        <div class="p-6 space-y-4 text-sm text-zinc-300">
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p2-1" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Fader Balancing (Conversation Level):</strong> Set monitoring volume to a quiet conversation level. Build the static mix fader balance around the kick drum, snare, bass, and the two lead vocals. <br><span class="text-retro-turquoise font-bold uppercase text-xs tracking-wider inline-block mt-1">Rule: Fader before plugin.</span> If a simple fader level fixes the balance, do not reach for an EQ.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p2-2" class="custom-checkbox">
+            <div class="item-text leading-relaxed w-full">
+              <strong class="text-white font-bold">Post-Hardcore Stereo Placement (50/50 & LCR Method):</strong>
+              <ul class="list-disc list-inside text-xs text-zinc-400 mt-2 space-y-1 bg-retro-dark p-3 rounded-lg border border-zinc-800">
+                <li><strong class="text-retro-turquoise">Center (0%):</strong> Kick, Snare, Bass DI, Lead Vocals.</li>
+                <li><strong class="text-retro-turquoise">Hard L/R (100%):</strong> Rhythm Guitars for a thick wall-of-sound.</li>
+                <li><strong class="text-retro-turquoise">Medium Wide (50% L/R):</strong> Lead/Ambient Guitars, Overheads, Toms.</li>
+                <li><strong class="text-retro-turquoise">Vocal Separation:</strong> Micro-pan Lead 1 (Clean) 3–5% left and Lead 2 (Scream) 3–5% right during dual-vocal sections.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p2-5" class="custom-checkbox">
+            <div class="item-text bg-retro-dark/90 border-l-4 border-retro-coral p-3 rounded-r-lg space-y-1 w-full">
+              <div class="text-xs font-bold uppercase tracking-wider text-retro-coral flex items-center gap-1.5">
+                <i data-lucide="zap" class="w-3.5 h-3.5"></i> [STRESS TEST] Level-Matched Reference Flicking
+              </div>
+              <p class="text-xs text-zinc-300">Map a single key command to toggle instantly between your mix and the level-matched reference track.<br>
+              <span class="text-retro-turquoise font-bold uppercase text-[10px] tracking-wider inline-block mt-1">Rule: Reference before memory.</span> Regularly compare to level-matched references instead of trusting your ears' adaptation. Flick back and forth every 10–15 minutes for 5 seconds to spot tonal drift.</p>
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p2-3" class="custom-checkbox">
+            <div class="item-text bg-retro-dark/90 border-l-4 border-retro-coral p-3 rounded-r-lg space-y-1 w-full">
+              <div class="text-xs font-bold uppercase tracking-wider text-retro-coral flex items-center gap-1.5">
+                <i data-lucide="zap" class="w-3.5 h-3.5"></i> [STRESS TEST] The Mono Summing Stress Test
+              </div>
+              <p class="text-xs text-zinc-300">Hit the MONO button on your Mixbus monitor section regularly. Ensure center elements don't disappear to phase cancellation before returning to stereo.</p>
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p2-4" class="custom-checkbox">
+            <div class="item-text bg-retro-dark/90 border-l-4 border-retro-coral p-3 rounded-r-lg space-y-1 w-full">
+              <div class="text-xs font-bold uppercase tracking-wider text-retro-coral flex items-center gap-1.5">
+                <i data-lucide="zap" class="w-3.5 h-3.5"></i> [STRESS TEST] The Fletcher-Munson "Whisper" Test
+              </div>
+              <p class="text-xs text-zinc-300">Drop monitor volume to near-silence. Confirm only key focal elements remain audible (kick click, snare crack, vocals). If guitars dominate at whisper volume, reduce faders.</p>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- PHASE 3 -->
+      <details class="group bg-retro-card border border-zinc-800 rounded-xl overflow-hidden transition">
+        <summary class="px-6 py-4 cursor-pointer select-none bg-zinc-900/60 hover:bg-zinc-800/50 flex items-center justify-between gap-4 border-b border-transparent group-open:border-zinc-800">
+          <div class="flex items-center gap-3">
+            <span class="text-retro-coral font-header font-bold text-lg sm:text-xl uppercase tracking-wide">Phase 3: Dynamic Control, Compression & Stress Auditing</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="badge-p3" class="text-xs font-bold px-2.5 py-1 rounded-full bg-retro-dark border border-zinc-800 text-retro-palmgreen">0/7</span>
+            <i data-lucide="chevron-down" class="chevron-icon w-5 h-5 text-zinc-400 transition-transform duration-200"></i>
+          </div>
+        </summary>
+        <div class="p-6 space-y-4 text-sm text-zinc-300">
+          <div class="mb-4 bg-retro-dark/50 border border-retro-coral/30 p-3 rounded-lg">
+            <span class="text-retro-coral font-bold uppercase text-xs tracking-wider flex items-center gap-2"><i data-lucide="alert-circle" class="w-4 h-4"></i> Rule: Problem before processor.</span>
+            <p class="text-xs text-zinc-300 mt-1">Never EQ, compress, or add reverb simply because the checklist says you can. Only apply these processors if the track genuinely presents a dynamic or frequency problem that needs solving. Checking an item off means you considered it, not that you had to use it.</p>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p3-1" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Drums:</strong> Apply channel compression to snare and kick with a slow attack (20–40 ms) for punch. Send drum tracks to a parallel drum compression bus (crushed with fast attack/release) and blend under the main drum bus.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p3-2" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Bass Guitar:</strong> Split bass processing into two paths or use parallel routing: heavy opto compression on the clean low end for smooth sub-bass, and fast VCA compression/saturation on the upper-mid grid for pick articulation.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p3-3" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Rhythm & Lead Guitars:</strong> Keep rhythm guitar compression minimal (&le; 1.5–2 dB) since high-gain amplifiers already compress dynamics. Use bus compression on the Guitar Mixbus to glue rhythm and lead guitars together.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p3-4" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Lead Vocal 1 (Clean):</strong> Apply 3–6 dB of gain reduction using a two-stage compressor approach (fast peak-catching FET followed by an Opto leveler for smooth sustain).
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p3-5" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Lead Vocal 2 (Screams):</strong> Use fast VCA or FET compression to handle extreme dynamic spikes. Engage built-in channel DeEsser (taming sibilance between 5–7 kHz).
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p3-8" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Gating & Expansion:</strong> Use the channel Gate/Expander on drum bleed and high-gain guitars to tighten stop-start riffs and clean the noise between chugs. Set release by ear so decays aren't chopped.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p3-6" class="custom-checkbox">
+            <div class="item-text bg-retro-dark/90 border-l-4 border-retro-coral p-3 rounded-r-lg space-y-1 w-full">
+              <div class="text-xs font-bold uppercase tracking-wider text-retro-coral flex items-center gap-1.5">
+                <i data-lucide="zap" class="w-3.5 h-3.5"></i> [STRESS TEST] Level-Matched Plugin Bypass
+              </div>
+              <p class="text-xs text-zinc-300">Match output gain on every compressor/EQ plugin so the signal is volume-matched when bypassed. Rapidly toggle plugins on and off to confirm processing genuinely improves tone rather than just making it louder.</p>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- PHASE 4 -->
+      <details class="group bg-retro-card border border-zinc-800 rounded-xl overflow-hidden transition">
+        <summary class="px-6 py-4 cursor-pointer select-none bg-zinc-900/60 hover:bg-zinc-800/50 flex items-center justify-between gap-4 border-b border-transparent group-open:border-zinc-800">
+          <div class="flex items-center gap-3">
+            <span class="text-retro-coral font-header font-bold text-lg sm:text-xl uppercase tracking-wide">Phase 4: Tone Shaping, Surgical EQ & Band Auditing</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="badge-p4" class="text-xs font-bold px-2.5 py-1 rounded-full bg-retro-dark border border-zinc-800 text-retro-palmgreen">0/7</span>
+            <i data-lucide="chevron-down" class="chevron-icon w-5 h-5 text-zinc-400 transition-transform duration-200"></i>
+          </div>
+        </summary>
+        <div class="p-6 space-y-4 text-sm text-zinc-300">
+          <p class="text-xs text-zinc-500 italic -mt-1">Rule: Problem before processor. Checking an item off means you considered it, not that you had to use it.</p>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p4-1" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Sub-Bass (20 Hz–60 Hz):</strong> High-pass non-bass instruments. Solo sub-bass to ensure only kick drum sub-harmonics and bass fundamentals live here.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p4-2" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Bass & Low-End (60 Hz–200 Hz):</strong> Carve a slight notch on the bass guitar around the kick drum’s fundamental frequency to create separation.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p4-3" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Low Mids (200 Hz–600 Hz):</strong> Cut mud accumulation on high-gain guitars and vocals using narrow parametric notches.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p4-4" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Midrange (600 Hz–2 kHz):</strong> Clear space for Lead Vocal 1 (clean body around 800 Hz–1.2 kHz) and Lead Vocal 2 (screaming resonance around 1.5 kHz–2 kHz) by applying slight dips in rhythm guitars.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p4-5" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Upper Mids (2 kHz–8 kHz):</strong> Boost kick drum point and snare crack. Notch out harsh, whistle-like resonances in high-gain guitars (3 kHz–4.5 kHz).
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p4-6" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Highs & Air (8 kHz+):</strong> Apply a gentle high shelf boost on Vocal 1 (Clean) and Cymbal Overheads for air, ensuring high-pass safety cuts prevent buildup.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p4-7" class="custom-checkbox">
+            <div class="item-text bg-retro-dark/90 border-l-4 border-retro-coral p-3 rounded-r-lg space-y-1 w-full">
+              <div class="text-xs font-bold uppercase tracking-wider text-retro-coral flex items-center gap-1.5">
+                <i data-lucide="zap" class="w-3.5 h-3.5"></i> [STRESS TEST] Band-Pass Frequency Auditing
+              </div>
+              <p class="text-xs text-zinc-300">Insert a narrow band-pass filter on your master monitor path to audit critical problem zones. Confirm 200–500 Hz sounds distinct (not a wall of mud) and 3–5 kHz has no ear-fatiguing whistles. Remove the filter afterward.</p>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- PHASE 5 -->
+      <details class="group bg-retro-card border border-zinc-800 rounded-xl overflow-hidden transition">
+        <summary class="px-6 py-4 cursor-pointer select-none bg-zinc-900/60 hover:bg-zinc-800/50 flex items-center justify-between gap-4 border-b border-transparent group-open:border-zinc-800">
+          <div class="flex items-center gap-3">
+            <span class="text-retro-coral font-header font-bold text-lg sm:text-xl uppercase tracking-wide">Phase 5: Spatial Depth & Saturation</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="badge-p5" class="text-xs font-bold px-2.5 py-1 rounded-full bg-retro-dark border border-zinc-800 text-retro-palmgreen">0/5</span>
+            <i data-lucide="chevron-down" class="chevron-icon w-5 h-5 text-zinc-400 transition-transform duration-200"></i>
+          </div>
+        </summary>
+        <div class="p-6 space-y-4 text-sm text-zinc-300">
+          <p class="text-xs text-zinc-500 italic -mt-1">Rule: Problem before processor. Checking an item off means you considered it, not that you had to use it.</p>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p5-1" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Mixbus Console Saturation:</strong> Drive the built-in Mixbus Tape Saturation knobs on the Drum, Bass, and Guitar mixbusses (1–2 dB of soft drive) to add glue and harmonic warmth.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p5-2" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Ambience & Room Reverb:</strong> Set up an Aux track with a short room reverb (0.8–1.2s decay). Send drums and rhythm guitars to glue them into a single physical room space.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p5-3" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Vocal Depth (Clean Vocal 1):</strong> Set up a plate or hall reverb aux for Clean Vocal 1 to add length in ambient sections, ducked slightly by the dry vocal using sidechain compression.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p5-4" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Vocal Delay (Screaming Vocal 2 & Guitars):</strong> Use a stereo slapback delay (30–80 ms) or timed 1/4-note delay aux on Vocal 2 and lead guitar solos/arpeggios to build width without pushing them back in the mix.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p5-5" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Special Effects & Modulation:</strong> Apply chorus or phaser effects on intro/bridge ambient guitars or clean vocal drops for tonal variety.
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- PHASE 6 -->
+      <details class="group bg-retro-card border border-zinc-800 rounded-xl overflow-hidden transition">
+        <summary class="px-6 py-4 cursor-pointer select-none bg-zinc-900/60 hover:bg-zinc-800/50 flex items-center justify-between gap-4 border-b border-transparent group-open:border-zinc-800">
+          <div class="flex items-center gap-3">
+            <span class="text-retro-coral font-header font-bold text-lg sm:text-xl uppercase tracking-wide">Phase 6: Dynamic Volume Automation</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="badge-p6" class="text-xs font-bold px-2.5 py-1 rounded-full bg-retro-dark border border-zinc-800 text-retro-palmgreen">0/3</span>
+            <i data-lucide="chevron-down" class="chevron-icon w-5 h-5 text-zinc-400 transition-transform duration-200"></i>
+          </div>
+        </summary>
+        <div class="p-6 space-y-4 text-sm text-zinc-300">
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p6-1" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Section Automation:</strong> Automate overall bus levels or faders to increase track volume by +0.5 dB to +1.0 dB heading into heavy post-hardcore choruses or breakdowns. <br><span class="text-retro-turquoise font-bold uppercase text-xs tracking-wider inline-block mt-1">Rule: Mix the entire song.</span> Don't confuse a perfect 8-bar loop with a finished mix. Ensure transitions flow naturally from start to finish.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p6-2" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Dual Lead Vocal Rides:</strong> Automate fader levels word-by-word on Vocal 1 and Vocal 2 so every scream, whisper, and clean line remains legible over dense guitar walls.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p6-3" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Instrument Call-and-Response:</strong> Automate lead guitar fills, snare roll transitions, or bass slides upward during vocal pauses.
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- PHASE 7 -->
+      <details class="group bg-retro-card border border-zinc-800 rounded-xl overflow-hidden transition">
+        <summary class="px-6 py-4 cursor-pointer select-none bg-zinc-900/60 hover:bg-zinc-800/50 flex items-center justify-between gap-4 border-b border-transparent group-open:border-zinc-800">
+          <div class="flex items-center gap-3">
+            <span class="text-retro-coral font-header font-bold text-lg sm:text-xl uppercase tracking-wide">Phase 7: Pre-Mastering Quality Control & Safety Checks</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="badge-p7" class="text-xs font-bold px-2.5 py-1 rounded-full bg-retro-dark border border-zinc-800 text-retro-palmgreen">0/8</span>
+            <i data-lucide="chevron-down" class="chevron-icon w-5 h-5 text-zinc-400 transition-transform duration-200"></i>
+          </div>
+        </summary>
+        <div class="p-6 space-y-4 text-sm text-zinc-300">
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p7-1" class="custom-checkbox">
+            <div class="item-text leading-relaxed w-full">
+              <strong class="text-white font-bold">Peak Headroom & Metering:</strong> Ensure peaks sit between -3.0 dBTP and -6.0 dBTP with no digital clipping. Glance at loudness analyzers but do not chase targets.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p7-2" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Bus Processing & Limiting Check:</strong> Confirm brickwall limiters or clipping plugins on the master bus are turned OFF.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p7-3" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Phase & Frequency Safety:</strong> Keep the Phase Correlation meter mostly positive with no sustained negative readings. Bass and kick should sit near +1; wide guitar sections will read lower, which is fine if the mono check still holds up.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p7-4" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Frequency Bracketing & Band Soloing:</strong> Solo bands (Sub, Bass, Mid, Upper Mids, Highs) individually to confirm separation and lack of masking.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p7-6" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Visual Tonal Balance Analysis:</strong> Confirm overall frequency spectrum follows a smooth downward curve using an analyzer.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p7-8" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Track Tail & Noise Cleanup:</strong> Ensure start point is 1–2 bars before sound, and end point allows final decays/reverbs to fade completely to silence.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p7-9" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Save Final Snapshot:</strong> Save a named session snapshot right before exporting so you can return to this exact mix for any revisions.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p7-10" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Outside-the-Room Listening:</strong> Take a break, then listen once on headphones and car speakers to note translations issues. <br><span class="text-retro-turquoise font-bold uppercase text-xs tracking-wider inline-block mt-1">Rule: Fresh ears get the final vote.</span> Do this final listen after a meaningful break or the next morning before making any further adjustments.
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- PHASE 8 -->
+      <details class="group bg-retro-card border border-zinc-800 rounded-xl overflow-hidden transition">
+        <summary class="px-6 py-4 cursor-pointer select-none bg-zinc-900/60 hover:bg-zinc-800/50 flex items-center justify-between gap-4 border-b border-transparent group-open:border-zinc-800">
+          <div class="flex items-center gap-3">
+            <span class="text-retro-coral font-header font-bold text-lg sm:text-xl uppercase tracking-wide">Phase 8: File Export & Delivery Package</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="badge-p8" class="text-xs font-bold px-2.5 py-1 rounded-full bg-retro-dark border border-zinc-800 text-retro-palmgreen">0/4</span>
+            <i data-lucide="chevron-down" class="chevron-icon w-5 h-5 text-zinc-400 transition-transform duration-200"></i>
+          </div>
+        </summary>
+        <div class="p-6 space-y-4 text-sm text-zinc-300">
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p8-1" class="custom-checkbox">
+            <div class="item-text leading-relaxed w-full">
+              <strong class="text-white font-bold mb-2 block">Technical Export Parameters:</strong> Use Uncompressed WAV (24-bit or 32-bit Float) at the native project sample rate with Dither and Normalize turned OFF.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p8-2" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Export Stems / Versions:</strong> Main Full Mix (limiter off), Instrumental Mix, and TV/Acapella passes if required.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p8-3" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">File Naming Standard:</strong> BandName_SongTitle_MainMix_{rate}k{depth}b_v1.wav (e.g. 48k24b)
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p8-5" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Post-Export Verification:</strong> Re-import the exported WAV into a new session and listen start to finish for clipping, dropouts, or render errors.
+            </div>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="mt-12 border-t border-zinc-800 bg-retro-dark py-6 text-center text-xs text-zinc-500">
+    <p>&copy; Concrete Parachute. Internal Studio Tools.</p>
+  </footer>
+
+  <!-- RE-ENGINEERED SCRIPT ENGINE WITH TIMER -->
+  <script>
+    // --- SCHEDULE & TIMER STATE ---
+    let timerInterval;
+    let timeLeft = 0;
+    let currentMode = 'idle'; // 'mix', 'break', 'done'
+    let sessionCount = 0;
+    const MAX_SESSIONS = 5; 
+    
+    // --- AUDIO SYNTHESIZER ---
+    function playAlertSound() {
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        const ctx = new AudioContext();
+        if (ctx.state === 'suspended') ctx.resume();
+        
+        // Create two oscillators for a distinct, attention-grabbing chime
+        const osc1 = ctx.createOscillator();
+        const osc2 = ctx.createOscillator();
+        const gainNode = ctx.createGain();
+
+        osc1.type = 'sine';
+        osc2.type = 'triangle';
+        
+        // Frequencies for a pleasant but urgent notification (Major 3rd)
+        osc1.frequency.setValueAtTime(523.25, ctx.currentTime); // C5
+        osc2.frequency.setValueAtTime(659.25, ctx.currentTime); // E5
+
+        gainNode.gain.setValueAtTime(0, ctx.currentTime);
+        gainNode.gain.linearRampToValueAtTime(0.3, ctx.currentTime + 0.1);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.5);
+
+        osc1.connect(gainNode);
+        osc2.connect(gainNode);
+        gainNode.connect(ctx.destination);
+
+        osc1.start(ctx.currentTime);
+        osc2.start(ctx.currentTime);
+        osc1.stop(ctx.currentTime + 1.5);
+        osc2.stop(ctx.currentTime + 1.5);
+      } catch (e) {
+        console.log("Audio not supported or blocked by browser.");
+      }
+    }
+
+    // --- CORE TIMER LOGIC ---
+    function startMixSession() {
+      if (sessionCount >= MAX_SESSIONS) {
+        triggerOverlay("Done For The Day", "You have reached your mixing limit for today. Stop making major mix decisions today to protect your perspective.", 'done');
+        return;
+      }
+      
+      if (sessionCount === 4) {
+        // 5th and final session alert
+        alert("Heads up: This is your 5th and final mix session for the day. It will be 40 minutes instead of 50. Make it count!");
+        currentMode = 'mix';
+        startTimer(40); // 40-minute final block
+      } else {
+        currentMode = 'mix';
+        startTimer(50); // 50-minute mix blocks
+      }
+    }
+
+    let endTime = 0;
+    function tickTimer() {
+      timeLeft = Math.max(0, Math.round((endTime - Date.now()) / 1000));
+      updateTimerDisplay();
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        handleTimerComplete();
+      }
+    }
+
+    function startTimer(minutes) {
+      clearInterval(timerInterval);
+      endTime = Date.now() + minutes * 60 * 1000;
+      timeLeft = minutes * 60;
+      updateTimerDisplay();
+      timerInterval = setInterval(tickTimer, 500);
+    }
+
+    // Resync immediately when the tab becomes visible again
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden && (currentMode === 'mix' || currentMode === 'break') && timeLeft > 0) tickTimer();
+    });
+
+    function updateTimerDisplay() {
+      const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+      const s = (timeLeft % 60).toString().padStart(2, '0');
+      document.getElementById('timerDisplay').innerText = `${m}:${s}`;
+      
+      // Update Tracker UI
+      const tracker = document.getElementById('sessionTracker');
+      if (currentMode === 'mix') {
+        tracker.innerText = `Block ${sessionCount + 1}/5`;
+        tracker.className = "text-[10px] font-bold uppercase tracking-wider text-retro-coral mr-2 border-r border-zinc-700 pr-2";
+      } else if (currentMode === 'break') {
+        tracker.innerText = "On Break";
+        tracker.className = "text-[10px] font-bold uppercase tracking-wider text-retro-turquoise mr-2 border-r border-zinc-700 pr-2";
+      } else {
+        tracker.innerText = `Block ${sessionCount}/5`;
+        tracker.className = "text-[10px] font-bold uppercase tracking-wider text-zinc-500 mr-2 border-r border-zinc-700 pr-2";
+      }
+    }
+
+    function handleTimerComplete() {
+      playAlertSound();
+      
+      if (currentMode === 'mix') {
+        sessionCount++;
+        
+        if (sessionCount >= MAX_SESSIONS) {
+          currentMode = 'done';
+          triggerOverlay(
+            "Session Limit Reached", 
+            "That's 5 solid blocks. Your ears are compromised. Bounce a reference, take notes, and close the session until tomorrow.", 
+            'done'
+          );
+        } else if (sessionCount === 3) {
+          triggerOverlay(
+            "Long Break Required", 
+            "You've done 3 blocks. Step away from the studio completely for 45 minutes to reset your brain.", 
+            'auto', 
+            45
+          );
+        } else {
+          triggerOverlay(
+            "Ear Fatigue Warning", 
+            "Stop touching the faders. It's time for a 15-minute break. Walk away.", 
+            'auto', 
+            15
+          );
+        }
+      } 
+      else if (currentMode === 'break') {
+        triggerOverlay(
+          "Break Complete", 
+          "When you return, play the entire song from the beginning at a moderate level before touching anything.", 
+          'manual'
+        );
+      }
+    }
+
+    // --- OVERLAY & TRANSITION LOGIC ---
+    function triggerOverlay(title, msg, actionType, nextDuration = 0) {
+      const overlay = document.getElementById('scheduleOverlay');
+      const titleEl = document.getElementById('overlayTitle');
+      const msgEl = document.getElementById('overlayMessage');
+      const countdownContainer = document.getElementById('overlayCountdownContainer');
+      const countdownEl = document.getElementById('overlayCountdown');
+      const actionBtn = document.getElementById('overlayActionBtn');
+
+      // Setup Text
+      titleEl.innerText = title;
+      msgEl.innerText = msg;
+      
+      // Reset UI states
+      countdownContainer.classList.add('hidden');
+      actionBtn.classList.add('hidden');
+      actionBtn.innerText = 'Start Next Mix Session';
+      overlay.classList.remove('hidden');
+      overlay.classList.add('flex');
+
+      if (actionType === 'auto') {
+        // 5-second auto transition into break
+        countdownContainer.classList.remove('hidden');
+        countdownContainer.classList.add('flex');
+        let count = 5;
+        countdownEl.innerText = count;
+        
+        const countInterval = setInterval(() => {
+          count--;
+          countdownEl.innerText = count;
+          if (count <= 0) {
+            clearInterval(countInterval);
+            overlay.classList.add('hidden');
+            overlay.classList.remove('flex');
+            currentMode = 'break';
+            startTimer(nextDuration);
+          }
+        }, 1000);
+      } 
+      else if (actionType === 'manual') {
+        // Wait for user to manually start next mix
+        actionBtn.classList.remove('hidden');
+        actionBtn.onclick = () => {
+          overlay.classList.add('hidden');
+          overlay.classList.remove('flex');
+          startMixSession();
+        };
+      }
+      else if (actionType === 'done') {
+        // Just show the message with a dismiss button
+        actionBtn.innerText = "Acknowledge & Close";
+        actionBtn.classList.remove('hidden');
+        actionBtn.onclick = () => {
+          overlay.classList.add('hidden');
+          overlay.classList.remove('flex');
+        };
+      }
+    }
+
+    function resetSchedule() {
+      if (confirm('Reset the daily mix schedule? This will reset your block count to 0.')) {
+        clearInterval(timerInterval);
+        sessionCount = 0;
+        timeLeft = 0;
+        currentMode = 'idle';
+        updateTimerDisplay();
+      }
+    }
+
+    // --- SAFE, NAMESPACED STORAGE ---
+    const LS_PREFIX = 'cp-mixchk:';
+    function lsGet(id) { try { return localStorage.getItem(LS_PREFIX + id) ?? localStorage.getItem(id); } catch (e) { return null; } }
+    function lsSet(id) { try { localStorage.setItem(LS_PREFIX + id, 'true'); } catch (e) {} }
+    function lsDel(id) { try { localStorage.removeItem(LS_PREFIX + id); localStorage.removeItem(id); } catch (e) {} }
+
+    // --- CHECKLIST LOGIC ---
+    document.addEventListener('DOMContentLoaded', () => {
+      const checkboxes = document.querySelectorAll('.custom-checkbox');
+      const progressBar = document.getElementById('progressBar');
+      const progressText = document.getElementById('progressText');
+      const progressPercent = document.getElementById('progressPercent');
+      const resetBtn = document.getElementById('resetBtn');
+
+      function updateProgress() {
+        const total = checkboxes.length;
+        let checked = 0;
+        checkboxes.forEach(cb => {
+          if (cb.checked) { checked++; lsSet(cb.id); } 
+          else { lsDel(cb.id); }
+        });
+
+        const percent = total > 0 ? Math.round((checked / total) * 100) : 0;
+        if (progressBar) progressBar.style.width = percent + '%';
+        if (progressText) progressText.innerText = `${checked} of ${total} items completed`;
+        if (progressPercent) progressPercent.innerText = `${percent}%`;
+
+        const completionBanner = document.getElementById('completionBanner');
+        if (completionBanner) {
+          if (total > 0 && checked === total) completionBanner.classList.remove('hidden');
+          else completionBanner.classList.add('hidden');
+        }
+
+        // Update Phase Badges
+        for (let p = 1; p <= 8; p++) {
+          const phaseCheckboxes = document.querySelectorAll(`[id^="p${p}-"]`);
+          const phaseTotal = phaseCheckboxes.length;
+          let phaseChecked = 0;
+          phaseCheckboxes.forEach(cb => { if (cb.checked) phaseChecked++; });
+          
+          const badge = document.getElementById(`badge-p${p}`);
+          if (badge) {
+            badge.innerText = `${phaseChecked}/${phaseTotal}`;
+            if (phaseChecked === phaseTotal && phaseTotal > 0) {
+              badge.className = "text-xs font-bold px-2.5 py-1 rounded-full bg-retro-palmgreen/20 border border-retro-palmgreen/40 text-retro-palmgreen";
+            } else {
+              badge.className = "text-xs font-bold px-2.5 py-1 rounded-full bg-retro-dark border border-zinc-800 text-retro-palmgreen";
+            }
+          }
+        }
+      }
+
+      function loadSavedState() {
+        checkboxes.forEach(cb => {
+          const saved = lsGet(cb.id);
+          cb.checked = saved === 'true';
+        });
+        updateProgress();
+      }
+
+      function resetChecklist() {
+        if (confirm('Are you sure you want to reset all checklist items for a new song?')) {
+          checkboxes.forEach(cb => {
+            cb.checked = false;
+            lsDel(cb.id);
+          });
+          updateProgress();
+        }
+      }
+
+      checkboxes.forEach(cb => cb.addEventListener('change', updateProgress));
+      document.querySelectorAll('.item-container').forEach(row => {
+        row.addEventListener('click', e => {
+          const cb = row.querySelector('.custom-checkbox');
+          if (!cb || e.target === cb || e.target.closest('a')) return;
+          if (window.getSelection && window.getSelection().toString()) return; // don't toggle while selecting text
+          cb.click();
+        });
+      });
+      if (resetBtn) resetBtn.addEventListener('click', resetChecklist);
+      if (window.lucide) lucide.createIcons();
+      loadSavedState();
+    });
+  </script>
+</body>
+</html>
