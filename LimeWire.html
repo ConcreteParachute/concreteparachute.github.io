@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- for those who read source: the swarm hides things in binary. look at the .dat. -->
+    <title>Concrete Parachute - TORRENT LEAK</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- JSZip for real ZIP file creation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tahoma:wght@400;700&family=VT323&family=Courier+Prime&display=swap');
+
+        :root {
+            --xp-blue-dark: #0058ee;
+            --xp-blue-light: #3a93ff;
+            --xp-header-bg: linear-gradient(180deg, #0058ee 0%, #3a93ff 12%, #0058ee 100%);
+            --xp-body-bg: #ece9d8;
+            --xp-window-border: #0046d5;
+            --xp-button-bg: linear-gradient(180deg, #ffffff 0%, #ece9d8 80%, #d8d4c0 100%);
+            --xp-accent: #316ac5;
+            --xp-accent-text: #ffffff;
+            --torrent-green: #00cc44;
+            --limewire-green: #70b800;
+        }
+
+        /* LimeWire Skin Overrides */
+        body.limewire-theme {
+            --xp-blue-dark: #3a7500;
+            --xp-blue-light: #83d115;
+            --xp-header-bg: linear-gradient(180deg, #4d8c00 0%, #83d115 20%, #3a7500 100%);
+            --xp-window-border: #285400;
+            --xp-button-bg: linear-gradient(180deg, #f3fae5 0%, #dbeab8 80%, #b3ce7c 100%);
+            --xp-accent: #508e00;
+            --xp-accent-text: #ffffff;
+        }
+
+        body {
+            font-family: 'Tahoma', sans-serif;
+            background-color: #0d1b2a;
+            color: #000;
+            user-select: none;
+            overflow-x: hidden;
+        }
+
+        /* Retro Bevel Borders */
+        .xp-outset {
+            border: 2px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+        }
+
+        .xp-inset {
+            border: 2px solid;
+            border-color: #808080 #ffffff #ffffff #808080;
+            background-color: #ffffff;
+        }
+
+        .xp-button {
+            background: var(--xp-button-bg);
+            border: 1px solid #7f9db9;
+            border-radius: 3px;
+            box-shadow: inset 1px 1px 0px #ffffff, 1px 1px 2px rgba(0,0,0,0.2);
+            transition: all 0.05s ease;
+        }
+
+        .xp-button:hover {
+            border-color: #e59700;
+            box-shadow: inset 1px 1px 0px #fff8e7, 1px 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .xp-button:active {
+            background: #e0dac3;
+            box-shadow: inset 1px 1px 2px rgba(0,0,0,0.4);
+            transform: translate(1px, 1px);
+        }
+
+        /* Progress Bar Animation */
+        .xp-progress-container {
+            background: #ffffff;
+            border: 1px solid #7f9db9;
+            padding: 1px;
+            height: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .xp-progress-bar {
+            height: 100%;
+            background: repeating-linear-gradient(
+                90deg,
+                #31b235,
+                #31b235 8px,
+                #238626 8px,
+                #238626 10px
+            );
+            transition: width 0.3s ease;
+        }
+
+        body.limewire-theme .xp-progress-bar {
+            background: repeating-linear-gradient(
+                90deg,
+                #8adb10,
+                #8adb10 8px,
+                #5f9a05 8px,
+                #5f9a05 10px
+            );
+        }
+
+        /* CRT Overlay Effect */
+        .crt-overlay {
+            pointer-events: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            background-size: 100% 3px, 3px 100%;
+            z-index: 999;
+            opacity: 0.6;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 16px;
+            height: 16px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #ece9d8;
+            border-left: 1px solid #999;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4d0c8;
+            border: 2px outset #ffffff;
+        }
+        ::-webkit-scrollbar-button {
+            background: #d4d0c8;
+            border: 1px outset #ffffff;
+            height: 16px;
+        }
+
+        .ticker-text {
+            display: inline-block;
+            white-space: nowrap;
+            animation: ticker 25s linear infinite;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between p-2 sm:p-4 md:p-6 bg-slate-950 text-slate-900 relative">
+
+    <!-- CRT Overlay -->
+    <div id="crtOverlay" class="crt-overlay"></div>
+
+    <!-- MAIN APPLICATION WINDOW -->
+    <div id="mainWindow" class="max-w-6xl w-full mx-auto bg-[#ece9d8] border-2 border-[#0046d5] rounded-t-lg shadow-2xl flex flex-col overflow-hidden relative z-10 transition-all duration-300">
+        
+        <!-- WINDOW TITLE BAR -->
+        <div id="titleBar" class="h-8 px-2 flex items-center justify-between text-white font-bold text-sm tracking-wide shadow-md" style="background: var(--xp-header-bg);">
+            <div class="flex items-center space-x-2 truncate">
+                <!-- Icon -->
+                <svg class="w-4 h-4 text-cyan-300 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                </svg>
+                <span class="truncate">Concrete Parachute - TORRENT LEAK v6.2 [SWARM MONITOR ACTIVE]</span>
+            </div>
+            <!-- Window Action Buttons -->
+            <div class="flex items-center space-x-1 pl-2">
+                <button onclick="playWinSound('click')" class="w-5 h-5 bg-[#0058ee] hover:bg-[#2070ff] text-white border border-white/50 rounded flex items-center justify-center font-black text-xs">_</button>
+                <button onclick="playWinSound('click')" class="w-5 h-5 bg-[#0058ee] hover:bg-[#2070ff] text-white border border-white/50 rounded flex items-center justify-center font-black text-xs">□</button>
+                <button onclick="triggerXpError('Cannot close application while P2P transfer is active!')" class="w-5 h-5 bg-[#e81123] hover:bg-[#ff3b4d] text-white border border-white/50 rounded flex items-center justify-center font-black text-xs">✕</button>
+            </div>
+        </div>
+
+        <!-- MENU BAR -->
+        <div class="bg-[#ece9d8] border-b border-[#a0a0a0] text-xs px-2 py-1 flex items-center space-x-4">
+            <span class="hover:bg-[#316ac5] hover:text-white px-1 cursor-pointer" onclick="triggerXpAlert('FILE MENU', 'P2P File System operational.')"><u>F</u>ile</span>
+            <span class="hover:bg-[#316ac5] hover:text-white px-1 cursor-pointer" onclick="triggerXpAlert('OPTIONS', 'Client running on default port 6881.')"><u>O</u>ptions</span>
+            <span class="hover:bg-[#316ac5] hover:text-white px-1 cursor-pointer" onclick="toggleTheme()"><u>S</u>kin / Theme</span>
+            <span class="hover:bg-[#316ac5] hover:text-white px-1 cursor-pointer" onclick="openNotepadModal()"><u>L</u>yric READ_ME</span>
+            <span class="hover:bg-[#316ac5] hover:text-white px-1 cursor-pointer" onclick="triggerXpAlert('HELP & ADVISORY', 'Swarm update: High peer availability detected on active downloads. To view the downloaded files, click the Extract / Unzip button on the toolbar.')"><u>H</u>elp & Advisory</span>
+        </div>
+
+        <!-- TOOLBAR BUTTONS -->
+        <div class="bg-[#ece9d8] border-b border-[#a0a0a0] p-1 sm:p-2 flex flex-wrap items-center gap-1 sm:gap-2 shadow-inner">
+            <button onclick="simulateAddTorrent()" class="xp-button px-2 sm:px-3 py-1 text-xs flex items-center space-x-1 font-bold">
+                <span class="text-green-600 text-sm">✚</span>
+                <span>Add Torrent</span>
+            </button>
+            <button id="btnStart" onclick="startDownloadSequence()" class="xp-button px-2 sm:px-3 py-1 text-xs flex items-center space-x-1 font-bold text-green-700">
+                <span>▶</span>
+                <span>Start</span>
+            </button>
+            <button id="btnPause" onclick="pauseDownload()" class="xp-button px-2 sm:px-3 py-1 text-xs flex items-center space-x-1 font-bold text-amber-700">
+                <span>❚❚</span>
+                <span>Pause</span>
+            </button>
+            <button onclick="stopDownload()" class="xp-button px-2 sm:px-3 py-1 text-xs flex items-center space-x-1 font-bold text-red-700">
+                <span>■</span>
+                <span>Stop</span>
+            </button>
+            <div class="h-6 w-px bg-gray-400 mx-1"></div>
+            <button onclick="playTeaserAudio()" class="xp-button px-2 sm:px-3 py-1 text-xs flex items-center space-x-1 font-bold text-blue-800">
+                <span id="previewBtnIcon">🎧</span>
+                <span id="previewBtnText">Preview Sound</span>
+            </button>
+            <button onclick="openExplorerModal()" class="xp-button px-2 sm:px-3 py-1 text-xs flex items-center space-x-1 font-bold text-indigo-900">
+                <span>📁</span>
+                <span>Extract / Unzip</span>
+            </button>
+            <button onclick="generateAndDownloadZip()" class="xp-button px-2 sm:px-3 py-1 text-xs flex items-center space-x-1 font-bold bg-emerald-100 text-emerald-900 border-emerald-600">
+                <span>💾</span>
+                <span>Download .ZIP</span>
+            </button>
+            <div class="ml-auto flex items-center space-x-2">
+                <button onclick="toggleTheme()" class="xp-button px-2 py-1 text-xs font-bold text-amber-900">
+                    🎨 Theme Switch
+                </button>
+            </div>
+        </div>
+
+        <!-- MAIN LAYOUT: SIDEBAR + LIST VIEW -->
+        <div class="flex flex-col md:flex-row flex-1 bg-[#ece9d8] min-h-[380px]">
+            
+            <!-- LEFT SIDEBAR -->
+            <div class="w-full md:w-56 bg-[#f0eee0] border-r border-[#a0a0a0] p-2 flex flex-col space-y-3">
+                <!-- Navigation Tree -->
+                <div class="xp-inset p-2 text-xs space-y-1">
+                    <div class="font-bold text-blue-900 border-b pb-1 mb-1 flex items-center justify-between">
+                        <span>P2P Categories</span>
+                        <span class="text-[10px] bg-blue-600 text-white px-1 rounded">v6.2</span>
+                    </div>
+                    <div onclick="selectCategory('all')" id="cat-all" class="p-1 cursor-pointer bg-[#316ac5] text-white rounded font-semibold flex justify-between">
+                        <span>📂 All Downloads</span>
+                        <span>(4)</span>
+                    </div>
+                    <div onclick="selectCategory('downloading')" id="cat-downloading" class="p-1 cursor-pointer hover:bg-gray-200 rounded flex justify-between">
+                        <span>⏬ Downloading</span>
+                        <span id="downloadingCount">(1)</span>
+                    </div>
+                    <div onclick="selectCategory('completed')" id="cat-completed" class="p-1 cursor-pointer hover:bg-gray-200 rounded flex justify-between">
+                        <span>✅ Completed</span>
+                        <span>(3)</span>
+                    </div>
+                    <div onclick="selectCategory('trackers')" id="cat-trackers" class="p-1 cursor-pointer hover:bg-gray-200 rounded flex justify-between">
+                        <span>🌐 P2P Trackers</span>
+                        <span>(8)</span>
+                    </div>
+                </div>
+
+                <!-- Swarm Monitor Widget -->
+                <div class="xp-outset bg-slate-900 text-cyan-400 p-2 text-xs font-mono rounded space-y-2">
+                    <div class="flex items-center justify-between border-b border-cyan-800 pb-1">
+                        <span class="font-bold text-white text-[11px] flex items-center gap-1">
+                            📡 SWARM MONITOR
+                        </span>
+                        <span id="surgeStatusBadge" class="text-[9px] bg-emerald-600 text-white px-1 rounded animate-pulse">ACTIVE</span>
+                    </div>
+                    <div>
+                        <div class="text-[10px] text-slate-400">Swarm Health:</div>
+                        <div id="cfsGauge" class="text-base font-bold text-cyan-300">98.4%</div>
+                    </div>
+                    <div>
+                        <div class="text-[10px] text-slate-400">P2P Down Speed:</div>
+                        <div id="speedGauge" class="text-sm font-bold text-emerald-400">48.2 kB/s</div>
+                    </div>
+                    <div class="w-full bg-slate-800 h-2 rounded overflow-hidden">
+                        <div id="surgeBar" class="bg-cyan-400 h-full transition-all duration-300" style="width: 88%;"></div>
+                    </div>
+                    <p class="text-[9px] text-slate-400 leading-tight">
+                        System Advisory: High peer leeching density detected. Transfer speed optimized.
+                    </p>
+                </div>
+
+                <!-- Mini Synth Audio Visualizer Box -->
+                <div class="xp-outset bg-black p-2 rounded flex flex-col items-center">
+                    <div class="text-[10px] text-green-400 font-mono self-start mb-1 flex justify-between w-full">
+                        <span>SPECTRUM VISUALIZER</span>
+                        <span id="audioStateLabel" class="text-amber-400">PAUSED</span>
+                    </div>
+                    <canvas id="miniVisualizer" width="190" height="45" class="bg-slate-950 rounded border border-green-900/50"></canvas>
+                </div>
+            </div>
+
+            <!-- RIGHT MAIN PANEL - FILE TRANSFERS TABLE -->
+            <div class="flex-1 flex flex-col p-2 space-y-2 overflow-x-auto">
+                
+                <div class="xp-inset flex-1 overflow-auto min-h-[220px]">
+                    <table class="w-full text-xs text-left border-collapse min-w-[600px]">
+                        <thead>
+                            <tr class="bg-[#ece9d8] border-b border-gray-400 text-slate-800 font-bold select-none sticky top-0 shadow-sm">
+                                <th class="p-1.5 border-r border-gray-300">#</th>
+                                <th class="p-1.5 border-r border-gray-300">Name</th>
+                                <th class="p-1.5 border-r border-gray-300">Size</th>
+                                <th class="p-1.5 border-r border-gray-300 w-32">Progress</th>
+                                <th class="p-1.5 border-r border-gray-300">Status</th>
+                                <th class="p-1.5 border-r border-gray-300">Seeds</th>
+                                <th class="p-1.5 border-r border-gray-300">Peers</th>
+                                <th class="p-1.5 border-r border-gray-300">Down Speed</th>
+                                <th class="p-1.5">ETA</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transferTableBody" class="divide-y divide-gray-200">
+                            <!-- Items inserted dynamically via JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- LOWER BOTTOM PANEL: DUAL GRAPH (SPEED vs SWARM HEALTH) -->
+                <div class="xp-outset bg-[#ece9d8] p-2 flex flex-col space-y-1">
+                    <div class="flex items-center justify-between text-xs font-bold border-b border-gray-300 pb-1">
+                        <div class="flex space-x-3">
+                            <span class="text-blue-900 border-b-2 border-blue-800 px-1">📊 Live Transfer Speed (kB/s) & Swarm Health (%)</span>
+                            <span class="text-gray-500 hover:text-black cursor-pointer" onclick="triggerXpAlert('PEER LIST', 'Connected to 108 active swarm nodes.')">Peers (108)</span>
+                            <span class="text-gray-500 hover:text-black cursor-pointer" onclick="triggerXpAlert('P2P LOGGER', 'Logging active transfers and swarm telemetry.')">P2P Logger</span>
+                        </div>
+                        <div class="flex items-center space-x-3 text-[11px] font-normal">
+                            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 bg-emerald-500 rounded-full inline-block"></span> Transfer Rate</span>
+                            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 bg-cyan-400 rounded-full inline-block"></span> Swarm Density</span>
+                        </div>
+                    </div>
+
+                    <!-- Dual Canvas -->
+                    <div class="relative w-full h-28 bg-slate-950 rounded border border-gray-600 overflow-hidden">
+                        <canvas id="dualGraphCanvas" class="w-full h-full block"></canvas>
+                        <!-- Grid Lines overlay styling -->
+                        <div class="absolute top-1 left-2 text-[9px] font-mono text-emerald-400 opacity-80 pointer-events-none">
+                            MAX: 120.0 kB/s | SWARM PEAK: 98.4%
+                        </div>
+                        <div class="absolute bottom-1 right-2 text-[9px] font-mono text-cyan-300 opacity-80 pointer-events-none">
+                            LEAK SWARM ACTIVE
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- BOTTOM TICKER ADVISORY BANNER -->
+        <div class="bg-black text-cyan-400 text-xs font-mono py-1 px-2 border-t border-cyan-800 flex items-center overflow-hidden">
+            <span class="bg-red-700 text-white font-bold px-1.5 py-0.5 rounded text-[10px] mr-2 shrink-0">WARNING</span>
+            <div class="overflow-hidden relative w-full">
+                <div class="ticker-text font-bold">
+                    ⚡ SYSTEM ADVISORY: CONCRETE PARACHUTE "TORRENT LEAK" UNRELEASED MATERIAL SPOTTED ON P2P NETWORK /// SEEDERS ACTIVE WORLDWIDE /// "I reach for proof, it disappears. Was it real, or was it just my fears?" ///
+                </div>
+            </div>
+        </div>
+
+        <!-- STATUS BAR -->
+        <div class="bg-[#ece9d8] border-t border-[#a0a0a0] px-2 py-0.5 text-[11px] text-gray-700 flex justify-between items-center">
+            <div class="flex space-x-4">
+                <span>DHT: 48 nodes (Updating)</span>
+                <span id="statusDls">D: 64.2 kB/s</span>
+                <span id="statusUls">U: 12.4 kB/s</span>
+            </div>
+            <div class="flex items-center space-x-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="font-bold text-slate-800">LimeWire / BitTorrent Hybrid Online</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MODAL 1: WINDOWS XP VIRTUAL FILE EXPLORER MODAL -->
+    <div id="explorerModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-2 sm:p-4">
+        <div class="bg-[#ece9d8] border-2 border-[#0046d5] rounded-t-lg w-full max-w-2xl shadow-2xl overflow-hidden flex flex-col">
+            <!-- XP Titlebar -->
+            <div class="h-8 px-2 flex items-center justify-between text-white font-bold text-xs bg-gradient-to-r from-blue-700 via-blue-500 to-blue-800">
+                <div class="flex items-center space-x-2">
+                    <span>📁 C:\Downloads\Concrete_Parachute_TORRENT_LEAK\</span>
+                </div>
+                <button onclick="closeExplorerModal()" class="w-5 h-5 bg-[#e81123] hover:bg-red-600 text-white rounded font-bold text-xs">✕</button>
+            </div>
+            <!-- Toolbar -->
+            <div class="bg-[#ece9d8] border-b border-gray-400 p-1 flex items-center space-x-2 text-xs">
+                <button onclick="playWinSound('click')" class="xp-button px-2 py-0.5">← Back</button>
+                <button onclick="playWinSound('click')" class="xp-button px-2 py-0.5">Search</button>
+                <button onclick="playWinSound('click')" class="xp-button px-2 py-0.5">Folders</button>
+                <div class="h-4 w-px bg-gray-400"></div>
+                <span class="text-gray-600 truncate">Address: C:\Downloads\Concrete_Parachute_TORRENT_LEAK</span>
+            </div>
+            <!-- Folder Content -->
+            <div class="p-4 bg-white min-h-[220px] grid grid-cols-1 sm:grid-cols-2 gap-3">
+                
+                <!-- File 1: READ_ME.txt -->
+                <div onclick="openNotepadModal()" class="p-3 border border-dashed border-gray-400 hover:border-blue-600 hover:bg-blue-50 cursor-pointer rounded flex items-start space-x-3 group">
+                    <div class="text-3xl">📄</div>
+                    <div>
+                        <div class="font-bold text-xs text-blue-900 group-hover:underline">READ_ME.txt</div>
+                        <div class="text-[10px] text-gray-500">Text Document - 1 KB</div>
+                        <div class="text-[10px] text-emerald-700 font-semibold mt-1">Double-click to open in Notepad</div>
+                    </div>
+                </div>
+
+                <!-- File 2: guitar_solo_teaser.wav -->
+                <div onclick="openMediaPlayerModal()" class="p-3 border border-dashed border-gray-400 hover:border-blue-600 hover:bg-blue-50 cursor-pointer rounded flex items-start space-x-3 group">
+                    <div class="text-3xl">🎵</div>
+                    <div>
+                        <div class="font-bold text-xs text-blue-900 group-hover:underline">guitar_solo_teaser.wav</div>
+                        <div class="text-[10px] text-gray-500">Wave Sound Audio - 1.2 MB</div>
+                        <div class="text-[10px] text-indigo-700 font-semibold mt-1">Double-click to play audio</div>
+                    </div>
+                </div>
+
+                <!-- File 3: Network_Diagnostics.dat -->
+                <div onclick="openHexModal()" class="p-3 border border-dashed border-gray-400 hover:border-blue-600 hover:bg-blue-50 cursor-pointer rounded flex items-start space-x-3 group">
+                    <div class="text-3xl">⚙️</div>
+                    <div>
+                        <div class="font-bold text-xs text-blue-900 group-hover:underline">Network_Diagnostics.dat</div>
+                        <div class="text-[10px] text-gray-500">Data File - 420 KB</div>
+                        <div class="text-[10px] text-gray-500 mt-1">Swarm telemetry log</div>
+                    </div>
+                </div>
+
+                <!-- File 4: ConcreteParachute.url -->
+                <div onclick="triggerXpAlert('P2P SHORTCUT', 'Portal address is not stored here. Check the swarm telemetry.')" class="p-3 border border-dashed border-gray-400 hover:border-blue-600 hover:bg-blue-50 cursor-pointer rounded flex items-start space-x-3 group">
+                    <div class="text-3xl">🌐</div>
+                    <div>
+                        <div class="font-bold text-xs text-blue-900 group-hover:underline">concreteparachute.com.url</div>
+                        <div class="text-[10px] text-gray-500">Internet Shortcut</div>
+                        <div class="text-[10px] text-gray-500 mt-1">Leak Portal</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Footer -->
+            <div class="bg-[#ece9d8] border-t border-gray-400 p-2 flex justify-between items-center text-xs">
+                <span>4 items in directory</span>
+                <button onclick="generateAndDownloadZip()" class="xp-button px-3 py-1 font-bold text-emerald-800">
+                    💾 Export as Actual .ZIP
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: NOTEPAD LYRIC VIEWER MODAL -->
+    <div id="notepadModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-2 sm:p-4">
+        <div class="bg-[#ece9d8] border-2 border-[#0046d5] rounded-t-lg w-full max-w-lg shadow-2xl overflow-hidden flex flex-col">
+            <!-- XP Titlebar -->
+            <div class="h-8 px-2 flex items-center justify-between text-white font-bold text-xs bg-gradient-to-r from-blue-800 via-blue-600 to-blue-900">
+                <span>READ_ME.txt - Notepad</span>
+                <button onclick="closeNotepadModal()" class="w-5 h-5 bg-[#e81123] text-white font-bold text-xs">✕</button>
+            </div>
+            <!-- Menu Bar -->
+            <div class="bg-[#ece9d8] border-b border-gray-300 text-xs px-2 py-0.5 space-x-3">
+                <span class="cursor-pointer hover:bg-[#316ac5] hover:text-white px-1" onclick="triggerXpAlert('FILE', 'Notepad file operations.')"><u>F</u>ile</span>
+                <span class="cursor-pointer hover:bg-[#316ac5] hover:text-white px-1" onclick="triggerXpAlert('EDIT', 'Notepad text editing.')"><u>E</u>dit</span>
+                <span class="cursor-pointer hover:bg-[#316ac5] hover:text-white px-1" onclick="triggerXpAlert('FORMAT', 'Word wrap enabled.')"><u>F</u>ormat</span>
+                <span class="cursor-pointer hover:bg-[#316ac5] hover:text-white px-1" onclick="triggerXpAlert('HELP', 'Windows Notepad Help.')"><u>H</u>elp</span>
+            </div>
+            <!-- Content -->
+            <div class="bg-white p-4 font-mono text-xs text-slate-900 leading-relaxed min-h-[200px] select-text border-inner">
+                <p class="text-gray-500 mb-2">// CONCRETE PARACHUTE - TORRENT LEAK</p>
+                <p class="text-gray-500 mb-4">// LEAKED FILE: READ_ME.txt</p>
+                
+                <div class="p-3 bg-amber-50 border-l-4 border-amber-500 my-2 text-sm font-serif italic text-slate-800">
+                    "I reach for proof, it disappears. Was it real, or was it just my fears?"
+                </div>
+
+                <p class="mt-4 text-xs font-mono text-slate-600">
+                    -- Concrete Parachute // Verse 2 Snippet<br>
+                    Track: TORRENT<br>
+                    P2P Swarm Status: Active Priority
+                </p>
+
+                <p class="mt-4 text-xs font-mono text-slate-600 border-t border-dashed border-gray-400 pt-3">
+                    --------------------------------------------------<br>
+                    SEALED KEY: OERNX_GUR_QRRC<br>
+                    (integrity check failed)<br>
+                    --------------------------------------------------
+                </p>
+            </div>
+            <div class="bg-[#ece9d8] p-2 border-t border-gray-300 flex justify-end space-x-2">
+                <button onclick="generateAndDownloadZip()" class="xp-button px-3 py-1 text-xs font-bold text-blue-900">
+                    Download .ZIP File
+                </button>
+                <button onclick="closeNotepadModal()" class="xp-button px-3 py-1 text-xs">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 3: RETRO WINDOWS MEDIA PLAYER MODAL -->
+    <div id="mediaPlayerModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-2 sm:p-4">
+        <div class="bg-slate-900 border-2 border-cyan-500 rounded-t-lg w-full max-w-md shadow-2xl overflow-hidden flex flex-col text-white">
+            <div class="h-8 px-2 flex items-center justify-between font-bold text-xs bg-gradient-to-r from-slate-800 to-slate-900 border-b border-slate-700">
+                <span class="text-cyan-400 flex items-center gap-1">
+                    <span class="animate-ping w-2 h-2 rounded-full bg-cyan-400"></span>
+                    Windows Media Player - [guitar_solo_teaser.wav]
+                </span>
+                <button onclick="closeMediaPlayerModal()" class="w-5 h-5 bg-red-600 text-white font-bold text-xs rounded">✕</button>
+            </div>
+            <div class="p-4 bg-black flex flex-col items-center justify-center space-y-3">
+                <canvas id="mediaVisualizer" width="360" height="120" class="w-full bg-slate-950 border border-cyan-900 rounded"></canvas>
+                <div class="text-center">
+                    <div class="text-xs font-bold text-cyan-300">Concrete Parachute - TORRENT (Guitar Solo Teaser)</div>
+                    <div id="mediaPlayerTime" class="text-[10px] font-mono text-slate-400">00:00 / 00:10</div>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button onclick="playTeaserAudio()" class="xp-button px-4 py-1 text-xs text-black font-bold bg-cyan-300">
+                        ▶ Play / Pause
+                    </button>
+                    <button onclick="stopTeaserAudio()" class="xp-button px-3 py-1 text-xs text-black">
+                        ■ Stop
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MODAL: HEX VIEWER -->
+    <div id="hexModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-2 sm:p-4">
+        <div class="bg-[#ece9d8] border-2 border-[#0046d5] rounded-t-lg w-full max-w-2xl shadow-2xl overflow-hidden">
+            <div class="h-8 px-2 flex items-center justify-between text-white font-bold text-xs bg-gradient-to-r from-blue-800 via-blue-600 to-blue-900">
+                <span>Network_Diagnostics.dat - HexView</span>
+                <button onclick="closeHexModal()" class="w-5 h-5 bg-[#e81123] text-white font-bold text-xs">✕</button>
+            </div>
+            <div class="bg-black text-green-400 font-mono text-[11px] p-3 overflow-auto max-h-[60vh] select-text">
+                <div class="text-slate-500 mb-2">OFFSET    00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F   ASCII<br>[ASCII COLUMN ENCRYPTED - RAW BYTES ONLY]<br><span class="text-amber-400">&gt; AUTO-DECODER OFFLINE. BYTES ARE BASE-16 (HEX). EACH PAIR = ONE CHARACTER. TRANSLATE HEX TO TEXT (ASCII) BY HAND OR WITH A CONVERTER.</span></div>
+                <pre id="hexDump" class="whitespace-pre-wrap"></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- WINDOWS XP ALERT DIALOG MODAL -->
+    <div id="xpAlertModal" class="hidden fixed inset-0 bg-black/40 z-[100] flex items-center justify-center p-2">
+        <div class="bg-[#ece9d8] border-2 border-[#0046d5] rounded-t-lg w-full max-w-xs sm:max-w-sm shadow-2xl overflow-hidden">
+            <div id="xpAlertTitleBar" class="h-7 px-2 flex items-center justify-between text-white font-bold text-xs bg-gradient-to-r from-blue-700 to-blue-900">
+                <span id="xpAlertTitle">Windows System Notice</span>
+                <button onclick="closeXpAlert()" class="w-4 h-4 bg-[#e81123] text-white font-bold text-[10px]">✕</button>
+            </div>
+            <div class="p-4 flex items-start space-x-3">
+                <div id="xpAlertIcon" class="text-2xl shrink-0">⚠️</div>
+                <div id="xpAlertMessage" class="text-xs text-slate-800 font-sans leading-snug">
+                    Message body here...
+                </div>
+            </div>
+            <div class="bg-[#ece9d8] p-2 border-t border-gray-300 flex justify-end">
+                <button onclick="closeXpAlert()" class="xp-button px-4 py-1 text-xs font-bold min-w-[60px]">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC ENGINE -->
+    <script>
+        // P2P Transfer List State
+        const transferItems = [
+            {
+                id: 1,
+                name: "Concrete_Parachute_TORRENT_LEAK.zip",
+                size: "14.2 MB",
+                progress: 42,
+                status: "Downloading",
+                seeds: "42 (108)",
+                peers: "108",
+                speed: "48.2 kB/s",
+                eta: "00:03:12",
+                isDownloading: true,
+                isZip: true
+            },
+            {
+                id: 2,
+                name: "01_Track_Opening_Demo.mp3",
+                size: "3.8 MB",
+                progress: 100,
+                status: "Seeding",
+                seeds: "88",
+                peers: "12",
+                speed: "12.4 kB/s",
+                eta: "∞",
+                isDownloading: false
+            },
+            {
+                id: 3,
+                name: "READ_ME_LEAK_NOTES.txt",
+                size: "1.2 KB",
+                progress: 100,
+                status: "Completed",
+                seeds: "156",
+                peers: "0",
+                speed: "0.0 kB/s",
+                eta: "Done",
+                isDownloading: false
+            },
+            {
+                id: 4,
+                name: "Network_Diagnostic_Tool.exe",
+                size: "820 KB",
+                progress: 100,
+                status: "Completed",
+                seeds: "34",
+                peers: "0",
+                speed: "0.0 kB/s",
+                eta: "Done",
+                isDownloading: false
+            }
+        ];
+
+        let activeCategory = 'all';
+        let audioCtx = null;
+        let isAudioPlaying = false;
+        let audioSourceNode = null;
+        let analyserNode = null;
+        let synthesizedBuffer = null;
+        let animationFrameId = null;
+
+        // Dual Graph historical data points
+        const speedHistory = new Array(40).fill(20);
+        const surgeHistory = new Array(40).fill(88);
+
+        // Render Transfer Table
+        function renderTable() {
+            const tbody = document.getElementById('transferTableBody');
+            tbody.innerHTML = '';
+
+            const filtered = transferItems.filter(item => {
+                if (activeCategory === 'downloading') return item.progress < 100;
+                if (activeCategory === 'completed') return item.progress === 100;
+                return true;
+            });
+
+            filtered.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-[#316ac5] hover:text-white cursor-pointer group transition-colors";
+                tr.ondblclick = () => handleRowDblClick(item);
+
+                tr.innerHTML = `
+                    <td class="p-1.5 border-r border-gray-300 text-center font-mono">${item.id}</td>
+                    <td class="p-1.5 border-r border-gray-300 font-bold flex items-center gap-1.5 truncate">
+                        <span>${item.isZip ? '📦' : (item.name.endsWith('.txt') ? '📄' : '🎵')}</span>
+                        <span class="truncate">${item.name}</span>
+                    </td>
+                    <td class="p-1.5 border-r border-gray-300 font-mono">${item.size}</td>
+                    <td class="p-1.5 border-r border-gray-300">
+                        <div class="xp-progress-container">
+                            <div class="xp-progress-bar" style="width: ${item.progress}%;"></div>
+                            <span class="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-black drop-shadow">
+                                ${item.progress}%
+                            </span>
+                        </div>
+                    </td>
+                    <td class="p-1.5 border-r border-gray-300">
+                        <span class="px-1 py-0.5 rounded text-[10px] font-bold ${item.progress === 100 ? 'bg-emerald-200 text-emerald-900' : 'bg-amber-200 text-amber-900'}">
+                            ${item.status}
+                        </span>
+                    </td>
+                    <td class="p-1.5 border-r border-gray-300 font-mono">${item.seeds}</td>
+                    <td class="p-1.5 border-r border-gray-300 font-mono">${item.peers}</td>
+                    <td class="p-1.5 border-r border-gray-300 font-mono text-emerald-700 group-hover:text-emerald-200">${item.speed}</td>
+                    <td class="p-1.5 font-mono">${item.eta}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function handleRowDblClick(item) {
+            playWinSound('click');
+            if (item.isZip || item.name.endsWith('.txt')) {
+                openNotepadModal();
+            } else {
+                playTeaserAudio();
+            }
+        }
+
+        function initWebAudio() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                audioCtx = new AudioContext();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        // Retro UI Sound Generator
+        function playWinSound(type) {
+            initWebAudio();
+            if (!audioCtx) return;
+
+            const now = audioCtx.currentTime;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            if (type === 'click') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(800, now);
+                osc.frequency.exponentialRampToValueAtTime(400, now + 0.05);
+                gain.gain.setValueAtTime(0.15, now);
+                gain.gain.linearRampToValueAtTime(0, now + 0.05);
+                osc.start(now);
+                osc.stop(now + 0.05);
+            } else if (type === 'error') {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(150, now);
+                osc.frequency.setValueAtTime(120, now + 0.1);
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.linearRampToValueAtTime(0, now + 0.25);
+                osc.start(now);
+                osc.stop(now + 0.25);
+            }
+        }
+
+        // Synthesizes a 10-second Glitched Rock Guitar Solo + Tape Hiss
+        function buildGuitarSoloBuffer() {
+            initWebAudio();
+            const sampleRate = audioCtx.sampleRate;
+            const duration = 10; // 10 seconds teaser
+            const buffer = audioCtx.createBuffer(2, sampleRate * duration, sampleRate);
+            
+            const left = buffer.getChannelData(0);
+            const right = buffer.getChannelData(1);
+
+            // Rock Guitar Notes Frequency Scale (D Minor Pentatonic / Distortion)
+            const notes = [146.83, 174.61, 196.00, 220.00, 261.63, 293.66, 349.23, 392.00, 440.00, 523.25];
+
+            for (let i = 0; i < buffer.length; i++) {
+                const t = i / sampleRate;
+
+                // 1. Ambient Tape Hiss / Vinyl Noise
+                const noise = (Math.random() * 2 - 1) * 0.03;
+
+                // 2. Heavy Sub Bass Pulse (P2P Rhythm)
+                const bassFreq = 55; // A1
+                const bassEnv = Math.exp(-((t % 0.5) * 6));
+                const bass = Math.sin(2 * Math.PI * bassFreq * t) * bassEnv * 0.25;
+
+                // 3. Glitched Electric Guitar Lead
+                const noteIndex = Math.floor((t * 3.5) % notes.length);
+                const freq = notes[noteIndex] * (1 + 0.02 * Math.sin(2 * Math.PI * 6 * t)); // pitch bend tremolo
+                
+                // Raw Sawtooth wave
+                let rawOsc = (2 * ((t * freq) % 1)) - 1;
+
+                // Fuzz Distortion Curve
+                let distorted = Math.tanh(rawOsc * 4.5);
+
+                // Delay effect / Echo
+                const echoIndex = Math.max(0, i - Math.floor(sampleRate * 0.25));
+                const echo = left[echoIndex] || 0;
+
+                // Glitch gate slice
+                const glitchGate = (Math.sin(t * 25) > 0.8) ? 0.2 : 1.0;
+
+                // Blend Channels
+                const leadSignal = (distorted * 0.25 + echo * 0.35) * glitchGate;
+
+                left[i] = leadSignal + bass + noise;
+                right[i] = leadSignal * 0.9 + bass + noise;
+            }
+
+            return buffer;
+        }
+
+        function playTeaserAudio() {
+            initWebAudio();
+
+            if (isAudioPlaying) {
+                stopTeaserAudio();
+                return;
+            }
+
+            if (!synthesizedBuffer) {
+                synthesizedBuffer = buildGuitarSoloBuffer();
+            }
+
+            audioSourceNode = audioCtx.createBufferSource();
+            audioSourceNode.buffer = synthesizedBuffer;
+
+            analyserNode = audioCtx.createAnalyser();
+            analyserNode.fftSize = 128;
+
+            audioSourceNode.connect(analyserNode);
+            analyserNode.connect(audioCtx.destination);
+
+            audioSourceNode.start(0);
+            isAudioPlaying = true;
+
+            document.getElementById('previewBtnText').innerText = "Pause Sound";
+            document.getElementById('previewBtnIcon').innerText = "⏸";
+            document.getElementById('audioStateLabel').innerText = "PLAYING";
+
+            audioSourceNode.onended = () => {
+                isAudioPlaying = false;
+                document.getElementById('previewBtnText').innerText = "Preview Sound";
+                document.getElementById('previewBtnIcon').innerText = "🎧";
+                document.getElementById('audioStateLabel').innerText = "ENDED";
+            };
+
+            startVisualizer();
+        }
+
+        function stopTeaserAudio() {
+            if (audioSourceNode) {
+                try { audioSourceNode.stop(); } catch(e){}
+            }
+            isAudioPlaying = false;
+            document.getElementById('previewBtnText').innerText = "Preview Sound";
+            document.getElementById('previewBtnIcon').innerText = "🎧";
+            document.getElementById('audioStateLabel').innerText = "PAUSED";
+        }
+
+        function startVisualizer() {
+            const miniCanvas = document.getElementById('miniVisualizer');
+            const mediaCanvas = document.getElementById('mediaVisualizer');
+            const ctx1 = miniCanvas.getContext('2d');
+            const ctx2 = mediaCanvas ? mediaCanvas.getContext('2d') : null;
+
+            const bufferLength = analyserNode ? analyserNode.frequencyBinCount : 32;
+            const dataArray = new Uint8Array(bufferLength);
+
+            function draw() {
+                if (!isAudioPlaying) {
+                    ctx1.clearRect(0, 0, miniCanvas.width, miniCanvas.height);
+                    ctx1.fillStyle = '#003311';
+                    ctx1.fillRect(0, miniCanvas.height / 2, miniCanvas.width, 2);
+                    return;
+                }
+
+                animationFrameId = requestAnimationFrame(draw);
+                analyserNode.getByteFrequencyData(dataArray);
+
+                // Draw Mini Sidebar Visualizer
+                ctx1.fillStyle = 'rgba(2, 6, 23, 0.3)';
+                ctx1.fillRect(0, 0, miniCanvas.width, miniCanvas.height);
+
+                const barWidth = (miniCanvas.width / bufferLength) * 1.5;
+                let x = 0;
+
+                for (let i = 0; i < bufferLength; i++) {
+                    const barHeight = (dataArray[i] / 255) * miniCanvas.height;
+                    ctx1.fillStyle = `rgb(0, ${Math.min(255, dataArray[i] + 100)}, 150)`;
+                    ctx1.fillRect(x, miniCanvas.height - barHeight, barWidth - 1, barHeight);
+                    x += barWidth;
+                }
+
+                // Draw Media Player Modal Visualizer if open
+                if (ctx2 && mediaCanvas) {
+                    ctx2.fillStyle = '#000000';
+                    ctx2.fillRect(0, 0, mediaCanvas.width, mediaCanvas.height);
+                    ctx2.lineWidth = 2;
+                    ctx2.strokeStyle = '#00ffcc';
+                    ctx2.beginPath();
+
+                    const sliceWidth = mediaCanvas.width / bufferLength;
+                    let mx = 0;
+
+                    for (let i = 0; i < bufferLength; i++) {
+                        const v = dataArray[i] / 128.0;
+                        const my = (v * mediaCanvas.height) / 2;
+
+                        if (i === 0) ctx2.moveTo(mx, my);
+                        else ctx2.lineTo(mx, my);
+
+                        mx += sliceWidth;
+                    }
+                    ctx2.stroke();
+                }
+            }
+
+            draw();
+        }
+
+        function initDualGraph() {
+            const canvas = document.getElementById('dualGraphCanvas');
+            const ctx = canvas.getContext('2d');
+
+            function resize() {
+                canvas.width = canvas.parentElement.clientWidth;
+                canvas.height = canvas.parentElement.clientHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            setInterval(() => {
+                // Update dynamic values
+                const item1 = transferItems[0];
+                if (item1.isDownloading) {
+                    const newSpeed = (Math.random() * 50 + 20).toFixed(1);
+                    const newSwarm = (Math.random() * 10 + 89).toFixed(1);
+
+                    item1.speed = `${newSpeed} kB/s`;
+                    document.getElementById('cfsGauge').innerText = `${newSwarm}%`;
+                    document.getElementById('speedGauge').innerText = `${newSpeed} kB/s`;
+                    document.getElementById('statusDls').innerText = `D: ${newSpeed} kB/s`;
+
+                    speedHistory.shift();
+                    speedHistory.push(parseFloat(newSpeed));
+
+                    surgeHistory.shift();
+                    surgeHistory.push(parseFloat(newSwarm));
+
+                    if (item1.progress < 99) {
+                        item1.progress += 1;
+                    }
+                    renderTable();
+                }
+
+                // Draw Graph
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Background Grid
+                ctx.strokeStyle = '#1e293b';
+                ctx.lineWidth = 1;
+                for (let y = 0; y < canvas.height; y += 20) {
+                    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+                }
+
+                const step = canvas.width / (speedHistory.length - 1);
+
+                // 1. Draw Swarm Density Line (Cyan Wave)
+                ctx.beginPath();
+                ctx.strokeStyle = '#00e5ff';
+                ctx.lineWidth = 2;
+                surgeHistory.forEach((val, idx) => {
+                    const x = idx * step;
+                    const y = canvas.height - (val / 100) * canvas.height;
+                    if (idx === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                });
+                ctx.stroke();
+
+                // 2. Draw Transfer Speed kB/s Line (Green Wave)
+                ctx.beginPath();
+                ctx.strokeStyle = '#10b981';
+                ctx.lineWidth = 2;
+                speedHistory.forEach((val, idx) => {
+                    const x = idx * step;
+                    const y = canvas.height - (val / 100) * canvas.height;
+                    if (idx === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                });
+                ctx.stroke();
+
+            }, 800);
+        }
+
+        // Convert AudioBuffer to WAV ArrayBuffer for ZIP export
+        function bufferToWav(abuffer) {
+            const numOfChan = abuffer.numberOfChannels,
+                length = abuffer.length * numOfChan * 2 + 44,
+                out = new DataView(new ArrayBuffer(length)),
+                channels = [];
+            let sample,
+                offset = 0,
+                pos = 0;
+
+            function setUint16(data) {
+                out.setUint16(pos, data, true);
+                pos += 2;
+            }
+
+            function setUint32(data) {
+                out.setUint32(pos, data, true);
+                pos += 4;
+            }
+
+            // WAV Header
+            setUint32(0x46464952); // "RIFF"
+            setUint32(length - 8); // file length - 8
+            setUint32(0x45564157); // "WAVE"
+            setUint32(0x20746d66); // "fmt " chunk
+            setUint32(16); // length = 16
+            setUint16(1); // PCM (uncompressed)
+            setUint16(numOfChan);
+            setUint32(abuffer.sampleRate);
+            setUint32(abuffer.sampleRate * 2 * numOfChan); // avg. bytes/sec
+            setUint16(numOfChan * 2); // block-align
+            setUint16(16); // 16-bit
+            setUint32(0x61746164); // "data" chunk
+            setUint32(length - pos - 4);
+
+            for (let i = 0; i < abuffer.numberOfChannels; i++)
+                channels.push(abuffer.getChannelData(i));
+
+            while (offset < abuffer.length) {
+                for (let i = 0; i < numOfChan; i++) {
+                    sample = Math.max(-1, Math.min(1, channels[i][offset]));
+                    sample = (0.5 + sample < 0 ? sample * 32768 : sample * 32767) | 0;
+                    out.setInt16(pos, sample, true);
+                    pos += 2;
+                }
+                offset++;
+            }
+
+            return out.buffer;
+        }
+
+        // Generates and triggers actual ZIP download
+        async function generateAndDownloadZip() {
+            playWinSound('click');
+            triggerXpAlert('COMPRESSING ARCHIVE', 'Building Concrete_Parachute_TORRENT_LEAK.zip containing lyric READ_ME.txt and audio teaser...');
+
+            try {
+                const zip = new JSZip();
+
+                // 1. Lyric READ_ME.txt
+                const lyricContent = 
+`==================================================
+  CONCRETE PARACHUTE // TORRENT LEAK
+==================================================
+
+VERSE 2 LYRIC SNIPPET:
+"I reach for proof, it disappears. Was it real, or was it just my fears?"
+
+-- Concrete Parachute // TORRENT
+
+P2P Network Status: Active Swarm Priority
+
+--------------------------------------------------
+SEALED KEY: OERNX_GUR_QRRC
+(integrity check failed)
+--------------------------------------------------
+`;
+                zip.file("READ_ME.txt", lyricContent);
+
+                // 2. Synthesize audio WAV buffer
+                initWebAudio();
+                if (!synthesizedBuffer) {
+                    synthesizedBuffer = buildGuitarSoloBuffer();
+                }
+                const wavData = bufferToWav(synthesizedBuffer);
+                zip.file("guitar_solo_teaser.wav", wavData);
+
+                // Generate ZIP blob
+                const content = await zip.generateAsync({ type: "blob" });
+                
+                // Trigger Browser Download using Blob URL
+                const a = document.createElement("a");
+                a.href = URL.createObjectURL(content);
+                a.download = "Concrete_Parachute_TORRENT_LEAK.zip";
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+
+            } catch (err) {
+                console.error("ZIP Generation error:", err);
+                triggerXpError("Failed to build ZIP file: " + err.message);
+            }
+        }
+
+        function toggleTheme() {
+            playWinSound('click');
+            document.body.classList.toggle('limewire-theme');
+            const isLime = document.body.classList.contains('limewire-theme');
+            triggerXpAlert('THEME CHANGED', isLime ? 'LimeWire Classic Lime-Green Skin Activated!' : 'BitTorrent Classic Blue Skin Activated!');
+        }
+
+        function selectCategory(cat) {
+            playWinSound('click');
+            activeCategory = cat;
+            document.querySelectorAll('[id^="cat-"]').forEach(el => {
+                el.className = "p-1 cursor-pointer hover:bg-gray-200 rounded flex justify-between";
+            });
+            document.getElementById(`cat-${cat}`).className = "p-1 cursor-pointer bg-[#316ac5] text-white rounded font-semibold flex justify-between";
+            renderTable();
+        }
+
+        function startDownloadSequence() {
+            playWinSound('click');
+            transferItems[0].isDownloading = true;
+            transferItems[0].status = "Downloading";
+            renderTable();
+        }
+
+        function pauseDownload() {
+            playWinSound('click');
+            transferItems[0].isDownloading = false;
+            transferItems[0].status = "Paused";
+            transferItems[0].speed = "0.0 kB/s";
+            renderTable();
+        }
+
+        function stopDownload() {
+            playWinSound('click');
+            transferItems[0].isDownloading = false;
+            transferItems[0].status = "Stopped";
+            transferItems[0].speed = "0.0 kB/s";
+            renderTable();
+        }
+
+        function simulateAddTorrent() {
+            playWinSound('click');
+            triggerXpAlert('TORRENT ADDED', 'Magnet link connected: concreteparachute://torrent-leak.hash');
+        }
+
+        // HEX VIEWER (ARG layer 1: hex -> text reveals the route)
+        const HEX_PAYLOAD = "53 57 41 52 4D 5F 4E 4F 44 45 5F 30 78 31 46 20 2F 2F 20 52 4F 55 54 45 3A 20 63 6F 6E 63 72 65 74 65 70 61 72 61 63 68 75 74 65 2E 63 6F 6D 2F 74 65 72 6D 69 6E 61 6C 20 2F 2F 20 41 43 43 45 53 53 20 4B 45 59 20 53 45 41 4C 45 44 20 49 4E 20 54 48 45 20 41 52 43 48 49 56 45 2E 20 54 55 52 4E 20 49 54 20 48 41 4C 46 20 54 48 45 20 41 4C 50 48 41 42 45 54 2E";
+        function openHexModal() {
+            playWinSound('click');
+            const bytes = [0x53,0x57,0x52,0x4D,0x00,0x00,0x01,0xFF,0x7A,0x13,0xC4,0x00,0x00,0x00,0x00,0x00]
+                .concat(HEX_PAYLOAD.split(' ').map(h => parseInt(h,16)))
+                .concat([0x00,0x00,0xDE,0xAD,0xBE,0xEF,0x00,0x00,0x00]);
+            const ns = 'user-select:none;-webkit-user-select:none;';
+            let out = '';
+            for (let i = 0; i < bytes.length; i += 16) {
+                const row = bytes.slice(i, i+16).map(b => b.toString(16).toUpperCase().padStart(2,'0')).join(' ');
+                out += '<span style="' + ns + '">' + i.toString(16).toUpperCase().padStart(8,'0') + '  </span>'
+                     + row + '<span style="' + ns + '">' + ' '.repeat(47 - row.length) + '   ................</span>\n';
+            }
+            document.getElementById('hexDump').innerHTML = out;
+            document.getElementById('hexModal').classList.remove('hidden');
+        }
+        function closeHexModal() {
+            playWinSound('click');
+            document.getElementById('hexModal').classList.add('hidden');
+        }
+
+        // Modal Handlers
+        function openExplorerModal() {
+            playWinSound('click');
+            document.getElementById('explorerModal').classList.remove('hidden');
+        }
+        function closeExplorerModal() {
+            playWinSound('click');
+            document.getElementById('explorerModal').classList.add('hidden');
+        }
+
+        function openNotepadModal() {
+            playWinSound('click');
+            document.getElementById('notepadModal').classList.remove('hidden');
+        }
+        function closeNotepadModal() {
+            playWinSound('click');
+            document.getElementById('notepadModal').classList.add('hidden');
+        }
+
+        function openMediaPlayerModal() {
+            playWinSound('click');
+            document.getElementById('mediaPlayerModal').classList.remove('hidden');
+            playTeaserAudio();
+        }
+        function closeMediaPlayerModal() {
+            playWinSound('click');
+            stopTeaserAudio();
+            document.getElementById('mediaPlayerModal').classList.add('hidden');
+        }
+
+        // XP System Alerts
+        function triggerXpAlert(title, message) {
+            playWinSound('click');
+            document.getElementById('xpAlertTitle').innerText = title;
+            document.getElementById('xpAlertMessage').innerText = message;
+            document.getElementById('xpAlertIcon').innerText = 'ℹ️';
+            document.getElementById('xpAlertModal').classList.remove('hidden');
+        }
+
+        function triggerXpError(message) {
+            playWinSound('error');
+            document.getElementById('xpAlertTitle').innerText = 'Windows Error';
+            document.getElementById('xpAlertMessage').innerText = message;
+            document.getElementById('xpAlertIcon').innerText = '❌';
+            document.getElementById('xpAlertModal').classList.remove('hidden');
+        }
+
+        function closeXpAlert() {
+            playWinSound('click');
+            document.getElementById('xpAlertModal').classList.add('hidden');
+        }
+
+        // Desktop scaling: fill the screen on large displays, leave mobile untouched
+        function fitToScreen() {
+            const w = window.innerWidth;
+            const main = document.getElementById('mainWindow');
+            const s = w >= 1024 ? Math.min(Math.max(w / 1100, 1), 2.2) : 1;
+            main.style.zoom = s;
+            main.style.maxWidth = w >= 1024 ? 'none' : '';
+            main.style.minHeight = w >= 1024 ? ((window.innerHeight - 48) / s) + 'px' : '';
+            ['explorerModal','notepadModal','mediaPlayerModal','hexModal','xpAlertModal'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.firstElementChild) el.firstElementChild.style.zoom = s;
+            });
+        }
+        window.addEventListener('resize', fitToScreen);
+
+        window.onload = function() {
+            fitToScreen();
+            renderTable();
+            initDualGraph();
+            
+            // Auto open welcome alert
+            setTimeout(() => {
+                triggerXpAlert('LEAK CONNECTED', 'Connected to peer network 192.168.1.104. P2P Swarm sync active.');
+            }, 600);
+        };
+    </script>
+</body>
+</html>
