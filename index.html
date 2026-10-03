@@ -50,6 +50,25 @@
     
     <!-- Bandsintown v3 Widget Script -->
     <script charset="utf-8" src="https://widgetv3.bandsintown.com/main.min.js"></script>
+
+    <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1475619644625205');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1475619644625205&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+    
 </head>
 <body class="bg-retro-dark text-zinc-100 selection:bg-retro-coral selection:text-white relative">
     
@@ -289,7 +308,7 @@
                 Sign up to hear <span class="text-retro-coral font-bold">"Torrent" 24 hours before release day</span>, plus get direct ticket presale alerts, merch discounts, and exclusive studio updates.
             </p>
             
-            <form action="https://app.kit.com/forms/9958188/subscriptions" method="POST" class="max-w-md mx-auto flex flex-col sm:flex-row gap-2 pt-2">
+            <form action="https://app.kit.com/forms/9958188/subscriptions" method="POST" onsubmit="fbq('track', 'Lead', { content_name: 'Newsletter Signup' });">
                 <input 
                     type="email" 
                     name="email_address" 
