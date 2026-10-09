@@ -138,9 +138,9 @@ footer{text-align:center;font-size:11px;color:#52525b;margin-top:6px}
   </div>
 
   <section class="hero">
-    <div class="what">Live at <span id="venueName">--</span></div>
-    <div class="when" id="showDate">--</div>
-    <div class="where"><span id="showTime">--</span> &bull; <span id="showAge">--</span></div>
+    <div class="what">Live at <span id="venueName">Venue Name</span></div>
+    <div class="when" id="showDate">Sat, Jan 23</div>
+    <div class="where"><span id="showTime">Doors 7:30 PM</span> &bull; <span id="showAge">All Ages</span></div>
   </section>
 
   <section class="card">
@@ -151,9 +151,9 @@ footer{text-align:center;font-size:11px;color:#52525b;margin-top:6px}
       <div><b id="cd-m">--</b><span>Min</span></div>
     </div>
     <a id="ticketBtn" class="cta" href="#" rel="noopener">
-      Get Tickets <small id="priceLabel">--</small>
+      Get Tickets <small id="priceLabel">from $15</small>
     </a>
-    <p class="cta-sub">Secure checkout through <span id="platformName">--</span>.</p>
+    <p class="cta-sub">Secure checkout through <span id="platformName">the venue</span>.</p>
   </section>
 
   <section class="card why">
@@ -188,12 +188,12 @@ footer{text-align:center;font-size:11px;color:#52525b;margin-top:6px}
 
   <section class="card">
     <div class="facts">
-      <div><span>Date</span><b id="f-date">--</b></div>
-      <div><span>Doors</span><b id="f-doors">--</b></div>
-      <div><span>Venue</span><b id="f-venue">--</b></div>
-      <div><span>Price</span><b id="f-price">--</b></div>
+      <div><span>Date</span><b id="f-date">Sat, Jan 23, 2027</b></div>
+      <div><span>Doors</span><b id="f-doors">7:30 PM</b></div>
+      <div><span>Venue</span><b id="f-venue">Venue Name</b></div>
+      <div><span>Price</span><b id="f-price">$15 advance</b></div>
     </div>
-    <p class="cta-sub" id="addr" style="margin-top:12px">--</p>
+    <p class="cta-sub" id="addr" style="margin-top:12px">123 Example St, Atlanta, GA</p>
   </section>
 
   <section class="card signup">
@@ -227,13 +227,8 @@ footer{text-align:center;font-size:11px;color:#52525b;margin-top:6px}
 const CONFIG = {
   venue:       "Venue Name",
   address:     "123 Example St, Atlanta, GA",
-  
-  // DATE FORMAT: Use standard formats like "Jan 23, 2027" or "2027-01-23"
   showDateStr: "Jan 23, 2027", 
-  
-  // TIME FORMAT: Use standard formats like "7:30 PM" or "19:30"
   doorsTimeStr:"7:30 PM",     
-  
   ageLabel:    "All Ages",
   priceLabel:  "$15 advance",
   priceShort:  "from $15",
@@ -245,130 +240,130 @@ const CONFIG = {
 };
 /* ========================================================================= */
 
-const $ = id => document.getElementById(id);
+// Safely execute JS only after the DOM is fully rendered
+document.addEventListener('DOMContentLoaded', () => {
+  const $ = id => document.getElementById(id);
 
-// Dynamically Render Page UI from CONFIG
-$('venueName').textContent = CONFIG.venue;
-$('showDate').textContent = CONFIG.showDateStr;
-$('showTime').textContent = 'Doors ' + CONFIG.doorsTimeStr;
-$('showAge').textContent = CONFIG.ageLabel;
-$('priceLabel').textContent = CONFIG.priceShort;
-$('platformName').textContent = CONFIG.platform;
-$('f-date').textContent = CONFIG.showDateStr;
-$('f-doors').textContent = CONFIG.doorsTimeStr;
-$('f-venue').textContent = CONFIG.venue;
-$('f-price').textContent = CONFIG.priceLabel;
-$('addr').textContent = CONFIG.address;
+  // Dynamically Render Page UI from CONFIG
+  if ($('venueName'))$('venueName').textContent = CONFIG.venue;
+  if ($('showDate'))$('showDate').textContent = CONFIG.showDateStr;
+  if ($('showTime'))$('showTime').textContent = 'Doors ' + CONFIG.doorsTimeStr;
+  if ($('showAge'))$('showAge').textContent = CONFIG.ageLabel;
+  if ($('priceLabel'))$('priceLabel').textContent = CONFIG.priceShort;
+  if ($('platformName'))$('platformName').textContent = CONFIG.platform;
+  if ($('f-date'))$('f-date').textContent = CONFIG.showDateStr;
+  if ($('f-doors'))$('f-doors').textContent = CONFIG.doorsTimeStr;
+  if ($('f-venue'))$('f-venue').textContent = CONFIG.venue;
+  if ($('f-price'))$('f-price').textContent = CONFIG.priceLabel;
+  if ($('addr'))$('addr').textContent = CONFIG.address;
 
-if (CONFIG.posterImgUrl) {
-  $('posterImg').src = CONFIG.posterImgUrl;
-  $('posterImg').style.display = 'block';$('posterPlaceholder').style.display = 'none';
-}
-
-// Compute Target Date dynamically for Countdown & Schema
-function getTargetDateTime() {
-  const combined = `${CONFIG.showDateStr} ${CONFIG.doorsTimeStr}`;
-  const parsed = new Date(combined);
-  return isNaN(parsed.getTime()) ? new Date() : parsed;
-}
-
-// Countdown Tick (Uses CONFIG Date/Time)
-function tick(){
-  const targetDate = getTargetDateTime();
-  const ms = targetDate - new Date();
-
-  if(ms <= 0){ 
-    $('countdown').style.display = 'none'; 
-    return; 
+  if (CONFIG.posterImgUrl && $('posterImg')) {$('posterImg').src = CONFIG.posterImgUrl;
+    $('posterImg').style.display = 'block';
+    if ($('posterPlaceholder'))$('posterPlaceholder').style.display = 'none';
   }
 
-  const m = Math.floor(ms / 60000);
-  $('cd-d').textContent = Math.floor(m / 1440);
-  $('cd-h').textContent = Math.floor((m \% 1440) / 60);$('cd-m').textContent = m % 60;
-}
-tick(); 
-setInterval(tick, 30000);
-
-// Auto-Sync Schema.org Search Data
-const targetDateTime = getTargetDateTime();
-const schemaData = {
-  "@context": "https://schema.org",
-  "@type": "MusicEvent",
-  "name": "Concrete Parachute: Debut Show + TORRENT Single Release",
-  "startDate": targetDateTime.toISOString(),
-  "eventStatus": "https://schema.org/EventScheduled",
-  "location": {
-    "@type": "Place",
-    "name": CONFIG.venue,
-    "address": CONFIG.address
-  },
-  "performer": {
-    "@type": "MusicGroup",
-    "name": "Concrete Parachute"
-  },
-  "offers": {
-    "@type": "Offer",
-    "url": CONFIG.ticketUrl,
-    "price": CONFIG.priceLabel.replace(/[^0-9.]/g, '') || "15",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock"
+  function getTargetDateTime() {
+    const combined = `${CONFIG.showDateStr} ${CONFIG.doorsTimeStr}`;
+    const parsed = new Date(combined);
+    return isNaN(parsed.getTime()) ? new Date() : parsed;
   }
-};
-$('eventSchema').textContent = JSON.stringify(schemaData);
 
-// Build ticket URL with UTM passing
-function buildTicketUrl(){
-  const u = new URL(CONFIG.ticketUrl, location.href);
-  const here = new URLSearchParams(location.search);
-  here.forEach((v,k)=>{ if(/^utm_|^fbclid$/.test(k)) u.searchParams.set(k,v); });
-  if(!here.has('utm_source')) { u.searchParams.set('utm_source','landing'); }
-  if(CONFIG.promoParam){ const [k,v]=CONFIG.promoParam.split('='); u.searchParams.set(k,v); }
-  return u.toString();
-}
+  function tick(){
+    const targetDate = getTargetDateTime();
+    const ms = targetDate - new Date();
 
-// Handle Ticket Button Clicks + Pixel Tracking
-function goTickets(e){
-  e.preventDefault();
-  const url = buildTicketUrl();
-  if (window.fbq) {
-    fbq('track','InitiateCheckout',{content_name:'Debut Show Tickets',currency:'USD'});
-    fbq('trackCustom','TicketClick',{venue:CONFIG.venue});
+    if(ms <= 0){ 
+      if ($('countdown'))$('countdown').style.display = 'none'; 
+      return; 
+    }
+
+    const m = Math.floor(ms / 60000);
+    if ($('cd-d'))$('cd-d').textContent = Math.floor(m / 1440);
+    if ($('cd-h'))$('cd-h').textContent = Math.floor((m % 1440) / 60);
+    if ($('cd-m'))$('cd-m').textContent = m % 60;
   }
-  setTimeout(()=>{ window.location.href = url; }, 180);
-}
-['ticketBtn','ticketBtn2'].forEach(id=>{ const a=$(id); a.href=CONFIG.ticketUrl; a.addEventListener('click',goTickets); });
+  tick(); 
+  setInterval(tick, 30000);
 
-// Outbound Tracking
-document.querySelectorAll('[data-track]').forEach(a=>a.addEventListener('click',()=>{
-  if(window.fbq) fbq('trackCustom','OutboundClick',{target:a.dataset.track});
-}));
+  // Auto-Sync Schema.org
+  const targetDateTime = getTargetDateTime();
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "MusicEvent",
+    "name": "Concrete Parachute: Debut Show + TORRENT Single Release",
+    "startDate": targetDateTime.toISOString(),
+    "eventStatus": "https://schema.org/EventScheduled",
+    "location": {
+      "@type": "Place",
+      "name": CONFIG.venue,
+      "address": CONFIG.address
+    },
+    "performer": {
+      "@type": "MusicGroup",
+      "name": "Concrete Parachute"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": CONFIG.ticketUrl,
+      "price": CONFIG.priceLabel.replace(/[^0-9.]/g, '') || "15",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    }
+  };
+  if ($('eventSchema'))$('eventSchema').textContent = JSON.stringify(schemaData);
 
-// Sticky CTA Observer
-const io = new IntersectionObserver(([en])=>{ $('sticky').classList.toggle('show', !en.isIntersecting); },{threshold:0});
-io.observe($('ticketBtn'));
+  function buildTicketUrl(){
+    const u = new URL(CONFIG.ticketUrl, location.href);
+    const here = new URLSearchParams(location.search);
+    here.forEach((v,k)=>{ if(/^utm_|^fbclid$/.test(k)) u.searchParams.set(k,v); });
+    if(!here.has('utm_source')) { u.searchParams.set('utm_source','landing'); }
+    if(CONFIG.promoParam){ const [k,v]=CONFIG.promoParam.split('='); u.searchParams.set(k,v); }
+    return u.toString();
+  }
 
-// Audio Teaser
-const audio=$('audio'), playBtn=$('playBtn');
-playBtn.onclick=()=>{
-  if(audio.paused){ audio.play(); playBtn.innerHTML='&#10074;&#10074;'; if(window.fbq) fbq('trackCustom','PreviewPlay'); }
-  else { audio.pause(); playBtn.innerHTML='&#9654;'; }
-};
-audio.addEventListener('timeupdate',()=>{
-  $('prog').style.width=(audio.currentTime/(audio.duration||15))*100+'%';
-  const s=Math.floor(audio.currentTime); $('audioTimer').textContent='0:'+(s<10?'0':'')+s;
-});
-audio.addEventListener('ended',()=>{ playBtn.innerHTML='&#9654;'; $('prog').style.width='0'; $('audioTimer').textContent='0:00'; });$('bar').onclick=e=>{ const r=e.currentTarget.getBoundingClientRect(); if(audio.duration) audio.currentTime=((e.clientX-r.left)/r.width)*audio.duration; };
+  function goTickets(e){
+    e.preventDefault();
+    const url = buildTicketUrl();
+    if (window.fbq) {
+      fbq('track','InitiateCheckout',{content_name:'Debut Show Tickets',currency:'USD'});
+      fbq('trackCustom','TicketClick',{venue:CONFIG.venue});
+    }
+    setTimeout(()=>{ window.location.href = url; }, 180);
+  }
+  ['ticketBtn','ticketBtn2'].forEach(id=>{ const a=$(id); if (a) { a.href=CONFIG.ticketUrl; a.addEventListener('click',goTickets); } });
 
-// Kit Form Email Capture
-$('form').addEventListener('submit', async e=>{
-  e.preventDefault();
-  const btn=$('submitBtn'); btn.disabled=true; btn.textContent='...';
-  try{
-    const fd=new FormData(); fd.append('email_address',$('email').value);
-    await fetch('https://app.kit.com/forms/'+CONFIG.kitFormId+'/subscriptions',{method:'POST',body:fd,mode:'no-cors'});
-    if(window.fbq) fbq('track','Lead',{content_name:'Show Reminder'});
-    $('form').style.display='none';$('ok').style.display='block';
-  }catch(err){ btn.disabled=false; btn.textContent='Remind me'; alert('Something went wrong. Please try again.'); }
+  document.querySelectorAll('[data-track]').forEach(a=>a.addEventListener('click',()=>{
+    if(window.fbq) fbq('trackCustom','OutboundClick',{target:a.dataset.track});
+  }));
+
+  const io = new IntersectionObserver(([en])=>{ if ($('sticky'))$('sticky').classList.toggle('show', !en.isIntersecting); },{threshold:0});
+  if ($('ticketBtn')) io.observe($('ticketBtn'));
+
+  const audio=$('audio'), playBtn=$('playBtn');
+  if (playBtn && audio) {
+    playBtn.onclick=()=>{
+      if(audio.paused){ audio.play(); playBtn.innerHTML='&#10074;&#10074;'; if(window.fbq) fbq('trackCustom','PreviewPlay'); }
+      else { audio.pause(); playBtn.innerHTML='&#9654;'; }
+    };
+    audio.addEventListener('timeupdate',()=>{
+      if ($('prog'))$('prog').style.width=(audio.currentTime/(audio.duration||15))*100+'%';
+      const s=Math.floor(audio.currentTime); if ($('audioTimer'))$('audioTimer').textContent='0:'+(s<10?'0':'')+s;
+    });
+    audio.addEventListener('ended',()=>{ playBtn.innerHTML='&#9654;'; if ($('prog'))$('prog').style.width='0'; if ($('audioTimer'))$('audioTimer').textContent='0:00'; });
+    if ($('bar'))$('bar').onclick=e=>{ const r=e.currentTarget.getBoundingClientRect(); if(audio.duration) audio.currentTime=((e.clientX-r.left)/r.width)*audio.duration; };
+  }
+
+  if ($('form')) {$('form').addEventListener('submit', async e=>{
+      e.preventDefault();
+      const btn=$('submitBtn'); btn.disabled=true; btn.textContent='...';
+      try{
+        const fd=new FormData(); fd.append('email_address',$('email').value);
+        await fetch('https://app.kit.com/forms/'+CONFIG.kitFormId+'/subscriptions',{method:'POST',body:fd,mode:'no-cors'});
+        if(window.fbq) fbq('track','Lead',{content_name:'Show Reminder'});
+        $('form').style.display='none'; if ($('ok'))$('ok').style.display='block';
+      }catch(err){ btn.disabled=false; btn.textContent='Remind me'; alert('Something went wrong. Please try again.'); }
+    });
+  }
 });
 </script>
 </body>
