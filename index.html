@@ -617,7 +617,7 @@
                 <div class="hidden md:flex items-center space-x-6 text-xs uppercase tracking-widest font-bold text-zinc-400">
                     <a href="#releases" class="hover:text-white transition">Music</a>
                     <a href="#about" class="hover:text-white transition">Bio</a>
-                    <a href="#tour" class="hover:text-white transition">Tour</a>
+                    <a href="#tour" data-tour-link class="hidden hover:text-white transition">Tour</a>
                     <a href="#merch" class="hover:text-white transition">Store</a>
                     <a href="#faq" class="hover:text-white transition">FAQ</a>
                     <a href="#contact" class="hover:text-white transition">Booking</a>
@@ -637,7 +637,7 @@
             <div id="mobile-menu" class="hidden md:hidden bg-retro-dark border-b border-zinc-800 px-6 py-6 space-y-4 text-xs font-bold uppercase tracking-widest text-zinc-300">
                 <a href="#releases" class="block py-2 hover:text-retro-coral transition mobile-link">Music</a>
                 <a href="#about" class="block py-2 hover:text-retro-coral transition mobile-link">Bio</a>
-                <a href="#tour" class="block py-2 hover:text-retro-coral transition mobile-link">Tour Dates</a>
+                <a href="#tour" data-tour-link class="hidden block py-2 hover:text-retro-coral transition mobile-link">Tour Dates</a>
                 <a href="#merch" class="block py-2 hover:text-retro-coral transition mobile-link">Store</a>
                 <a href="/epk" class="block py-2 hover:text-retro-turquoise transition mobile-link">Press Kit (EPK)</a>
                 <a href="#faq" class="block py-2 hover:text-retro-coral transition mobile-link">FAQ</a>
@@ -678,7 +678,7 @@
                 <a href="#releases" class="bg-retro-coral hover:bg-retro-darkcoral text-white font-black text-xs sm:text-sm uppercase px-8 py-4 rounded transition flex items-center gap-2 shadow-[0_0_20px_rgba(224,122,95,0.4)]" title="Pre-Save Debut Single">
                     <i data-lucide="bell" class="w-5 h-5"></i> Pre-Save Debut Single
                 </a>
-                <a href="#tour" class="bg-retro-card/90 backdrop-blur hover:bg-zinc-800 text-white font-bold text-xs sm:text-sm uppercase px-8 py-4 rounded transition flex items-center gap-2 border border-zinc-700" title="View Tour Dates">
+                <a href="#tour" data-tour-link class="hidden bg-retro-card/90 backdrop-blur hover:bg-zinc-800 text-white font-bold text-xs sm:text-sm uppercase px-8 py-4 rounded transition flex items-center gap-2 border border-zinc-700" title="View Tour Dates">
                     <i data-lucide="ticket" class="w-5 h-5"></i> Tour Dates
                 </a>
             </div>
@@ -870,7 +870,7 @@
                     Emerging from Griffin, Georgia and rooted in the vibrant Atlanta music scene, <strong class="text-white">Concrete Parachute</strong> delivers an impact-driven blend of heavy melodic rock and post-hardcore. Fusing fast guitar riffage with infectious clean dual-lead vocal hooks and aggressive screaming accents, the quartet captures heavy rock intensity while remaining catchy and radio-accessible.
                 </p>
                 <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
-                    Based in Atlanta, Georgia and available to book across the Southeast, the band's debut singles <a href="#releases" class="text-retro-coral hover:underline">"Torrent" (January 12, 2027) and "Drifting Awake" (February 19, 2027)</a> are the first chapter of the Concrete Parachute story. Fans of A Day To Remember, Story of the Year, Chevelle and Breaking Benjamin will find familiar ground: big hooks, heavy riffs and honest lyrics. See <a href="#tour" class="text-retro-coral hover:underline">tour dates</a>, grab <a href="#merch" class="text-retro-coral hover:underline">merch</a> or <a href="#contact" class="text-retro-coral hover:underline">book the band</a>.
+                    Based in Atlanta, Georgia and available to book across the Southeast, the band's debut singles <a href="#releases" class="text-retro-coral hover:underline">"Torrent" (January 12, 2027) and "Drifting Awake" (February 19, 2027)</a> are the first chapter of the Concrete Parachute story. Fans of A Day To Remember, Story of the Year, Chevelle and Breaking Benjamin will find familiar ground: big hooks, heavy riffs and honest lyrics. <span data-tour-link class="hidden">See <a href="#tour" class="text-retro-coral hover:underline">tour dates</a>, grab </span><span data-no-tour>Grab </span><a href="#merch" class="text-retro-coral hover:underline">merch</a> or <a href="#contact" class="text-retro-coral hover:underline">book the band</a>.
                 </p>
                 <div class="grid sm:grid-cols-2 gap-8 pt-4 border-t border-zinc-800/80">
                     <div>
@@ -1120,7 +1120,7 @@
             <nav aria-label="Footer navigation" class="flex flex-wrap justify-center gap-x-5 gap-y-2 text-zinc-400 uppercase tracking-widest font-bold text-[10px]">
                 <a href="#releases" class="hover:text-white transition">New Music</a>
                 <a href="#about" class="hover:text-white transition">About the Band</a>
-                <a href="#tour" class="hover:text-white transition">Tour Dates</a>
+                <a href="#tour" data-tour-link class="hidden hover:text-white transition">Tour Dates</a>
                 <a href="#faq" class="hover:text-white transition">FAQ</a>
                 <a href="#merch" class="hover:text-white transition">Merch</a>
             </nav>
@@ -1164,6 +1164,14 @@
             const eventsEl = document.getElementById('tour-events');
             const statusEl = document.getElementById('tour-status');
             const heroTourMessage = document.getElementById('hero-tour-message');
+            const tourLinks = document.querySelectorAll('[data-tour-link]');
+            const noTourEls = document.querySelectorAll('[data-no-tour]');
+            // Show/hide the tour section and everything that links to it, together.
+            const setTourVisible = (visible) => {
+                if (tourSection) tourSection.classList.toggle('hidden', !visible);
+                tourLinks.forEach(el => el.classList.toggle('hidden', !visible));
+                noTourEls.forEach(el => el.classList.toggle('hidden', visible));
+            };
             const heroDefaultMessage = 'Atlanta, GA • Heavy Melodic Rock & Post-Hardcore';
             const filterButtons = document.querySelectorAll('[data-tour-filter]');
 
@@ -1279,9 +1287,7 @@
                     if (statusEl) statusEl.textContent = `${sorted.length} ${filter} ${sorted.length === 1 ? 'date' : 'dates'}`;
 
                     // Keep the hero badge in sync with the upcoming show feed.
-                    if (filter === 'upcoming' && tourSection) {
-                        tourSection.classList.toggle('hidden', sorted.length === 0);
-                    }
+                    if (filter === 'upcoming') setTourVisible(sorted.length > 0);
 
                     if (filter === 'upcoming' && heroTourMessage) {
                         if (sorted.length === 0) {
@@ -1319,7 +1325,7 @@
                     if (window.lucide) lucide.createIcons();
                 } catch (error) {
                     // If the live feed is unavailable, keep the original band/location tagline and hide the empty tour section.
-                    if (filter === 'upcoming' && tourSection) tourSection.classList.add('hidden');
+                    if (filter === 'upcoming') setTourVisible(false);
                     if (filter === 'upcoming' && heroTourMessage) {
                         heroTourMessage.textContent = heroDefaultMessage;
                     }
