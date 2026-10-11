@@ -261,7 +261,7 @@
             <span class="text-retro-coral font-header font-bold text-lg sm:text-xl uppercase tracking-wide">Phase 1: Mixbus 12 Pro Import, Prep & Gain Staging</span>
           </div>
           <div class="flex items-center gap-3">
-            <span id="badge-p1" class="text-xs font-bold px-2.5 py-1 rounded-full bg-retro-dark border border-zinc-800 text-retro-palmgreen">0/8</span>
+            <span id="badge-p1" class="text-xs font-bold px-2.5 py-1 rounded-full bg-retro-dark border border-zinc-800 text-retro-palmgreen">0/9</span>
             <i data-lucide="chevron-down" class="chevron-icon w-5 h-5 text-zinc-400 transition-transform duration-200"></i>
           </div>
         </summary>
@@ -328,6 +328,12 @@
               <strong class="text-white font-bold">Reference Track Setup:</strong> Import 1 to 2 commercial post-hardcore reference tracks. Assign them directly to the Mixbus Monitor Strip / Audition Path and level-match them to your unmastered mix by loudness.
             </div>
           <a href="https://rsrc.harrisonconsoles.com/mixbus/mixbus-live-manual/12/en/topic/monitor-bus" target="_blank" rel="noopener" title="Open Mixbus manual: Monitor Strip" aria-label="Open Mixbus manual: Monitor Strip" class="info-link shrink-0 p-1.5 -m-1 rounded-full text-zinc-500 hover:text-retro-turquoise hover:bg-zinc-800 transition"><i data-lucide="info" class="w-4 h-4"></i></a>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p1-9" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Send a Reference Mix to the Mastering House:</strong> Before final mixing, send a reference/work-in-progress mix (plus any commercial references for the sound you want) so the mastering engineer can judge the overall feel and bus compression early. Describe what you want the final album to sound like.
+            </div>
           </div>
         </div>
       </details>
@@ -630,7 +636,7 @@
             <span class="text-retro-coral font-header font-bold text-lg sm:text-xl uppercase tracking-wide">Phase 7: Pre-Mastering Quality Control & Safety Checks</span>
           </div>
           <div class="flex items-center gap-3">
-            <span id="badge-p7" class="text-xs font-bold px-2.5 py-1 rounded-full bg-retro-dark border border-zinc-800 text-retro-palmgreen">0/8</span>
+            <span id="badge-p7" class="text-xs font-bold px-2.5 py-1 rounded-full bg-retro-dark border border-zinc-800 text-retro-palmgreen">0/10</span>
             <i data-lucide="chevron-down" class="chevron-icon w-5 h-5 text-zinc-400 transition-transform duration-200"></i>
           </div>
         </summary>
@@ -638,14 +644,14 @@
           <div class="item-container flex items-start gap-3">
             <input type="checkbox" id="p7-1" class="custom-checkbox">
             <div class="item-text leading-relaxed w-full">
-              <strong class="text-white font-bold">Peak Headroom & Metering:</strong> Ensure peaks sit between -3.0 dBTP and -6.0 dBTP with no digital clipping. Glance at loudness analyzers but do not chase targets.
+              <strong class="text-white font-bold">Peak Headroom & Metering:</strong> Aim for peaks around -4 dB on the digital meters (always below 0 dBFS; -3.0 to -6.0 dBTP is fine) with no digital clipping. Do not simply pull the master fader down 4 dB on a mix that is already flat-lined/brickwalled &mdash; fix the level upstream so the mastering engineer has real headroom to work with. Glance at loudness analyzers but do not chase targets. If your levels are higher or lower, that is okay &mdash; call the mastering house.
             </div>
           <a href="https://rsrc.harrisonconsoles.com/mixbus/mixbus-live-manual/12/en/topic/metering" target="_blank" rel="noopener" title="Open Mixbus manual: Metering" aria-label="Open Mixbus manual: Metering" class="info-link shrink-0 p-1.5 -m-1 rounded-full text-zinc-500 hover:text-retro-turquoise hover:bg-zinc-800 transition"><i data-lucide="info" class="w-4 h-4"></i></a>
           </div>
           <div class="item-container flex items-start gap-3">
             <input type="checkbox" id="p7-2" class="custom-checkbox">
             <div class="item-text leading-relaxed">
-              <strong class="text-white font-bold">Bus Processing & Limiting Check:</strong> Confirm brickwall limiters or clipping plugins on the master bus are turned OFF.
+              <strong class="text-white font-bold">Bus Processing & Limiting Check:</strong> Confirm brickwall limiters or clipping plugins on the master bus are turned OFF (maxing out the headroom can stop the mastering engineer using their processing). Decide deliberately about mix-bus compression: do not over-compress unless you are certain you love it, and keep it light enough that the mix does not sound worse once it is removed (see the alternate-version item in Phase 8).
             </div>
           <a href="https://rsrc.harrisonconsoles.com/mixbus/mixbus-live-manual/12/en/topic/master-channel" target="_blank" rel="noopener" title="Open Mixbus manual: Master Strip" aria-label="Open Mixbus manual: Master Strip" class="info-link shrink-0 p-1.5 -m-1 rounded-full text-zinc-500 hover:text-retro-turquoise hover:bg-zinc-800 transition"><i data-lucide="info" class="w-4 h-4"></i></a>
           </div>
@@ -690,6 +696,18 @@
               <strong class="text-white font-bold">Outside-the-Room Listening:</strong> Take a break, then listen once on headphones and car speakers to note translations issues. <br><span class="text-retro-turquoise font-bold uppercase text-xs tracking-wider inline-block mt-1">Rule: Fresh ears get the final vote.</span> Do this final listen after a meaningful break or the next morning before making any further adjustments.
             </div>
           </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p7-5" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Album Consistency Check:</strong> If this song is part of an album, compare its tone, level and dynamics against the other mixes and note any outliers. Mastering will unify the sequence, but big differences are best flagged now. Note intended song order and any gaps/fades.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p7-7" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Production Schedule Buffer:</strong> Confirm you have left time in the schedule for changes and revisions after the first master comes back. Don&rsquo;t rush what you&rsquo;ve taken so long to get right.
+            </div>
+          </div>
         </div>
       </details>
 
@@ -700,7 +718,7 @@
             <span class="text-retro-coral font-header font-bold text-lg sm:text-xl uppercase tracking-wide">Phase 8: File Export & Delivery Package</span>
           </div>
           <div class="flex items-center gap-3">
-            <span id="badge-p8" class="text-xs font-bold px-2.5 py-1 rounded-full bg-retro-dark border border-zinc-800 text-retro-palmgreen">0/4</span>
+            <span id="badge-p8" class="text-xs font-bold px-2.5 py-1 rounded-full bg-retro-dark border border-zinc-800 text-retro-palmgreen">0/7</span>
             <i data-lucide="chevron-down" class="chevron-icon w-5 h-5 text-zinc-400 transition-transform duration-200"></i>
           </div>
         </summary>
@@ -729,9 +747,27 @@
           <div class="item-container flex items-start gap-3">
             <input type="checkbox" id="p8-5" class="custom-checkbox">
             <div class="item-text leading-relaxed">
-              <strong class="text-white font-bold">Post-Export Verification:</strong> Re-import the exported WAV into a new session and listen start to finish for clipping, dropouts, or render errors.
+              <strong class="text-white font-bold">Post-Export Verification:</strong> Always verify your mixes: re-import the exported WAV into a new session and listen start to finish for clipping, dropouts, or render errors. Confirm the exported file still peaks around -4 dB and below 0 dBFS.
             </div>
           <a href="https://rsrc.harrisonconsoles.com/mixbus/mixbus-live-manual/12/en/topic/importing-files" target="_blank" rel="noopener" title="Open Mixbus manual: Importing Files" aria-label="Open Mixbus manual: Importing Files" class="info-link shrink-0 p-1.5 -m-1 rounded-full text-zinc-500 hover:text-retro-turquoise hover:bg-zinc-800 transition"><i data-lucide="info" class="w-4 h-4"></i></a>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p8-4" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Alternate Compression Version:</strong> If you used mix-bus compression (or are unsure whether it helps), print one mix with it and one with it bypassed or reduced, and send both. Label clearly, e.g. _BusComp / _NoBusComp.
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p8-6" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Notes for the Mastering Engineer:</strong> Write a short brief: the sound you want, concerns, intended formats (digital, CD, vinyl), edits/trims/fades wanted, and any special-effect ideas (they won&rsquo;t add effects without consulting you). If the mix is noisy, tell them beforehand and supply any extra audio useful for de-noising (noise-only passages, room tone, relevant stems).
+            </div>
+          </div>
+          <div class="item-container flex items-start gap-3">
+            <input type="checkbox" id="p8-7" class="custom-checkbox">
+            <div class="item-text leading-relaxed">
+              <strong class="text-white font-bold">Delivery & Session Logistics:</strong> Upload via the mastering house&rsquo;s secure FTP. Decide whether to attend the session or work unattended (unattended is usually faster and cheaper; you can audition progress via FTP). Keep a snapshot and version number (v1, v2&hellip;) for every mix so revisions can be recalled exactly.
+            </div>
           </div>
         </div>
       </details>
